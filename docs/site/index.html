@@ -1,0 +1,1439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Occupation-Ops: AI Career Operating System. Become more hireable before you apply. Local, file-based CLI for profile audits, role-gap analysis, portfolio planning, and interview prep." />
+  <meta name="theme-color" content="#0f1117" />
+  <title>Occupation-Ops — AI Career Operating System</title>
+  <style>
+    /* ── Design tokens ────────────────────────────────────────────────── */
+    :root {
+      --bg:          #0f1117;
+      --bg-card:     #161b27;
+      --bg-code:     #0d1117;
+      --border:      #21293a;
+      --border-card: #1e2a3a;
+      --accent:      #3b82f6;
+      --accent-dim:  #1d4ed8;
+      --accent-glow: rgba(59,130,246,.15);
+      --green:       #22c55e;
+      --amber:       #f59e0b;
+      --red:         #ef4444;
+      --text:        #e2e8f0;
+      --text-muted:  #8892a4;
+      --text-dim:    #4b5563;
+      --radius:      10px;
+      --radius-sm:   6px;
+      --font-sans:   system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      --font-mono:   "SF Mono", "Fira Code", "Cascadia Code", Menlo, monospace;
+      --max-w:       1100px;
+      --section-gap: 5rem;
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg:          #f8fafc;
+        --bg-card:     #ffffff;
+        --bg-code:     #1e293b;
+        --border:      #e2e8f0;
+        --border-card: #cbd5e1;
+        --accent:      #2563eb;
+        --accent-dim:  #1d4ed8;
+        --accent-glow: rgba(37,99,235,.12);
+        --text:        #0f172a;
+        --text-muted:  #475569;
+        --text-dim:    #94a3b8;
+      }
+    }
+
+    /* ── Reset ───────────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    img { max-width: 100%; display: block; }
+    ul { list-style: none; }
+
+    /* ── Layout helpers ──────────────────────────────────────────────── */
+    .container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    section { padding: var(--section-gap) 0; }
+    section + section { border-top: 1px solid var(--border); }
+
+    .label {
+      display: inline-block;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: .75rem;
+    }
+    .section-title {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 1rem;
+    }
+    .section-sub {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      max-width: 600px;
+      margin-bottom: 3rem;
+    }
+
+    /* ── Nav ─────────────────────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+      gap: 1rem;
+    }
+    .nav-logo {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      white-space: nowrap;
+    }
+    .nav-logo .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      display: inline-block;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .nav-links a {
+      font-size: .875rem;
+      color: var(--text-muted);
+      transition: color .15s;
+    }
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
+    .nav-cta {
+      background: var(--accent);
+      color: #fff !important;
+      padding: .4rem 1rem;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      font-size: .875rem !important;
+      transition: background .15s;
+    }
+    .nav-cta:hover { background: var(--accent-dim) !important; text-decoration: none !important; }
+    @media (max-width: 640px) {
+      .nav-links { gap: .75rem; }
+      .nav-links .hide-sm { display: none; }
+    }
+
+    /* ── Hero ────────────────────────────────────────────────────────── */
+    .hero {
+      padding: 6rem 0 5rem;
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: 999px;
+      padding: .3rem .9rem;
+      font-size: .8rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+    }
+    .hero-badge .badge-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      flex-shrink: 0;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -.02em;
+      margin-bottom: 1.25rem;
+    }
+    .hero h1 span { color: var(--accent); }
+    .hero-sub {
+      font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+      color: var(--text-muted);
+      max-width: 540px;
+      margin: 0 auto 2.5rem;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: .75rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: var(--accent);
+      color: #fff;
+      padding: .7rem 1.5rem;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      font-size: .95rem;
+      transition: background .15s, transform .1s;
+    }
+    .btn-primary:hover { background: var(--accent-dim); text-decoration: none; transform: translateY(-1px); }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: transparent;
+      color: var(--text);
+      padding: .7rem 1.5rem;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      font-size: .95rem;
+      border: 1px solid var(--border-card);
+      transition: border-color .15s, background .15s;
+    }
+    .btn-secondary:hover { border-color: var(--accent); background: var(--accent-glow); text-decoration: none; }
+
+    /* Terminal */
+    .terminal {
+      background: var(--bg-code);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      text-align: left;
+      max-width: 520px;
+      margin: 0 auto;
+      font-family: var(--font-mono);
+      font-size: .875rem;
+      position: relative;
+    }
+    .terminal-dots {
+      display: flex;
+      gap: .4rem;
+      margin-bottom: 1rem;
+    }
+    .terminal-dots span {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+    }
+    .terminal-dots .d-red   { background: #ff5f57; }
+    .terminal-dots .d-amber { background: #febc2e; }
+    .terminal-dots .d-green { background: #28c840; }
+    .terminal-line {
+      display: flex;
+      gap: .5rem;
+      margin-bottom: .35rem;
+      line-height: 1.5;
+    }
+    .prompt { color: var(--green); user-select: none; }
+    .cmd    { color: #e2e8f0; }
+    .out    { color: var(--text-muted); padding-left: 1.1rem; }
+
+    /* ── Problem ─────────────────────────────────────────────────────── */
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+    }
+    .problem-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+    }
+    .problem-icon {
+      font-size: 1.5rem;
+      margin-bottom: .75rem;
+    }
+    .problem-card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: .5rem;
+    }
+    .problem-card p {
+      font-size: .9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ── Feature cards ───────────────────────────────────────────────── */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.25rem;
+    }
+    .feature-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .feature-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px var(--accent-glow), 0 4px 24px var(--accent-glow);
+    }
+    .feature-cmd {
+      font-family: var(--font-mono);
+      font-size: .78rem;
+      color: var(--accent);
+      background: var(--accent-glow);
+      border: 1px solid rgba(59,130,246,.2);
+      border-radius: var(--radius-sm);
+      padding: .2rem .55rem;
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+    .feature-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: .6rem;
+    }
+    .feature-card p {
+      font-size: .9rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+    .feature-card ul {
+      margin-top: .75rem;
+    }
+    .feature-card ul li {
+      font-size: .875rem;
+      color: var(--text-muted);
+      padding: .2rem 0;
+      display: flex;
+      align-items: flex-start;
+      gap: .5rem;
+    }
+    .feature-card ul li::before {
+      content: "→";
+      color: var(--accent);
+      flex-shrink: 0;
+      margin-top: .05rem;
+    }
+
+    /* ── How it works flow ───────────────────────────────────────────── */
+    .flow {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: .5rem;
+      justify-content: center;
+    }
+    .flow-node {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius);
+      padding: .75rem 1.25rem;
+      font-size: .875rem;
+      font-weight: 600;
+      text-align: center;
+      white-space: nowrap;
+    }
+    .flow-node .node-sub {
+      display: block;
+      font-size: .75rem;
+      font-weight: 400;
+      color: var(--text-muted);
+      margin-top: .15rem;
+      font-family: var(--font-mono);
+    }
+    .flow-arrow {
+      color: var(--accent);
+      font-size: 1.2rem;
+      font-weight: 300;
+      flex-shrink: 0;
+    }
+    @media (max-width: 600px) {
+      .flow { flex-direction: column; }
+      .flow-arrow { transform: rotate(90deg); }
+    }
+
+    /* ── Command showcase ────────────────────────────────────────────── */
+    .commands-block {
+      background: var(--bg-code);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      font-family: var(--font-mono);
+      font-size: .875rem;
+      max-width: 720px;
+    }
+    .cmd-row {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1.25rem;
+      padding: .6rem 0;
+      border-bottom: 1px solid var(--border);
+      align-items: start;
+    }
+    .cmd-row:last-child { border-bottom: none; }
+    .cmd-name { color: var(--green); white-space: nowrap; }
+    .cmd-desc { color: var(--text-muted); font-family: var(--font-sans); font-size: .875rem; }
+
+    /* ── Flagship workflow ───────────────────────────────────────────── */
+    .flagship-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    @media (max-width: 768px) {
+      .flagship-grid { grid-template-columns: 1fr; gap: 2rem; }
+    }
+    .flagship-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .flagship-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .flagship-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--accent-glow);
+      border: 1px solid rgba(59,130,246,.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .75rem;
+      font-weight: 700;
+      color: var(--accent);
+      flex-shrink: 0;
+      margin-top: .15rem;
+    }
+    .flagship-item h4 { font-size: .95rem; font-weight: 600; margin-bottom: .25rem; }
+    .flagship-item p  { font-size: .875rem; color: var(--text-muted); line-height: 1.6; }
+
+    .flagship-terminal {
+      background: var(--bg-code);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      font-family: var(--font-mono);
+      font-size: .8rem;
+    }
+    .ft-comment { color: var(--text-dim); }
+    .ft-cmd     { color: var(--green); }
+    .ft-out     { color: var(--text-muted); padding-left: .5rem; }
+    .ft-line    { margin-bottom: .4rem; line-height: 1.5; }
+
+    /* ── Sample output ───────────────────────────────────────────────── */
+    .output-tabs {
+      display: flex;
+      gap: .5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+    .tab-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-sm);
+      padding: .4rem .9rem;
+      font-size: .825rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-family: inherit;
+      transition: border-color .15s, color .15s, background .15s;
+    }
+    .tab-btn.active {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-glow);
+    }
+    .tab-btn:hover:not(.active) { border-color: var(--text-dim); color: var(--text); }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+    .output-block {
+      background: var(--bg-code);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      font-family: var(--font-mono);
+      font-size: .825rem;
+      line-height: 1.7;
+      color: #c9d1d9;
+    }
+    .ob-h1    { color: #79c0ff; font-size: 1rem; font-weight: 700; }
+    .ob-h2    { color: #79c0ff; }
+    .ob-text  { color: #c9d1d9; }
+    .ob-muted { color: #8b949e; }
+    .ob-good  { color: var(--green); }
+    .ob-warn  { color: var(--amber); }
+    .ob-check { color: var(--green); }
+    .ob-bullet::before { content: "- "; color: #8b949e; }
+    .ob-block { margin-bottom: .6rem; }
+
+    /* ── Before / After ──────────────────────────────────────────────── */
+    .ba-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    @media (max-width: 640px) { .ba-grid { grid-template-columns: 1fr; } }
+    .ba-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+    }
+    .ba-card.after { border-color: var(--green); }
+    .ba-label {
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+    .ba-label.before { color: var(--red); }
+    .ba-label.after  { color: var(--green); }
+    .ba-card ul li {
+      display: flex;
+      gap: .6rem;
+      align-items: flex-start;
+      font-size: .9rem;
+      color: var(--text-muted);
+      padding: .35rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .ba-card ul li:last-child { border-bottom: none; }
+    .ba-card ul li .icon { flex-shrink: 0; font-size: 1rem; margin-top: .05rem; }
+
+    /* ── Not section ─────────────────────────────────────────────────── */
+    .not-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    .not-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      display: flex;
+      gap: .75rem;
+      align-items: flex-start;
+    }
+    .not-icon { font-size: 1.2rem; flex-shrink: 0; }
+    .not-card h4 { font-size: .9rem; font-weight: 600; margin-bottom: .25rem; }
+    .not-card p  { font-size: .82rem; color: var(--text-muted); line-height: 1.55; }
+
+    /* ── Roadmap ─────────────────────────────────────────────────────── */
+    .roadmap-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+    }
+    .roadmap-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+    }
+    .roadmap-card.current { border-color: var(--green); }
+    .version {
+      font-family: var(--font-mono);
+      font-size: .8rem;
+      font-weight: 700;
+      margin-bottom: .35rem;
+    }
+    .roadmap-card.current .version { color: var(--green); }
+    .roadmap-card:not(.current) .version { color: var(--text-muted); }
+    .roadmap-title { font-size: 1rem; font-weight: 700; margin-bottom: 1rem; }
+    .roadmap-card ul li {
+      font-size: .85rem;
+      color: var(--text-muted);
+      padding: .2rem 0;
+      display: flex;
+      gap: .5rem;
+      align-items: flex-start;
+    }
+    .roadmap-card ul li::before { content: "·"; color: var(--accent); flex-shrink: 0; }
+    .badge-current {
+      display: inline-block;
+      font-size: .7rem;
+      font-weight: 700;
+      background: rgba(34,197,94,.15);
+      color: var(--green);
+      border: 1px solid rgba(34,197,94,.3);
+      border-radius: 999px;
+      padding: .1rem .55rem;
+      margin-left: .5rem;
+      vertical-align: middle;
+    }
+
+    /* ── FAQ ─────────────────────────────────────────────────────────── */
+    .faq-list { max-width: 720px; }
+    details {
+      border-bottom: 1px solid var(--border);
+    }
+    summary {
+      padding: 1.1rem 0;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: .95rem;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      user-select: none;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after {
+      content: "+";
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      flex-shrink: 0;
+      transition: transform .2s;
+    }
+    details[open] summary::after { transform: rotate(45deg); }
+    details p {
+      padding-bottom: 1.1rem;
+      color: var(--text-muted);
+      font-size: .9rem;
+      line-height: 1.7;
+    }
+    details code {
+      font-family: var(--font-mono);
+      font-size: .82rem;
+      background: var(--accent-glow);
+      border: 1px solid rgba(59,130,246,.2);
+      border-radius: 4px;
+      padding: .1rem .35rem;
+      color: var(--accent);
+    }
+
+    /* ── CTA footer ──────────────────────────────────────────────────── */
+    .cta-section {
+      text-align: center;
+      padding: 5rem 0;
+    }
+    .cta-section h2 {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 800;
+      margin-bottom: 1rem;
+      letter-spacing: -.02em;
+    }
+    .cta-section p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      margin-bottom: 2.5rem;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cta-buttons {
+      display: flex;
+      gap: .75rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-star {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: var(--amber);
+      color: #0f172a;
+      padding: .7rem 1.5rem;
+      border-radius: var(--radius-sm);
+      font-weight: 700;
+      font-size: .95rem;
+      transition: opacity .15s, transform .1s;
+    }
+    .btn-star:hover { opacity: .9; text-decoration: none; transform: translateY(-1px); }
+
+    /* ── Page footer ─────────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 0;
+    }
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-logo { font-weight: 700; font-size: .95rem; }
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .footer-links a { font-size: .875rem; color: var(--text-muted); }
+    .footer-links a:hover { color: var(--text); text-decoration: none; }
+    .footer-note { font-size: .8rem; color: var(--text-dim); }
+
+    /* ── Utility ─────────────────────────────────────────────────────── */
+    .text-center  { text-align: center; }
+    .mt-2 { margin-top: .5rem; }
+    .mt-4 { margin-top: 1rem; }
+    .mt-8 { margin-top: 2rem; }
+    .inline-code {
+      font-family: var(--font-mono);
+      font-size: .82rem;
+      background: var(--accent-glow);
+      border: 1px solid rgba(59,130,246,.2);
+      border-radius: 4px;
+      padding: .1rem .35rem;
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Nav ──────────────────────────────────────────────────────────── -->
+<nav>
+  <div class="container nav-inner">
+    <a class="nav-logo" href="#">
+      <span class="dot"></span>
+      Occupation-Ops
+    </a>
+    <div class="nav-links">
+      <a href="#features" class="hide-sm">Features</a>
+      <a href="#how-it-works" class="hide-sm">How it works</a>
+      <a href="#roadmap" class="hide-sm">Roadmap</a>
+      <a href="#faq" class="hide-sm">FAQ</a>
+      <a href="https://github.com/AnkitParekh007/occupation-ops" class="nav-cta" target="_blank" rel="noopener">View on GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── Hero ─────────────────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-badge">
+      <span class="badge-dot"></span>
+      v0.1.0 · Local-first · No API keys required
+    </div>
+    <h1>
+      <span>Occupation-Ops</span><br />
+      AI Career Operating System
+    </h1>
+    <p class="hero-sub">
+      Become more hireable before you apply.
+    </p>
+    <div class="hero-buttons">
+      <a href="https://github.com/AnkitParekh007/occupation-ops" class="btn-primary" target="_blank" rel="noopener">
+        ★ View on GitHub
+      </a>
+      <a href="#sample-output" class="btn-secondary">
+        Try the demo ↓
+      </a>
+    </div>
+    <div class="terminal">
+      <div class="terminal-dots">
+        <span class="d-red"></span>
+        <span class="d-amber"></span>
+        <span class="d-green"></span>
+      </div>
+      <div class="terminal-line"><span class="prompt">$</span><span class="cmd">npm install</span></div>
+      <div class="terminal-line"><span class="prompt">$</span><span class="cmd">npm run doctor</span></div>
+      <div class="terminal-line out">Occupation-Ops doctor</div>
+      <div class="terminal-line out">OK   README.md</div>
+      <div class="terminal-line out">OK   scripts/init-profile.mjs</div>
+      <div class="terminal-line out">API keys required: no</div>
+      <div class="terminal-line out">Automatic applications: no</div>
+      <div class="terminal-line"><span class="prompt">$</span><span class="cmd">npm run demo:ai-frontend</span></div>
+      <div class="terminal-line out">Demo report generated: output/demo-ai-frontend-architect-report.md</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Problem ──────────────────────────────────────────────────────── -->
+<section id="problem">
+  <div class="container">
+    <div class="label">The problem</div>
+    <h2 class="section-title">Applying faster doesn't fix weak positioning.</h2>
+    <p class="section-sub">
+      Most career tools help you send more applications. The real bottleneck
+      is usually the candidate profile, not the application volume.
+    </p>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-icon">📄</div>
+        <h3>Generic resumes don't prove role fit</h3>
+        <p>A resume that lists years of experience does not show a hiring manager that you have built AI copilot UX, RAG citation flows, or enterprise approval workflows.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">🐙</div>
+        <h3>GitHub often hides your target role</h3>
+        <p>A profile full of side projects and old repos rarely signals the specific occupation clearly enough for a recruiter scanning for 30 seconds.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">📁</div>
+        <h3>Portfolio projects don't map to proof</h3>
+        <p>Building something is not the same as building something that proves a specific skill to a specific interviewer. Most portfolio projects are not scoped to answer interview questions.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">📆</div>
+        <h3>Career plans aren't executable weekly</h3>
+        <p>Strategy documents that live in Notion and never become a Monday-to-Friday task list do not produce hireable candidates. Execution is the missing layer.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">🎯</div>
+        <h3>Positioning is unclear without a gap map</h3>
+        <p>Without knowing exactly which proof signals are missing, effort goes to the wrong places. A role gap analysis turns vague ambition into a prioritized fix list.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Features ─────────────────────────────────────────────────────── -->
+<section id="features">
+  <div class="container">
+    <div class="label">What it does</div>
+    <h2 class="section-title">Six workflows. One local system.</h2>
+    <p class="section-sub">
+      Each command generates a standalone Markdown file in <span class="inline-code">output/</span>.
+      No API key, no account, no internet required.
+    </p>
+    <div class="feature-grid">
+
+      <div class="feature-card">
+        <span class="feature-cmd">npm run audit:profile</span>
+        <h3>Profile Audit</h3>
+        <p>Review how your current GitHub, resume, and portfolio appear to a recruiter scanning for your target occupation.</p>
+        <ul>
+          <li>30-second recruiter impression check</li>
+          <li>Strengths to surface immediately</li>
+          <li>Gaps that weaken your positioning</li>
+          <li>Next five actions to take</li>
+        </ul>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-cmd">npm run gap:role</span>
+        <h3>Role Gap Analysis</h3>
+        <p>Compare your current proof against what the target role actually requires. Get a score, a gap list, and a 7-day fix plan.</p>
+        <ul>
+          <li>Current positioning score</li>
+          <li>Missing proof signals by category</li>
+          <li>Priority fixes ranked by impact</li>
+          <li>7-day improvement table</li>
+        </ul>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-cmd">npm run portfolio:plan</span>
+        <h3>Portfolio Project Plan</h3>
+        <p>Three scoped proof projects for the AI Frontend Architect role, each with build spec, README outline, and interview talking points.</p>
+        <ul>
+          <li>Problem and build definition</li>
+          <li>What each project proves</li>
+          <li>Screenshot and demo checklist</li>
+          <li>Mock-vs-real honesty guide</li>
+        </ul>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-cmd">npm run github:growth</span>
+        <h3>GitHub Growth Plan</h3>
+        <p>Rewrite your profile headline, plan your pinned repos, set topics, create five ready-to-open issues, and draft a launch post.</p>
+        <ul>
+          <li>Profile headline rewrite</li>
+          <li>Pinned repo strategy table</li>
+          <li>Repo README checklist</li>
+          <li>Star-readiness checklist</li>
+        </ul>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-cmd">npm run interview:stories</span>
+        <h3>Interview Story Bank</h3>
+        <p>Five STAR-format story prompts, system design questions, architecture talking points, and a list of claims to avoid unless proven.</p>
+        <ul>
+          <li>STAR story scaffolds</li>
+          <li>System design prep prompts</li>
+          <li>AI integration talking points</li>
+          <li>Failure and recovery story prompts</li>
+        </ul>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-cmd">npm run plan:weekly</span>
+        <h3>Weekly Career Plan</h3>
+        <p>Turn strategy into a five-day execution plan with daily tasks, proof artifacts for each day, and an end-of-week review checklist.</p>
+        <ul>
+          <li>Weekly theme and outcomes</li>
+          <li>Day-by-day task table</li>
+          <li>Proof artifact for each day</li>
+          <li>Truthfulness guardrail reminder</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── How it works ──────────────────────────────────────────────────── -->
+<section id="how-it-works">
+  <div class="container">
+    <div class="label">How it works</div>
+    <h2 class="section-title">Profile to proof in one local workflow.</h2>
+    <p class="section-sub">
+      Edit <span class="inline-code">profile.yml</span> with your real details.
+      Each command reads it and writes a fresh Markdown report to <span class="inline-code">output/</span>.
+    </p>
+    <div class="flow">
+      <div class="flow-node">
+        profile.yml
+        <span class="node-sub">npm run init</span>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node">
+        Profile Audit
+        <span class="node-sub">npm run audit:profile</span>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node">
+        Role Gaps
+        <span class="node-sub">npm run gap:role</span>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node">
+        Portfolio Plan
+        <span class="node-sub">npm run portfolio:plan</span>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node">
+        GitHub Growth
+        <span class="node-sub">npm run github:growth</span>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node">
+        Interview Stories
+        <span class="node-sub">npm run interview:stories</span>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node">
+        Weekly Plan
+        <span class="node-sub">npm run plan:weekly</span>
+      </div>
+    </div>
+    <div class="mt-8 text-center">
+      <p style="color:var(--text-muted); font-size:.9rem;">
+        All outputs are local Markdown files. Edit, commit, or delete them.
+        Run any command again to regenerate from scratch.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ── Commands ─────────────────────────────────────────────────────── -->
+<section id="commands">
+  <div class="container">
+    <div class="label">Commands</div>
+    <h2 class="section-title">Everything in the CLI.</h2>
+    <p class="section-sub">All commands run with Node.js. Zero external dependencies.</p>
+    <div class="commands-block">
+      <div class="cmd-row">
+        <span class="cmd-name">npm run doctor</span>
+        <span class="cmd-desc">Check repo health and list all available commands.</span>
+      </div>
+      <div class="cmd-row">
+        <span class="cmd-name">npm run init</span>
+        <span class="cmd-desc">Create profile.yml from the example template. Safe to run first.</span>
+      </div>
+      <div class="cmd-row">
+        <span class="cmd-name">npm run audit:profile</span>
+        <span class="cmd-desc">Print a profile and positioning review to the terminal.</span>
+      </div>
+      <div class="cmd-row">
+        <span class="cmd-name">npm run gap:role</span>
+        <span class="cmd-desc">Generate output/role-gap-analysis.md with score and 7-day plan.</span>
+      </div>
+      <div class="cmd-row">
+        <span class="cmd-name">npm run portfolio:plan</span>
+        <span class="cmd-desc">Generate output/portfolio-project-plan.md with 3 proof projects.</span>
+      </div>
+      <div class="cmd-row">
+        <span class="cmd-name">npm run github:growth</span>
+        <span class="cmd-desc">Generate output/github-growth-plan.md with headline, pins, and issues.</span>
+      </div>
+      <div class="cmd-row">
+        <span class="cmd-name">npm run interview:stories</span>
+        <span class="cmd-desc">Generate output/interview-story-bank.md with STAR prompts and guardrails.</span>
+      </div>
+      <div class="cmd-row">
+        <span class="cmd-name">npm run plan:weekly</span>
+        <span class="cmd-desc">Print a day-by-day weekly execution plan to the terminal.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Flagship ──────────────────────────────────────────────────────── -->
+<section id="flagship">
+  <div class="container">
+    <div class="label">Flagship workflow</div>
+    <h2 class="section-title">AI Frontend Architect track.</h2>
+    <p class="section-sub">
+      The first complete occupation track targets AI Frontend Architect roles.
+      It covers everything from GitHub positioning to interview proof.
+    </p>
+    <div class="flagship-grid">
+      <div class="flagship-list">
+
+        <div class="flagship-item">
+          <div class="flagship-num">1</div>
+          <div>
+            <h4>Angular AI Copilot Starter</h4>
+            <p>Streaming chat, RAG citation cards, tool-call timeline, and human approval UX. Built with mock services — no AI API key required to run or screenshot.</p>
+          </div>
+        </div>
+
+        <div class="flagship-item">
+          <div class="flagship-num">2</div>
+          <div>
+            <h4>UI-Aware Agent Demo</h4>
+            <p>Agent context inspector, suggested workflow actions, approval dialog, and recovery panel. Proves you design agents as UI participants, not just chat responders.</p>
+          </div>
+        </div>
+
+        <div class="flagship-item">
+          <div class="flagship-num">3</div>
+          <div>
+            <h4>Enterprise Approval Workflow</h4>
+            <p>Approval queue, role-based reviewer assignment, action detail view, and audit log. Designed for enterprise governance — not just a confirm dialog.</p>
+          </div>
+        </div>
+
+        <div class="flagship-item">
+          <div class="flagship-num">4</div>
+          <div>
+            <h4>RAG and Tool Execution Proof</h4>
+            <p>Specific portfolio projects and README sections that prove you understand RAG citation rendering and MCP/tool-call UX beyond basic API calls.</p>
+          </div>
+        </div>
+
+        <div class="flagship-item">
+          <div class="flagship-num">5</div>
+          <div>
+            <h4>GitHub Positioning</h4>
+            <p>Profile headline rewrite, pinned repo ordering, topic recommendations, and five ready-to-open issues to signal active development.</p>
+          </div>
+        </div>
+
+        <div class="flagship-item">
+          <div class="flagship-num">6</div>
+          <div>
+            <h4>Interview-Safe Story Bank</h4>
+            <p>STAR prompts for streaming UX, RAG citations, approval flows, debugging, and technical decision-making — with explicit guardrails against claims you cannot defend.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="flagship-terminal">
+        <div class="ft-line ft-comment"># Run the AI Frontend Architect demo</div>
+        <div class="ft-line ft-cmd">$ npm run demo:ai-frontend</div>
+        <div class="ft-line ft-out">Demo report generated: output/demo-ai-frontend-architect-report.md</div>
+        <br />
+        <div class="ft-line ft-comment"># Generate the full workflow</div>
+        <div class="ft-line ft-cmd">$ npm run gap:role</div>
+        <div class="ft-line ft-out">Role gap analysis generated: output/role-gap-analysis.md</div>
+        <div class="ft-line ft-cmd">$ npm run portfolio:plan</div>
+        <div class="ft-line ft-out">Portfolio project plan generated: output/portfolio-project-plan.md</div>
+        <div class="ft-line ft-cmd">$ npm run github:growth</div>
+        <div class="ft-line ft-out">GitHub growth plan generated: output/github-growth-plan.md</div>
+        <div class="ft-line ft-cmd">$ npm run interview:stories</div>
+        <div class="ft-line ft-out">Interview story bank generated: output/interview-story-bank.md</div>
+        <br />
+        <div class="ft-line ft-comment"># Check everything</div>
+        <div class="ft-line ft-cmd">$ npm run doctor</div>
+        <div class="ft-line ft-out">OK   All scripts present</div>
+        <div class="ft-line ft-out">API keys required:       no</div>
+        <div class="ft-line ft-out">Automatic applications:  no</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Sample Output ─────────────────────────────────────────────────── -->
+<section id="sample-output">
+  <div class="container">
+    <div class="label">Sample output</div>
+    <h2 class="section-title">What the reports look like.</h2>
+    <p class="section-sub">
+      Every command writes a clean Markdown file you can open in any editor.
+    </p>
+
+    <div class="output-tabs">
+      <button class="tab-btn active" data-tab="gap">Role Gap</button>
+      <button class="tab-btn" data-tab="portfolio">Portfolio</button>
+      <button class="tab-btn" data-tab="weekly">Weekly Plan</button>
+      <button class="tab-btn" data-tab="guardrails">Guardrails</button>
+    </div>
+
+    <div id="tab-gap" class="tab-panel active">
+      <div class="output-block">
+        <div class="ob-block ob-h1"># Role Gap Analysis</div>
+        <div class="ob-block ob-muted">Generated by Occupation-Ops. Profile source: profile.yml</div>
+        <br />
+        <div class="ob-block ob-h2">## Target Role</div>
+        <div class="ob-block ob-text">AI Frontend Architect</div>
+        <br />
+        <div class="ob-block ob-h2">## Current Positioning Score</div>
+        <div class="ob-block ob-warn">Score: 6.0 / 10</div>
+        <div class="ob-block ob-text">Baseline score for a senior frontend engineer repositioning toward AI product roles.</div>
+        <br />
+        <div class="ob-block ob-h2">## Missing Proof Signals</div>
+        <div class="ob-block ob-bullet ob-text">No public GitHub repo demonstrating AI copilot or streaming chat UX.</div>
+        <div class="ob-block ob-bullet ob-text">No live demo or screenshot showing RAG citation rendering.</div>
+        <div class="ob-block ob-bullet ob-text">No repo demonstrating MCP/tool-call timeline or approval workflow.</div>
+        <div class="ob-block ob-bullet ob-text">No GitHub profile README that states the AI frontend positioning.</div>
+        <br />
+        <div class="ob-block ob-h2">## Priority Fixes</div>
+        <div class="ob-block ob-text">1. Rewrite the GitHub profile README with an AI frontend headline.</div>
+        <div class="ob-block ob-text">2. Pin the strongest proof repos and add clear "what this proves" sections.</div>
+        <div class="ob-block ob-text">3. Add at least one screenshot or deployed demo to a proof project.</div>
+      </div>
+    </div>
+
+    <div id="tab-portfolio" class="tab-panel">
+      <div class="output-block">
+        <div class="ob-block ob-h1"># Portfolio Project Plan: AI Frontend Architect</div>
+        <br />
+        <div class="ob-block ob-h2">## Project 1: Angular AI Copilot Starter</div>
+        <br />
+        <div class="ob-block ob-h2">### What To Build</div>
+        <div class="ob-block ob-bullet ob-text">Streaming chat panel with partial token rendering.</div>
+        <div class="ob-block ob-bullet ob-text">RAG source citation cards below each assistant response.</div>
+        <div class="ob-block ob-bullet ob-text">Tool call timeline showing which tools were invoked and in what order.</div>
+        <div class="ob-block ob-bullet ob-text">Human approval dialog before any destructive or irreversible tool action.</div>
+        <br />
+        <div class="ob-block ob-h2">### Interview Talking Points</div>
+        <div class="ob-block ob-bullet ob-text">How did you handle partial token rendering without layout jank?</div>
+        <div class="ob-block ob-bullet ob-text">How do you make tool calls visible and auditable in the UI?</div>
+        <div class="ob-block ob-bullet ob-text">How do you decide which actions need human approval before execution?</div>
+      </div>
+    </div>
+
+    <div id="tab-weekly" class="tab-panel">
+      <div class="output-block">
+        <div class="ob-block ob-h1"># Weekly Career Plan: AI Frontend Architect</div>
+        <br />
+        <div class="ob-block ob-h2">## Week Theme</div>
+        <div class="ob-block ob-text">Convert positioning into public proof.</div>
+        <br />
+        <div class="ob-block ob-h2">## Daily Plan</div>
+        <div class="ob-block ob-text">| Day       | Task                                | Proof artifact    |</div>
+        <div class="ob-block ob-text">| --------- | ----------------------------------- | ----------------- |</div>
+        <div class="ob-block ob-text">| Monday    | Audit profile and pinned repos      | Audit notes       |</div>
+        <div class="ob-block ob-text">| Tuesday   | Improve one README first screen     | README diff       |</div>
+        <div class="ob-block ob-text">| Wednesday | Add screenshot or demo plan         | Visual proof      |</div>
+        <div class="ob-block ob-text">| Thursday  | Write mocked-vs-real and interview notes | Interview-safe docs |</div>
+        <div class="ob-block ob-text">| Friday    | Publish a short update, plan week 2 | Post draft        |</div>
+        <br />
+        <div class="ob-block ob-h2">## End-Of-Week Review</div>
+        <div class="ob-block ob-bullet ob-text">What became more credible?</div>
+        <div class="ob-block ob-bullet ob-text">What still lacks proof?</div>
+        <div class="ob-block ob-bullet ob-text">What should be built next?</div>
+      </div>
+    </div>
+
+    <div id="tab-guardrails" class="tab-panel">
+      <div class="output-block">
+        <div class="ob-block ob-h1"># Truthfulness Guardrails</div>
+        <div class="ob-block ob-muted">Applied to every generated report.</div>
+        <br />
+        <div class="ob-block ob-bullet ob-good">Do not claim production usage unless the project is deployed and in use.</div>
+        <div class="ob-block ob-bullet ob-good">Do not claim merged open-source PRs unless the PR was merged.</div>
+        <div class="ob-block ob-bullet ob-good">Label mock services as mock services in every README.</div>
+        <div class="ob-block ob-bullet ob-good">Label planned features as planned in roadmaps, not in proof summaries.</div>
+        <div class="ob-block ob-bullet ob-good">Do not invent metrics, user counts, stars, or testimonials.</div>
+        <div class="ob-block ob-bullet ob-good">Only publish claims you can defend clearly in a technical interview.</div>
+        <br />
+        <div class="ob-block ob-h2">## Claims To Avoid Unless Proven</div>
+        <div class="ob-block ob-bullet ob-text">"We scaled to X users" — only if you can name the metric source.</div>
+        <div class="ob-block ob-bullet ob-text">"I led the architecture" — only if you made the key decisions.</div>
+        <div class="ob-block ob-bullet ob-text">"The project is in production" — only if it is actually deployed.</div>
+        <div class="ob-block ob-bullet ob-text">"I contributed to open source" — only if the PR was merged.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── Before / After ────────────────────────────────────────────────── -->
+<section id="before-after">
+  <div class="container">
+    <div class="label">The shift</div>
+    <h2 class="section-title">Before and after Occupation-Ops.</h2>
+    <p class="section-sub">The goal is not more applications. It is a stronger candidate profile before the first application goes out.</p>
+    <div class="ba-grid">
+      <div class="ba-card">
+        <div class="ba-label before">Before</div>
+        <ul>
+          <li><span class="icon">❌</span>Generic resume listing years of experience</li>
+          <li><span class="icon">❌</span>GitHub profile that doesn't signal the target role</li>
+          <li><span class="icon">❌</span>Portfolio projects without a "what this proves" story</li>
+          <li><span class="icon">❌</span>Vague interview stories not tied to specific proof</li>
+          <li><span class="icon">❌</span>Strategy document that never becomes a weekly task list</li>
+          <li><span class="icon">❌</span>No clear map of what proof signals are missing</li>
+        </ul>
+      </div>
+      <div class="ba-card after">
+        <div class="ba-label after">After</div>
+        <ul>
+          <li><span class="icon">✅</span>Clear target occupation stated on every profile surface</li>
+          <li><span class="icon">✅</span>GitHub positioned with role-specific headline, pins, and topics</li>
+          <li><span class="icon">✅</span>Portfolio projects scoped to answer specific interview questions</li>
+          <li><span class="icon">✅</span>STAR stories scaffolded from real proof, with guardrails</li>
+          <li><span class="icon">✅</span>Weekly execution plan with daily tasks and proof artifacts</li>
+          <li><span class="icon">✅</span>Role gap analysis with a scored list and 7-day fix plan</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── What This Is Not ──────────────────────────────────────────────── -->
+<section id="not">
+  <div class="container">
+    <div class="label">Scope</div>
+    <h2 class="section-title">What Occupation-Ops is not.</h2>
+    <p class="section-sub">Clarity about what this tool does not do is part of the product.</p>
+    <div class="not-grid">
+      <div class="not-card">
+        <div class="not-icon">🚫</div>
+        <div>
+          <h4>Not an auto-apply bot</h4>
+          <p>It does not browse job boards, fill forms, or submit applications on your behalf.</p>
+        </div>
+      </div>
+      <div class="not-card">
+        <div class="not-icon">🚫</div>
+        <div>
+          <h4>Not a resume-spam tool</h4>
+          <p>It does not bulk-generate or mass-send resumes to open listings.</p>
+        </div>
+      </div>
+      <div class="not-card">
+        <div class="not-icon">🚫</div>
+        <div>
+          <h4>Not a scraper</h4>
+          <p>It does not access LinkedIn, Indeed, or any third-party site. It is entirely local and file-based.</p>
+        </div>
+      </div>
+      <div class="not-card">
+        <div class="not-icon">🚫</div>
+        <div>
+          <h4>Not a fake-claims generator</h4>
+          <p>Every output includes truthfulness guardrails. It will not invent metrics, testimonials, or work history.</p>
+        </div>
+      </div>
+      <div class="not-card">
+        <div class="not-icon">🚫</div>
+        <div>
+          <h4>Not a replacement for skill-building</h4>
+          <p>It helps plan and communicate proof. The actual projects, code, and experience still come from real work.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Roadmap ───────────────────────────────────────────────────────── -->
+<section id="roadmap">
+  <div class="container">
+    <div class="label">Roadmap</div>
+    <h2 class="section-title">Where this is going.</h2>
+    <p class="section-sub">Built in public. Prioritized by what actually helps candidates become more hireable.</p>
+    <div class="roadmap-grid">
+
+      <div class="roadmap-card current">
+        <div class="version">v0.1.0 <span class="badge-current">current</span></div>
+        <div class="roadmap-title">Local CLI MVP</div>
+        <ul>
+          <li>File-based career OS</li>
+          <li>No API keys required</li>
+          <li>9 CLI commands</li>
+          <li>AI Frontend Architect track</li>
+          <li>Truthfulness guardrails</li>
+        </ul>
+      </div>
+
+      <div class="roadmap-card">
+        <div class="version">v0.2</div>
+        <div class="roadmap-title">Better Scoring</div>
+        <ul>
+          <li>Role-specific scoring rubrics</li>
+          <li>More occupation tracks</li>
+          <li>JSON output from scripts</li>
+          <li>More sample profiles</li>
+        </ul>
+      </div>
+
+      <div class="roadmap-card">
+        <div class="version">v0.3</div>
+        <div class="roadmap-title">Optional AI Integration</div>
+        <ul>
+          <li>Optional Claude or OpenAI support</li>
+          <li>Richer gap analysis output</li>
+          <li>GitHub profile analyzer</li>
+          <li>HTML report export</li>
+        </ul>
+      </div>
+
+      <div class="roadmap-card">
+        <div class="version">v0.4</div>
+        <div class="roadmap-title">Dashboard UI</div>
+        <ul>
+          <li>Local HTML dashboard</li>
+          <li>No backend required</li>
+          <li>Progress tracking</li>
+          <li>Export to PDF</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ ──────────────────────────────────────────────────────────── -->
+<section id="faq">
+  <div class="container">
+    <div class="label">FAQ</div>
+    <h2 class="section-title">Common questions.</h2>
+    <div class="faq-list">
+
+      <details>
+        <summary>Is this an auto-apply bot?</summary>
+        <p>No. Occupation-Ops does not browse job boards, access employer websites, or submit applications. It generates local Markdown files you review and act on yourself. The <code>npm run doctor</code> output explicitly confirms: <code>Automatic applications: no</code>.</p>
+      </details>
+
+      <details>
+        <summary>Does it require API keys?</summary>
+        <p>No. All commands run with Node.js on your local machine. No API key, no account, no internet connection is required. The v0.3 roadmap includes an optional AI provider integration, but local-first will always be the default.</p>
+      </details>
+
+      <details>
+        <summary>Can non-developers use it?</summary>
+        <p>The CLI commands require Node.js and a terminal, so some developer familiarity helps. However, the Markdown outputs — role gap analysis, portfolio plan, interview stories — are readable and useful to anyone, including career coaches, mentors, and job seekers reviewing their own positioning.</p>
+      </details>
+
+      <details>
+        <summary>Can I add my own occupation track?</summary>
+        <p>Yes. Occupation tracks are Markdown files in the <code>tracks/</code> directory. Copy any existing track, follow the structure (proof signals, gap audit, portfolio ideas, interview topics), and submit a pull request. Good-first-issue guidance is in CONTRIBUTING.md.</p>
+      </details>
+
+      <details>
+        <summary>Is it honest and safe to use?</summary>
+        <p>Yes. Every report includes a Truthfulness Guardrails section that explicitly tells you what not to claim. The tool is designed to help you build real, verifiable proof — not fabricate credentials. It will not invent metrics, testimonials, or work history.</p>
+      </details>
+
+      <details>
+        <summary>How is this different from Career-Ops?</summary>
+        <p>Occupation-Ops is an independent project with different positioning, commands, output structure, and design. It focuses on becoming hireable through local proof-building workflows rather than any specific author's personal story. It does not share code, content, screenshots, metrics, or community links with Career-Ops.</p>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ───────────────────────────────────────────────────────────── -->
+<section class="cta-section" id="cta">
+  <div class="container">
+    <h2>Start building proof today.</h2>
+    <p>Three commands to get your first report. No API key. No account. Runs entirely on your machine.</p>
+    <div class="terminal" style="text-align:left; margin: 0 auto 2.5rem;">
+      <div class="terminal-dots">
+        <span class="d-red"></span>
+        <span class="d-amber"></span>
+        <span class="d-green"></span>
+      </div>
+      <div class="terminal-line"><span class="prompt">$</span><span class="cmd">git clone https://github.com/AnkitParekh007/occupation-ops.git</span></div>
+      <div class="terminal-line"><span class="prompt">$</span><span class="cmd">npm install &amp;&amp; npm run init</span></div>
+      <div class="terminal-line"><span class="prompt">$</span><span class="cmd">npm run gap:role</span></div>
+      <div class="terminal-line out">Role gap analysis generated: output/role-gap-analysis.md</div>
+    </div>
+    <div class="cta-buttons">
+      <a href="https://github.com/AnkitParekh007/occupation-ops" class="btn-star" target="_blank" rel="noopener">
+        ★ Star on GitHub
+      </a>
+      <a href="https://github.com/AnkitParekh007/occupation-ops" class="btn-primary" target="_blank" rel="noopener">
+        View the repo
+      </a>
+      <a href="#sample-output" class="btn-secondary">
+        See sample output
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ────────────────────────────────────────────────────────── -->
+<footer>
+  <div class="container footer-inner">
+    <div class="footer-logo">Occupation-Ops</div>
+    <div class="footer-links">
+      <a href="https://github.com/AnkitParekh007/occupation-ops" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://github.com/AnkitParekh007/occupation-ops/blob/main/README.md" target="_blank" rel="noopener">Docs</a>
+      <a href="https://github.com/AnkitParekh007/occupation-ops/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">Contribute</a>
+      <a href="https://github.com/AnkitParekh007/occupation-ops/blob/main/docs/ROADMAP.md" target="_blank" rel="noopener">Roadmap</a>
+      <a href="https://github.com/AnkitParekh007/occupation-ops/blob/main/LICENSE" target="_blank" rel="noopener">MIT License</a>
+    </div>
+    <div class="footer-note">
+      Built with zero external dependencies. Local-first. No API keys required.
+    </div>
+  </div>
+</footer>
+
+<!-- ── Tab switcher ──────────────────────────────────────────────────── -->
+<script>
+  (function () {
+    var buttons = document.querySelectorAll('.tab-btn');
+    var panels  = document.querySelectorAll('.tab-panel');
+
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var target = btn.dataset.tab;
+
+        buttons.forEach(function (b) { b.classList.remove('active'); });
+        panels.forEach(function (p) { p.classList.remove('active'); });
+
+        btn.classList.add('active');
+        var panel = document.getElementById('tab-' + target);
+        if (panel) panel.classList.add('active');
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>

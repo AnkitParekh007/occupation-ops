@@ -233,6 +233,14 @@ Near-term priorities:
 - Add tests for CLI commands.
 - Add a lightweight local dashboard later.
 
+## Website / Case Study
+
+A public case-study landing page is available in `docs/site`.
+
+It explains the product story, workflows, commands, sample outputs, and roadmap.
+Open `docs/site/index.html` directly in a browser, or publish it with GitHub
+Pages. See [docs/site/README.md](docs/site/README.md) for publishing instructions.
+
 ## Attribution
 
 Occupation-Ops is an original repositioning focused on occupation readiness,
