@@ -50,7 +50,7 @@ npm run plan:weekly
 
 To customize the example profile on Windows:
 
-```bash
+```cmd
 copy templates\profile.example.yml profile.yml
 ```
 
