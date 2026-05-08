@@ -30,6 +30,11 @@ The demo generates:
 output/demo-ai-frontend-architect-report.md
 ```
 
+Sample report available in
+[output/demo-ai-frontend-architect-report.md](output/demo-ai-frontend-architect-report.md).
+
+Screenshots coming in v0.2.
+
 You can also run:
 
 ```bash
