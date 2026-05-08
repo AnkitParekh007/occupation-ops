@@ -5,7 +5,8 @@
 - Rewrite README for Occupation-Ops.
 - Add occupation contract.
 - Add core tracks and modes.
-- Add profile, resume, GitHub README, portfolio, weekly plan, and interview templates.
+- Add profile, resume, GitHub README, portfolio, weekly plan, and interview
+  templates.
 - Add AI Frontend Architect example workflow.
 - Add MVP Node.js scripts.
 

@@ -4,14 +4,14 @@ Thanks for considering a contribution to Occupation-Ops.
 
 ## Good Contribution Areas
 
-- New occupation tracks
-- Better role gap rubrics
-- Profile audit improvements
-- Portfolio project templates
-- Weekly planning templates
-- Interview preparation prompts
-- CLI script improvements
-- Documentation and examples
+- New occupation tracks.
+- Better role gap rubrics.
+- Profile audit improvements.
+- Portfolio project templates.
+- Weekly planning templates.
+- Interview preparation prompts.
+- CLI script improvements.
+- Documentation and examples.
 
 ## Local Setup
 

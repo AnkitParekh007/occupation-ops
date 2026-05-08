@@ -11,8 +11,8 @@ experience, repositioning toward AI frontend architecture.
 
 AI Frontend Architect / Angular Architect / Copilot UI Engineer.
 
-Fit: Strong target fit if supported by public proof projects, screenshots, and
-interview-ready architecture explanations.
+Fit: Strong target fit if supported by public proof projects, screenshots,
+and interview-ready architecture explanations.
 
 ## Profile Score
 

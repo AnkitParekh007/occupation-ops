@@ -12,7 +12,12 @@ This repository is an MVP. It is not a finished SaaS, not a job automation
 platform, and not a promise of employment outcomes.
 
 ```text
-profile audit -> role gaps -> proof projects -> positioning -> interview prep -> weekly execution
+profile audit
+  -> role gaps
+  -> proof projects
+  -> positioning
+  -> interview prep
+  -> weekly execution
 ```
 
 ## Try The Demo In 60 Seconds
