@@ -19,3 +19,4 @@ console.log('\n## End-Of-Week Review\n');
 console.log('- What became more credible?');
 console.log('- What still lacks proof?');
 console.log('- What should be built next?');
+console.log('\nTruthfulness guardrail: only publish claims you can defend in an interview.');

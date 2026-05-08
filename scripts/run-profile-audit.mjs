@@ -46,3 +46,4 @@ console.log('2. Pin the strongest proof repos first.');
 console.log('3. Add one screenshot or demo link.');
 console.log('4. Add a 30-day roadmap.');
 console.log('5. Draft interview talking points from existing proof.');
+console.log('\nTip: run `npm run demo:ai-frontend` for a complete sample report.');

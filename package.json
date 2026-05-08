@@ -4,20 +4,9 @@
   "description": "AI Career Operating System for profile audits, role-gap analysis, portfolio planning, and weekly execution",
   "scripts": {
     "doctor": "node scripts/doctor.mjs",
+    "demo:ai-frontend": "node scripts/demo-ai-frontend-architect.mjs",
     "audit:profile": "node scripts/run-profile-audit.mjs",
-    "plan:weekly": "node scripts/generate-weekly-plan.mjs",
-    "verify": "node verify-pipeline.mjs",
-    "normalize": "node normalize-statuses.mjs",
-    "dedup": "node dedup-tracker.mjs",
-    "merge": "node merge-tracker.mjs",
-    "pdf": "node generate-pdf.mjs",
-    "sync-check": "node cv-sync-check.mjs",
-    "update:check": "node update-system.mjs check",
-    "update": "node update-system.mjs apply",
-    "rollback": "node update-system.mjs rollback",
-    "liveness": "node check-liveness.mjs",
-    "scan": "node scan.mjs",
-    "gemini:eval": "node gemini-eval.mjs"
+    "plan:weekly": "node scripts/generate-weekly-plan.mjs"
   },
   "keywords": [
     "ai",
@@ -26,8 +15,7 @@
     "github-profile",
     "portfolio",
     "resume",
-    "job-search",
-    "claude-code",
+    "career-tech",
     "automation"
   ],
   "author": "Ankit Parekh",
@@ -36,11 +24,5 @@
     "type": "git",
     "url": "https://github.com/AnkitParekh007/occupation-ops"
   },
-  "license": "MIT",
-  "dependencies": {
-    "@google/generative-ai": "^0.24.1",
-    "dotenv": "^16.4.5",
-    "js-yaml": "^4.1.1",
-    "playwright": "^1.58.1"
-  }
+  "license": "MIT"
 }
