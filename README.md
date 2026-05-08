@@ -1,18 +1,18 @@
 # Occupation-Ops
 
-## Become more hireable before you apply
+## AI Career Operating System for modern knowledge workers
 
-Occupation-Ops is an **AI Career Operating System** for modern knowledge
-workers. It helps users audit their current profile, find role gaps, plan
-portfolio proof projects, improve GitHub/LinkedIn/resume positioning, prepare
-for interviews, and turn career strategy into weekly execution.
+Occupation-Ops helps people become more hireable before they apply.
 
-This is an MVP, not a finished SaaS. The current version is a local,
-file-based toolkit with templates, occupation tracks, workflow modes, and small
-Node.js CLI commands.
+It gives users a local, file-based workflow for profile audits, role-gap
+analysis, GitHub growth, portfolio project planning, interview preparation, and
+weekly execution plans.
+
+This repository is an MVP. It is not a finished SaaS, not a job automation
+platform, and not a promise of employment outcomes.
 
 ```text
-profile -> role gaps -> proof projects -> positioning -> interview prep -> weekly execution
+profile audit -> role gaps -> proof projects -> positioning -> interview prep -> weekly execution
 ```
 
 ## Try The Demo In 60 Seconds
@@ -24,13 +24,13 @@ npm install
 npm run demo:ai-frontend
 ```
 
-The demo writes a sample report to:
+The demo generates:
 
 ```text
 output/demo-ai-frontend-architect-report.md
 ```
 
-You can also run the smaller MVP commands:
+You can also run:
 
 ```bash
 npm run doctor
@@ -38,7 +38,7 @@ npm run audit:profile
 npm run plan:weekly
 ```
 
-To customize the input profile on Windows:
+To customize the example profile on Windows:
 
 ```bash
 copy templates\profile.example.yml profile.yml
@@ -52,20 +52,19 @@ cp templates/profile.example.yml profile.yml
 
 ## Sample Output
 
-The flagship demo creates a report with:
+The flagship AI Frontend Architect demo report includes:
 
-- Profile summary
-- Target role
-- Current positioning score
-- Missing proof signals
-- GitHub profile rewrite
-- Three portfolio project ideas
-- 30-day roadmap
-- Weekly execution checklist
-- Interview preparation topics
-- Truthfulness guardrails
+- Profile Score
+- Target Role Fit
+- Missing Proof Signals
+- GitHub Profile Rewrite
+- 3 Portfolio Project Ideas
+- 30-Day Roadmap
+- Weekly Execution Checklist
+- Interview Prep Map
+- Truthfulness Guardrails
 
-Excerpt:
+Example excerpt:
 
 ```md
 ## Profile Score
@@ -79,59 +78,59 @@ proof around AI copilot UX, RAG citations, tool execution, and approval flows.
 ## Who This Is For
 
 - Frontend engineers moving into AI product engineering.
-- Angular, React, QA, product, data, DevOps, and design professionals who need
-  clearer public proof.
-- Job seekers who want stronger positioning before applying.
+- Knowledge workers who need stronger public proof before applying.
 - Career coaches and mentors who want reusable audit templates.
-- Open-source contributors building career-tech workflows.
+- Open-source contributors interested in career-tech workflows.
+- Developers who want a local-first career execution system.
 
 ## What This Is Not
 
 - Not a hosted recruiting service.
-- Not a job spam or mass-apply tool.
-- Not a promise of employment outcomes.
+- Not a mass-apply tool.
 - Not a resume fakery generator.
 - Not an ATS bypass product.
 - Not a replacement for human review.
+- Not a guarantee of interviews, offers, or hiring outcomes.
 
 ## Why Star This Repo?
 
 - Follow a practical open-source MVP for career-readiness workflows.
-- Reuse occupation tracks, templates, and weekly execution plans.
+- Reuse occupation tracks, workflow modes, and weekly execution plans.
 - Study how AI agent workflows can support truthful career positioning.
-- Contribute new tracks, modes, examples, and CLI improvements.
+- Contribute new tracks, templates, examples, and CLI improvements.
 - Help shape an original career-tech system focused on proof before applying.
-
-## How It Works
-
-```mermaid
-flowchart LR
-    Profile["User profile"] --> Audit["Profile audit"]
-    Audit --> Gaps["Role gap analysis"]
-    Gaps --> Projects["Portfolio project plan"]
-    Projects --> Positioning["GitHub / LinkedIn / resume positioning"]
-    Positioning --> Interview["Interview preparation"]
-    Interview --> Weekly["Weekly execution plan"]
-    Weekly --> Proof["Stronger public proof"]
-```
 
 ## Features
 
 | Feature | Status | Purpose |
 | --- | --- | --- |
 | Profile audit | MVP | Review current public proof and positioning. |
-| Role-gap analysis | MVP | Compare current proof against target occupation expectations. |
+| Role-gap analysis | MVP | Compare current proof against target role expectations. |
 | GitHub growth mode | MVP | Improve profile README, repo clarity, topics, and contribution surfaces. |
 | Portfolio builder | MVP | Plan role-specific proof projects. |
 | Resume builder | Template | Align resume language without fake claims. |
 | Interview prep | Template | Convert proof projects into interview stories. |
-| Weekly plan generator | MVP | Turn strategy into a one-week execution checklist. |
-| Occupation tracks | MVP | Define what credible proof looks like for different roles. |
+| Weekly plan generator | MVP | Turn strategy into one week of execution. |
+| Occupation tracks | MVP | Define credible proof for different roles. |
 
-## Flagship Workflow: AI Frontend Architect
+## How It Works
 
-The first complete workflow helps a user target AI Frontend Architect roles by
-auditing current proof and creating an execution plan around:
+```mermaid
+flowchart LR
+  Profile["User profile"] --> Audit["Profile audit"]
+  Audit --> Gaps["Role gap analysis"]
+  Gaps --> Projects["Portfolio project plan"]
+  Projects --> Positioning["GitHub / LinkedIn / resume positioning"]
+  Positioning --> Interview["Interview preparation"]
+  Interview --> Weekly["Weekly execution plan"]
+  Weekly --> Proof["Stronger public proof"]
+```
+
+## AI Frontend Architect Flagship Workflow
+
+The first complete workflow targets AI Frontend Architect roles.
+
+It helps a user audit current proof and build an execution plan around:
 
 - GitHub and resume positioning
 - AI copilot UI proof
@@ -142,7 +141,7 @@ auditing current proof and creating an execution plan around:
 - interview preparation
 - weekly execution
 
-Start with:
+Start here:
 
 - [AI Frontend Architect Track](tracks/ai-frontend-architect.md)
 - [Sample profile](examples/ai-frontend-architect/sample-profile.yml)
@@ -183,20 +182,6 @@ Start with:
 - Add tests for the Node.js scripts.
 - Improve docs for career coaches and mentors.
 
-## Project Structure
-
-```text
-occupation-ops/
-  AGENTS.md
-  OCCUPATION_CONTRACT.md
-  docs/
-  tracks/
-  modes/
-  templates/
-  examples/
-  scripts/
-```
-
 ## Roadmap
 
 See [docs/ROADMAP.md](docs/ROADMAP.md).
@@ -209,20 +194,6 @@ Near-term priorities:
 - Add screenshot examples.
 - Add tests for CLI commands.
 - Add a lightweight local dashboard later.
-
-## Contributing
-
-Contributions are welcome around:
-
-- occupation tracks
-- workflow modes
-- templates
-- example profiles
-- CLI improvements
-- launch docs
-- truthful positioning guardrails
-
-Read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a PR.
 
 ## Attribution
 
@@ -237,8 +208,15 @@ screenshots, community links, or outcomes.
 - Do not fake experience, metrics, employment history, or endorsements.
 - Do not mass-apply or spam recruiters.
 - Do not automate third-party websites against their terms.
-- Always review AI-generated career material before publishing or sending it.
+- Always review generated career material before publishing or sending it.
 - Keep private data out of git.
+
+## Contributing
+
+Contributions are welcome around occupation tracks, workflow modes, templates,
+examples, CLI improvements, and truthfulness guardrails.
+
+Read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a PR.
 
 ## License
 
