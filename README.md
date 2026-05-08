@@ -68,7 +68,7 @@ The flagship demo creates a report with:
 Excerpt:
 
 ```md
-## Current Positioning Score
+## Profile Score
 
 Score: 6.5/10
 
