@@ -3,9 +3,14 @@
   "version": "0.1.0",
   "description": "AI Career Operating System for profile audits, role-gap analysis, portfolio planning, and weekly execution",
   "scripts": {
+    "init": "node scripts/init-profile.mjs",
     "doctor": "node scripts/doctor.mjs",
     "demo:ai-frontend": "node scripts/demo-ai-frontend-architect.mjs",
     "audit:profile": "node scripts/run-profile-audit.mjs",
+    "gap:role": "node scripts/generate-role-gap-analysis.mjs",
+    "portfolio:plan": "node scripts/generate-portfolio-plan.mjs",
+    "github:growth": "node scripts/generate-github-growth-plan.mjs",
+    "interview:stories": "node scripts/generate-interview-story-bank.mjs",
     "plan:weekly": "node scripts/generate-weekly-plan.mjs"
   },
   "keywords": [

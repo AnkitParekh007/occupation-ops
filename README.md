@@ -20,35 +20,33 @@ profile audit
   -> weekly execution
 ```
 
-## Try The Demo In 60 Seconds
+## Try It In 60 Seconds
 
 ```bash
 git clone https://github.com/AnkitParekh007/occupation-ops.git
 cd occupation-ops
 npm install
-npm run demo:ai-frontend
+npm run init
 ```
 
-The demo generates:
-
-```text
-output/demo-ai-frontend-architect-report.md
-```
-
-Sample report available in
-[output/demo-ai-frontend-architect-report.md](output/demo-ai-frontend-architect-report.md).
-
-Screenshots coming in v0.2.
-
-You can also run:
+Then run any workflow:
 
 ```bash
-npm run doctor
-npm run audit:profile
-npm run plan:weekly
+npm run demo:ai-frontend      # full AI Frontend Architect sample report
+npm run audit:profile         # review your profile and positioning
+npm run gap:role              # role gap analysis with 7-day plan
+npm run portfolio:plan        # three portfolio project plans
+npm run github:growth         # GitHub profile, pins, topics, and issues
+npm run interview:stories     # STAR stories, system design, guardrails
+npm run plan:weekly           # weekly execution plan
+npm run doctor                # check repo health and list all commands
 ```
 
-To customize the example profile on Windows:
+`npm run init` creates `profile.yml` from the example template. Edit it with
+your real name, target role, links, and proof projects before running other
+commands.
+
+To copy the template manually on Windows:
 
 ```cmd
 copy templates\profile.example.yml profile.yml
@@ -84,6 +82,36 @@ Score: 6.5/10
 Strong Angular and TypeScript direction, but the profile needs clearer public
 proof around AI copilot UX, RAG citations, tool execution, and approval flows.
 ```
+
+## Core Workflows
+
+Each command generates a standalone Markdown file in `output/`. No API key
+required. No internet connection required. Everything runs locally.
+
+| Command | What it generates |
+| --- | --- |
+| `npm run init` | Creates `profile.yml` from the example template |
+| `npm run audit:profile` | Profile and positioning review printed to terminal |
+| `npm run gap:role` | `output/role-gap-analysis.md` — gaps, score, 7-day plan |
+| `npm run portfolio:plan` | `output/portfolio-project-plan.md` — 3 proof project plans |
+| `npm run github:growth` | `output/github-growth-plan.md` — headline, pins, topics, issues |
+| `npm run interview:stories` | `output/interview-story-bank.md` — STAR stories and guardrails |
+| `npm run plan:weekly` | Weekly execution plan printed to terminal |
+| `npm run demo:ai-frontend` | `output/demo-ai-frontend-architect-report.md` — full sample |
+| `npm run doctor` | Repo health check and full command list |
+
+## Generated Outputs
+
+Running the commands above produces these files:
+
+- [output/demo-ai-frontend-architect-report.md](output/demo-ai-frontend-architect-report.md)
+- [output/role-gap-analysis.md](output/role-gap-analysis.md)
+- [output/portfolio-project-plan.md](output/portfolio-project-plan.md)
+- [output/github-growth-plan.md](output/github-growth-plan.md)
+- [output/interview-story-bank.md](output/interview-story-bank.md)
+
+All outputs are local Markdown files. Edit them, commit them, or delete them.
+They are regenerated fresh each time you run the command.
 
 ## Who This Is For
 
