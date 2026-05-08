@@ -1,0 +1,21 @@
+const target = process.argv[2] || 'AI Frontend Architect';
+
+console.log(`# Weekly Career Plan: ${target}\n`);
+console.log('## Week Theme\n');
+console.log('Convert positioning into public proof.\n');
+console.log('## Outcomes\n');
+console.log('- [ ] One profile surface improved');
+console.log('- [ ] One proof project made clearer');
+console.log('- [ ] One interview story drafted\n');
+console.log('## Daily Plan\n');
+console.log('| Day | Task | Proof artifact |');
+console.log('| --- | --- | --- |');
+console.log('| Monday | Audit profile, pinned repos, and portfolio hero | Audit notes |');
+console.log('| Tuesday | Improve one README first screen | README diff |');
+console.log('| Wednesday | Add screenshot, diagram, or demo plan | Visual proof |');
+console.log('| Thursday | Write mocked-vs-real and interview notes | Interview-safe docs |');
+console.log('| Friday | Publish a short useful update and plan next week | Post draft |');
+console.log('\n## End-Of-Week Review\n');
+console.log('- What became more credible?');
+console.log('- What still lacks proof?');
+console.log('- What should be built next?');

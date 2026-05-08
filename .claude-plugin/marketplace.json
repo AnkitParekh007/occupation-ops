@@ -1,17 +1,17 @@
 {
-  "name": "career-ops",
+  "name": "occupation-ops",
   "metadata": {
-    "description": "AI job search command center — evaluate offers, generate CVs, scan portals, track applications"
+    "description": "AI Career Operating System for role readiness, profile audits, portfolio planning, and weekly execution"
   },
   "owner": {
-    "name": "santifer",
-    "url": "https://santifer.io"
+    "name": "Ankit Parekh",
+    "url": "https://github.com/AnkitParekh007"
   },
   "plugins": [
     {
-      "name": "career-ops",
+      "name": "occupation-ops",
       "source": "./",
-      "description": "AI job search pipeline — evaluate offers, generate CVs, scan portals, track applications",
+      "description": "Career-readiness workflows for knowledge workers",
       "category": "productivity"
     }
   ]

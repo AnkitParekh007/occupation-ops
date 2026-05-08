@@ -1,0 +1,29 @@
+name: Example Candidate
+target_occupation: AI Frontend Architect
+target_roles:
+  - AI Frontend Engineer
+  - Angular Architect
+  - Copilot UI Engineer
+location: Remote
+weekly_hours: 8
+links:
+  github: https://github.com/example
+  portfolio: https://example.com
+  linkedin: https://linkedin.com/in/example
+current_positioning: Frontend engineer moving into AI product interfaces.
+current_proof:
+  - Angular dashboard project
+  - TypeScript component library
+  - AI copilot prototype
+skills:
+  strong:
+    - Angular
+    - TypeScript
+    - RxJS
+  developing:
+    - RAG UX
+    - MCP tool workflows
+    - Agent dashboards
+constraints:
+  - Use truthful claims only
+  - Prefer public proof projects

@@ -1,4 +1,5 @@
 name: SBOM Generation
+
 on:
   release:
     types: [published]
@@ -16,11 +17,11 @@ jobs:
       - name: Generate SBOM (SPDX)
         uses: anchore/sbom-action@v0
         with:
-          artifact-name: career-ops-sbom.spdx.json
+          artifact-name: occupation-ops-sbom.spdx.json
           format: spdx-json
-          output-file: career-ops-sbom.spdx.json
+          output-file: occupation-ops-sbom.spdx.json
 
       - name: Upload SBOM to release
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release upload ${{ github.event.release.tag_name }} career-ops-sbom.spdx.json
+        run: gh release upload ${{ github.event.release.tag_name }} occupation-ops-sbom.spdx.json

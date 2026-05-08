@@ -1,18 +1,15 @@
 {
-  "name": "career-ops",
-  "version": "1.6.0",
-  "description": "AI job search command center — evaluate offers, generate CVs, scan portals, track applications",
+  "name": "occupation-ops",
+  "version": "0.1.0",
+  "description": "AI Career Operating System for profile audits, role-gap analysis, portfolio planning, and weekly execution",
   "author": {
-    "name": "santifer",
-    "url": "https://santifer.io"
+    "name": "Ankit Parekh",
+    "url": "https://github.com/AnkitParekh007"
   },
   "skills": [".claude/skills/"],
   "permissions": {
     "allow": [
-      "Bash(node:*)",
-      "WebFetch(domain:boards-api.greenhouse.io)",
-      "WebFetch(domain:jobs.ashbyhq.com)",
-      "WebSearch"
+      "Bash(node:*)"
     ]
   }
 }

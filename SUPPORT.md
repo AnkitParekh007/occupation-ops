@@ -1,28 +1,24 @@
-# Getting Help
+# Support
 
-career-ops is an open source project maintained in limited time. Here's how to get help efficiently.
+Occupation-Ops is an early open-source MVP.
 
-## Where to ask
+## Where To Ask
 
-| Question type | Where |
-|---|---|
-| **Bug** (something is broken) | [GitHub Issues](https://github.com/santifer/career-ops/issues) — use the Bug Report template |
-| **Feature idea** | [GitHub Issues](https://github.com/santifer/career-ops/issues) — use the Feature Request template |
-| **How do I...?** | [GitHub Discussions](https://github.com/santifer/career-ops/discussions) or [Discord](https://discord.gg/8pRpHETxa4) |
-| **Setup help** | Check [docs/SETUP.md](docs/SETUP.md) first, then ask in [Discord](https://discord.gg/8pRpHETxa4) |
-| **Security vulnerability** | Email hi@santifer.io — see [SECURITY.md](SECURITY.md) |
+- Bugs: open a GitHub issue.
+- Feature ideas: open a GitHub issue with a clear use case.
+- Setup problems: run `npm run doctor` first, then include your OS, Node.js
+  version, and command output.
+- Security issues: follow [SECURITY.md](SECURITY.md).
 
-## Before opening an issue
+## Before Opening An Issue
 
-1. Search existing issues — someone may have reported it already
-2. Run `npm run doctor` — it catches most setup problems
-3. Include your OS, Node.js version, and the CLI you're using (Claude Code, OpenCode, etc.)
+1. Search existing issues.
+2. Run `npm run doctor`.
+3. Check [docs/SETUP.md](docs/SETUP.md).
+4. Include enough detail to reproduce the problem.
 
-## What NOT to use GitHub Issues for
+## Scope
 
-- General questions about job searching
-- Requests for personal career advice
-- Support for modified forks or unofficial distributions
-- Asking the maintainer to review your CV
-
-These will be closed and redirected to the appropriate channel.
+This project can help with tooling, templates, and career-readiness workflows.
+It does not provide personal recruiting services or guarantee employment
+outcomes.

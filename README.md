@@ -1,331 +1,252 @@
-# occupation-Ops
+﻿# Occupation-Ops
 
-[English](README.md) | [Español](README.es.md) | [Português (Brasil)](README.pt-BR.md) | [한국어](README.ko-KR.md) | [日本語](README.ja.md) | [Русский](README.ru.md) | [简体中文](README.cn.md) | [繁體中文](README.zh-TW.md)
+## AI Career Operating System for Modern Knowledge Workers
 
-<p align="center">
-  <a href="https://x.com/santifer"><img src="docs/hero-banner.jpg" alt="occupation-Ops — Multi-Agent Job Search System" width="800"></a>
-</p>
+Occupation-Ops helps people become more hireable before they apply. It audits a
+user's current profile, identifies role gaps, plans portfolio proof projects,
+improves GitHub, LinkedIn, and resume positioning, prepares interviews, and
+generates weekly execution plans.
 
-<p align="center">
-  <em>I spent months applying to jobs the hard way. So I engineered the system I wish I had.</em><br>
-  Companies use AI to filter candidates. <strong>I just gave candidates AI to <em>choose</em> companies.</strong><br>
-  <em>Now it's open source.</em>
-</p>
+This is an open-source career operating system, not a job spam tool. The goal is
+to help users build stronger public proof, better positioning, and more focused
+career execution.
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Claude_Code-000?style=flat&logo=anthropic&logoColor=white" alt="Claude Code">
-  <img src="https://img.shields.io/badge/OpenCode-111827?style=flat&logo=terminal&logoColor=white" alt="OpenCode">
-  <img src="https://img.shields.io/badge/Gemini_CLI-4285F4?style=flat&logo=google&logoColor=white" alt="Gemini CLI">
-  <img src="https://img.shields.io/badge/Codex_(soon)-6B7280?style=flat&logo=openai&logoColor=white" alt="Codex">
-  <img src="https://img.shields.io/badge/Node.js-339933?style=flat&logo=node.js&logoColor=white" alt="Node.js">
-  <img src="https://img.shields.io/badge/Go-00ADD8?style=flat&logo=go&logoColor=white" alt="Go">
-  <img src="https://img.shields.io/badge/Playwright-2EAD33?style=flat&logo=playwright&logoColor=white" alt="Playwright">
-  <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="MIT">
-  <a href="TRADEMARK.md"><img src="https://img.shields.io/badge/Trademark-Policy-blue.svg" alt="Trademark Policy"></a>
-  <a href="https://discord.gg/8pRpHETxa4"><img src="https://img.shields.io/badge/Discord-5865F2?style=flat&logo=discord&logoColor=white" alt="Discord"></a>
-  <br>
-  <img src="https://img.shields.io/badge/EN-blue?style=flat" alt="EN">
-  <img src="https://img.shields.io/badge/ES-red?style=flat" alt="ES">
-  <img src="https://img.shields.io/badge/DE-grey?style=flat" alt="DE">
-  <img src="https://img.shields.io/badge/FR-blue?style=flat" alt="FR">
-  <img src="https://img.shields.io/badge/PT--BR-green?style=flat" alt="PT-BR">
-  <img src="https://img.shields.io/badge/KO-white?style=flat" alt="KO">
-  <img src="https://img.shields.io/badge/JA-red?style=flat" alt="JA">
-  <img src="https://img.shields.io/badge/ZH--CN-red?style=flat" alt="ZH-CN">
-  <img src="https://img.shields.io/badge/ZH--TW-blue?style=flat" alt="ZH-TW">
-</p>
+> Status: MVP. The workflows are file-based and script-assisted today. The
+> system is designed to grow into a contributor-friendly career-tech toolkit.
 
----
+## Tagline
 
-<p align="center">
-  <img src="docs/demo.gif" alt="occupation-Ops Demo" width="800">
-</p>
+Become more hireable before you apply.
 
-<p align="center"><strong>740+ job listings evaluated · 100+ personalized CVs · 1 dream role landed</strong></p>
+## What Makes This Different
 
-<p align="center"><a href="https://discord.gg/8pRpHETxa4"><img src="https://img.shields.io/badge/Join_the_community-Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord"></a></p>
+Occupation-Ops focuses on occupation readiness, not just application tracking.
+It starts with the target role, maps the user's current proof, finds missing
+signals, and turns those gaps into weekly execution plans.
 
-## What Is This
-
-occupation-Ops turns any AI coding CLI into a full job search command center. Instead of manually tracking applications in a spreadsheet, you get an AI-powered pipeline that:
-
-- **Evaluates offers** with a structured A-F scoring system (10 weighted dimensions)
-- **Generates tailored PDFs** -- ATS-optimized CVs customized per job description
-- **Scans portals** automatically (Greenhouse, Ashby, Lever, company pages)
-- **Processes in batch** -- evaluate 10+ offers in parallel with sub-agents
-- **Tracks everything** in a single source of truth with integrity checks
-
-> **Important: This is NOT a spray-and-pray tool.** occupation-ops is a filter -- it helps you find the few offers worth your time out of hundreds. The system strongly recommends against applying to anything scoring below 4.0/5. Your time is valuable, and so is the recruiter's. Always review before submitting.
-
-occupation-ops is agentic: Claude Code navigates occupation pages with Playwright, evaluates fit by reasoning about your CV vs the job description (not keyword matching), and adapts your resume per listing.
-
-> **Heads up: the first evaluations won't be great.** The system doesn't know you yet. Feed it context -- your CV, your occupation story, your proof points, your preferences, what you're good at, what you want to avoid. The more you nurture it, the better it gets. Think of it as onboarding a new recruiter: the first week they need to learn about you, then they become invaluable.
-
-Built by someone who used it to evaluate 740+ job offers, generate 100+ tailored CVs, and land a Head of Applied AI role. [Read the full case study](https://santifer.io/occupation-ops-system).
-
-## Features
-
-| Feature | Description |
-|---------|-------------|
-| **Auto-Pipeline** | Paste a URL, get a full evaluation + PDF + tracker entry |
-| **6-Block Evaluation** | Role summary, CV match, level strategy, comp research, personalization, interview prep (STAR+R) |
-| **Interview Story Bank** | Accumulates STAR+Reflection stories across evaluations -- 5-10 master stories that answer any behavioral question |
-| **Negotiation Scripts** | Salary negotiation frameworks, geographic discount pushback, competing offer leverage |
-| **ATS PDF Generation** | Keyword-injected CVs with Space Grotesk + DM Sans design |
-| **Portal Scanner** | 45+ companies pre-configured (Anthropic, OpenAI, ElevenLabs, Retool, n8n...) + custom queries across Ashby, Greenhouse, Lever, Wellfound |
-| **Batch Processing** | Parallel evaluation with `claude -p` workers |
-| **Dashboard TUI** | Terminal UI to browse, filter, and sort your pipeline |
-| **Human-in-the-Loop** | AI evaluates and recommends, you decide and act. The system never submits an application -- you always have the final call |
-| **Pipeline Integrity** | Automated merge, dedup, status normalization, health checks |
+| Layer | What it does |
+| --- | --- |
+| Profile audit | Reviews GitHub, resume, LinkedIn, portfolio, skills, and proof gaps. |
+| Role gap analysis | Compares current positioning against a target occupation. |
+| Portfolio planning | Generates proof projects that make the target role believable. |
+| Public proof | Improves GitHub profile, repo READMEs, LinkedIn, and portfolio copy. |
+| Interview prep | Turns proof projects into talking points and story banks. |
+| Weekly execution | Converts strategy into small, reviewable career tasks. |
 
 ## Quick Start
 
 ```bash
-# 1. Clone and install
-git clone https://github.com/santifer/occupation-ops.git
-cd occupation-ops && npm install
-npx playwright install chromium   # Required for PDF generation
-
-# 2. Check setup
-npm run doctor                     # Validates all prerequisites
-
-# 3. Configure
-cp config/profile.example.yml config/profile.yml  # Edit with your details
-cp templates/portals.example.yml portals.yml       # Customize companies
-
-# 4. Add your CV
-# Create cv.md in the project root with your CV in markdown
-
-# 5. Personalize with Claude
-claude   # Open Claude Code in this directory
-
-# Then ask Claude to adapt the system to you:
-# "Change the archetypes to backend engineering roles"
-# "Translate the modes to English"
-# "Add these 5 companies to portals.yml"
-# "Update my profile with this CV I'm pasting"
-
-# 6. Start using
-# Paste a job URL or run /occupation-ops
-```
-
-> **The system is designed to be customized by Claude itself.** Modes, archetypes, scoring weights, negotiation scripts -- just ask Claude to change them. It reads the same files it uses, so it knows exactly what to edit.
-
-See [docs/SETUP.md](docs/SETUP.md) for the full setup guide.
-
-## Gemini CLI Integration
-
-occupation-ops supports [Gemini CLI](https://github.com/google-gemini/gemini-cli) natively — the same way it supports Claude Code and OpenCode. All 15 slash commands are available, using the same `modes/*.md` evaluation logic.
-
-### Option A — Native Gemini CLI (Recommended)
-
-```bash
-# 1. Install Gemini CLI
-npm install -g @google/gemini-cli
-# or: npx @google/gemini-cli --version
-
-# 2. Authenticate (free — uses your Google account)
-gemini auth
-
-# 3. Run in the occupation-ops directory
+git clone https://github.com/AnkitParekh007/occupation-ops.git
 cd occupation-ops
-gemini
-
-# 4. Use slash commands just like Claude Code
-/occupation-ops "Senior AI Engineer at Anthropic..."
-/occupation-ops-evaluate --file ./jds/openai.txt
-/occupation-ops-scan
-/occupation-ops-pdf
-/occupation-ops-tracker
-```
-
-The `GEMINI.md` file is auto-loaded as context. All 15 commands are defined in `.gemini/commands/*.toml`.
-
-### Option B — Standalone API Script (No CLI install needed)
-
-```bash
-# 1. Get a free API key at https://aistudio.google.com/apikey
-cp .env.example .env
-# Edit .env → set GEMINI_API_KEY=your_key_here
-
-# 2. Install dependencies
 npm install
 
-# 3. Evaluate a job description
-node gemini-eval.mjs "We are looking for a Senior AI Engineer..."
-node gemini-eval.mjs --file ./jds/my-job.txt
-npm run gemini:eval -- "JD text here"
+npm run doctor
+npm run audit:profile
+npm run plan:weekly
 ```
 
-> **Free tier:** Both options work without billing. Native CLI uses Google OAuth; the API script uses `gemini-2.0-flash` (15 RPM, 1M tokens/day free).
+Copy the example profile and edit it with your own details:
 
-## Usage
-
-occupation-ops is a single slash command with multiple modes:
-
-```
-/occupation-ops                → Show all available commands
-/occupation-ops {paste a JD}   → Full auto-pipeline (evaluate + PDF + tracker)
-/occupation-ops scan           → Scan portals for new offers
-/occupation-ops pdf            → Generate ATS-optimized CV
-/occupation-ops batch          → Batch evaluate multiple offers
-/occupation-ops tracker        → View application status
-/occupation-ops apply          → Fill application forms with AI
-/occupation-ops pipeline       → Process pending URLs
-/occupation-ops contacto       → LinkedIn outreach message
-/occupation-ops deep           → Deep company research
-/occupation-ops training       → Evaluate a course/cert
-/occupation-ops project        → Evaluate a portfolio project
+```bash
+copy templates\profile.example.yml profile.yml
 ```
 
-Or just paste a job URL or description directly -- occupation-ops auto-detects it and runs the full pipeline.
+On macOS/Linux:
+
+```bash
+cp templates/profile.example.yml profile.yml
+```
+
+## Flagship Workflow: AI Frontend Architect Track
+
+The first flagship workflow helps a user move toward AI Frontend Architect
+roles. It guides the user through:
+
+1. Auditing GitHub, resume, LinkedIn, and portfolio positioning.
+2. Defining target roles and role-specific proof signals.
+3. Identifying missing proof projects.
+4. Generating three portfolio project ideas.
+5. Rewriting GitHub profile positioning.
+6. Creating a 30-day roadmap.
+7. Preparing interview topics.
+8. Producing a weekly execution checklist.
+
+Start here:
+
+- [AI Frontend Architect Track](tracks/ai-frontend-architect.md)
+- [Sample profile](examples/ai-frontend-architect/sample-profile.yml)
+- [Sample gap analysis](examples/ai-frontend-architect/sample-gap-analysis.md)
+- [Sample weekly plan](examples/ai-frontend-architect/sample-weekly-plan.md)
+
+## Features
+
+| Feature | Status | Why it matters |
+| --- | --- | --- |
+| Profile audit | MVP | Helps users see what recruiters and hiring managers see first. |
+| Role gap analysis | MVP | Turns vague career goals into concrete missing signals. |
+| GitHub growth mode | MVP | Improves profile README, repo clarity, topics, and contribution surfaces. |
+| Portfolio builder | MVP | Creates proof project plans tied to target occupations. |
+| Resume builder | Template | Helps align experience with target role language without fake claims. |
+| Interview prep | Template | Converts projects and experience into interview-ready stories. |
+| Weekly plan generator | MVP | Converts roadmap items into focused weekly execution tasks. |
+| Occupation tracks | MVP | Provides role-specific checklists and proof expectations. |
 
 ## How It Works
 
-```
-You paste a job URL or description
-        │
-        ▼
-┌──────────────────┐
-│  Archetype       │  Classifies: LLMOps / Agentic / PM / SA / FDE / Transformation
-│  Detection       │
-└────────┬─────────┘
-         │
-┌────────▼─────────┐
-│  A-F Evaluation  │  Match, gaps, comp research, STAR stories
-│  (reads cv.md)   │
-└────────┬─────────┘
-         │
-    ┌────┼────┐
-    ▼    ▼    ▼
- Report  PDF  Tracker
-  .md   .pdf   .tsv
+```mermaid
+flowchart LR
+    Profile["User Profile"] --> Audit["Profile Audit"]
+    Audit --> Gaps["Role Gap Analysis"]
+    Gaps --> Projects["Portfolio Project Plan"]
+    Projects --> Positioning["GitHub / LinkedIn / Resume Positioning"]
+    Positioning --> Interview["Interview Prep"]
+    Interview --> Weekly["Weekly Execution Plan"]
+    Weekly --> Proof["Stronger Public Proof"]
 ```
 
-## Pre-configured Portals
+## Occupation Tracks
 
-The scanner comes with **45+ companies** ready to scan and **19 search queries** across major job boards. Copy `templates/portals.example.yml` to `portals.yml` and add your own:
+Occupation tracks define what credible proof looks like for a target role.
 
-**AI Labs:** Anthropic, OpenAI, Mistral, Cohere, LangChain, Pinecone
-**Voice AI:** ElevenLabs, PolyAI, Parloa, Hume AI, Deepgram, Vapi, Bland AI
-**AI Platforms:** Retool, Airtable, Vercel, Temporal, Glean, Arize AI
-**Contact Center:** Ada, LivePerson, Sierra, Decagon, Talkdesk, Genesys
-**Enterprise:** Salesforce, Twilio, Gong, Dialpad
-**LLMOps:** Langfuse, Weights & Biases, Lindy, Cognigy, Speechmatics
-**Automation:** n8n, Zapier, Make.com
-**European:** Factorial, Attio, Tinybird, Clarity AI, Travelperk
+- [AI Frontend Architect](tracks/ai-frontend-architect.md)
+- [Frontend Engineer](tracks/frontend-engineer.md)
+- [QA Engineer](tracks/qa-engineer.md)
+- [Product Manager](tracks/product-manager.md)
+- [UI/UX Designer](tracks/ui-ux-designer.md)
+- [Data Analyst](tracks/data-analyst.md)
+- [DevOps Engineer](tracks/devops-engineer.md)
 
-**Job boards searched:** Ashby, Greenhouse, Lever, Wellfound, Workable, RemoteFront
+## Modes
 
-## Dashboard TUI
+Modes are reusable workflows that can be run manually, with an AI coding agent,
+or through the MVP Node.js scripts.
 
-The built-in terminal dashboard lets you browse your pipeline visually:
+- [Profile Audit](modes/profile-audit.md)
+- [Role Gap Analysis](modes/role-gap-analysis.md)
+- [GitHub Growth](modes/github-growth.md)
+- [Portfolio Builder](modes/portfolio-builder.md)
+- [Resume Builder](modes/resume-builder.md)
+- [Interview Prep](modes/interview-prep.md)
+- [Job Fit Evaluator](modes/job-fit-evaluator.md)
+- [LinkedIn Optimizer](modes/linkedin-optimizer.md)
+- [Weekly Career Plan](modes/weekly-career-plan.md)
+- [Learning Roadmap](modes/learning-roadmap.md)
+
+## Repository Structure
+
+```text
+occupation-ops/
+  AGENTS.md
+  CLAUDE.md
+  GEMINI.md
+  OCCUPATION_CONTRACT.md
+  CONTRIBUTING.md
+  SECURITY.md
+  docs/
+    SETUP.md
+    ARCHITECTURE.md
+    ROADMAP.md
+  tracks/
+    ai-frontend-architect.md
+    frontend-engineer.md
+    qa-engineer.md
+    product-manager.md
+    ui-ux-designer.md
+    data-analyst.md
+    devops-engineer.md
+  modes/
+    profile-audit.md
+    role-gap-analysis.md
+    github-growth.md
+    portfolio-builder.md
+    resume-builder.md
+    interview-prep.md
+    job-fit-evaluator.md
+    linkedin-optimizer.md
+    weekly-career-plan.md
+    learning-roadmap.md
+  templates/
+    profile.example.yml
+    resume-template.md
+    github-readme-template.md
+    portfolio-project-template.md
+    weekly-plan-template.md
+    interview-story-bank.md
+  examples/
+    ai-frontend-architect/
+      sample-profile.yml
+      sample-gap-analysis.md
+      sample-weekly-plan.md
+  scripts/
+    doctor.mjs
+    run-profile-audit.mjs
+    generate-weekly-plan.mjs
+```
+
+## CLI Prototype
+
+The CLI is intentionally simple in this MVP. It reads local Markdown/YAML files
+and prints practical next steps.
 
 ```bash
-cd dashboard
-go build -o occupation-dashboard .
-./occupation-dashboard --path ..
+npm run doctor
+npm run audit:profile
+npm run plan:weekly
 ```
 
-Features: 6 filter tabs, 4 sort modes, grouped/flat view, lazy-loaded previews, inline status changes.
+Current limitations:
 
-## Project Structure
+- No hosted service.
+- No automatic LinkedIn or GitHub writes.
+- No job applications are submitted.
+- No claims are made about employment outcomes.
 
-```
-occupation-ops/
-├── AGENTS.md                    # Canonical agent instructions (all CLIs)
-├── CLAUDE.md                    # Claude Code wrapper (imports AGENTS.md)
-├── cv.md                        # Your CV (create this)
-├── article-digest.md            # Your proof points (optional)
-├── config/
-│   └── profile.example.yml      # Template for your profile
-├── modes/                       # 14 skill modes
-│   ├── _shared.md               # Shared context (customize this)
-│   ├── oferta.md                # Single evaluation
-│   ├── pdf.md                   # PDF generation
-│   ├── scan.md                  # Portal scanner
-│   ├── batch.md                 # Batch processing
-│   └── ...
-├── templates/
-│   ├── cv-template.html         # ATS-optimized CV template
-│   ├── portals.example.yml      # Scanner config template
-│   └── states.yml               # Canonical statuses
-├── batch/
-│   ├── batch-prompt.md          # Self-contained worker prompt
-│   └── batch-runner.sh          # Orchestrator script
-├── dashboard/                   # Go TUI pipeline viewer
-├── data/                        # Your tracking data (gitignored)
-├── reports/                     # Evaluation reports (gitignored)
-├── output/                      # Generated PDFs (gitignored)
-├── fonts/                       # Space Grotesk + DM Sans
-├── docs/                        # Setup, customization, architecture
-└── examples/                    # Sample CV, report, proof points
-```
+## Roadmap
 
-## Tech Stack
+See [docs/ROADMAP.md](docs/ROADMAP.md).
 
-![Claude Code](https://img.shields.io/badge/Claude_Code-000?style=flat&logo=anthropic&logoColor=white)
-![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat&logo=node.js&logoColor=white)
-![Playwright](https://img.shields.io/badge/Playwright-2EAD33?style=flat&logo=playwright&logoColor=white)
-![Go](https://img.shields.io/badge/Go-00ADD8?style=flat&logo=go&logoColor=white)
-![Bubble Tea](https://img.shields.io/badge/Bubble_Tea-FF75B5?style=flat&logo=go&logoColor=white)
+Near-term priorities:
 
-- **Agent**: Claude Code with custom skills and modes
-- **PDF**: Playwright/Puppeteer + HTML template
-- **Scanner**: Playwright + Greenhouse API + WebSearch
-- **Dashboard**: Go + Bubble Tea + Lipgloss (Catppuccin Mocha theme)
-- **Data**: Markdown tables + YAML config + TSV batch files
+- Improve role-specific scoring rubrics.
+- Add more sample profiles.
+- Add JSON output from scripts.
+- Add GitHub issue templates.
+- Add screenshot examples for profile and portfolio audits.
+- Add a lightweight web dashboard.
 
-## Also Open Source
+## Contributing
 
-- **[cv-santiago](https://github.com/santifer/cv-santiago)** -- The portfolio website (santifer.io) with AI chatbot, LLMOps dashboard, and case studies. If you need a portfolio to showcase alongside your job search, fork it and make it yours.
+Contributions are welcome around:
 
-## About the Author
+- Occupation tracks.
+- Mode prompts.
+- Templates.
+- Sample profiles.
+- CLI improvements.
+- Documentation.
+- Guardrails for truthful positioning.
+- Accessibility and UX for future dashboards.
 
-I'm Santiago -- Head of Applied AI, former founder (built and sold a business that still runs with my name on it). I built occupation-ops to manage my own job search. It worked: I used it to land my current role.
+Read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a PR.
 
-My portfolio and other open source projects → [santifer.io](https://santifer.io)
+## Attribution
 
-## Star History
+Occupation-Ops may be inspired by the broader category of AI-assisted career
+operations tools, including career-ops. This repository is being repositioned as
+an original project focused on occupation readiness, public proof, portfolio
+planning, and weekly execution systems.
 
-<a href="https://www.star-history.com/?repos=santifer%2Foccupation-ops&type=timeline&legend=top-left">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=santifer/occupation-ops&type=timeline&theme=dark&legend=top-left" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=santifer/occupation-ops&type=timeline&legend=top-left" />
-   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=santifer/occupation-ops&type=timeline&legend=top-left" />
- </picture>
-</a>
+It does not claim the original career-ops author's story, metrics, screenshots,
+social links, community links, or outcomes.
 
-## Disclaimer
+## Safety And Ethics
 
-**occupation-ops is a local, open-source tool — NOT a hosted service.** By using this software, you acknowledge:
+- Do not fake experience, metrics, employment history, or endorsements.
+- Do not mass-apply or spam recruiters.
+- Do not scrape or automate third-party websites against their terms.
+- Always review AI-generated career material before publishing or sending it.
+- Keep private data out of git.
 
-1. **You control your data.** Your CV, contact info, and personal data stay on your machine and are sent directly to the AI provider you choose (Anthropic, OpenAI, etc.). We do not collect, store, or have access to any of your data.
-2. **You control the AI.** The default prompts instruct the AI not to auto-submit applications, but AI models can behave unpredictably. If you modify the prompts or use different models, you do so at your own risk. **Always review AI-generated content for accuracy before submitting.**
-3. **You comply with third-party ToS.** You must use this tool in accordance with the Terms of Service of the occupation portals you interact with (Greenhouse, Lever, Workday, LinkedIn, etc.). Do not use this tool to spam employers or overwhelm ATS systems.
-4. **No guarantees.** Evaluations are recommendations, not truth. AI models may hallucinate skills or experience. The authors are not liable for employment outcomes, rejected applications, account restrictions, or any other consequences.
+## License
 
-See [LEGAL_DISCLAIMER.md](LEGAL_DISCLAIMER.md) for full details. This software is provided under the [MIT License](LICENSE) "as is", without warranty of any kind.
-
-## Contributors
-
-<a href="https://github.com/santifer/occupation-ops/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=santifer/occupation-ops" />
-</a>
-
-Got hired using occupation-ops? [Share your story!](https://github.com/santifer/occupation-ops/issues/new?template=i-got-hired.yml)
-
-## License & Trademark
-
-The code is licensed under [MIT](LICENSE). The "occupation-ops" name and
-brand are governed by the [Trademark Policy](TRADEMARK.md) — permissive
-for community use, reserved for commercial product naming and
-endorsement.
-
-## Let's Connect
-
-[![Website](https://img.shields.io/badge/santifer.io-000?style=for-the-badge&logo=safari&logoColor=white)](https://santifer.io)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/santifer)
-[![X](https://img.shields.io/badge/X-000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/santifer)
-[![Discord](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/8pRpHETxa4)
-[![Email](https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:hi@santifer.io)
+MIT. See [LICENSE](LICENSE).

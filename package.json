@@ -1,9 +1,11 @@
 {
-  "name": "career-ops",
-  "version": "1.7.0",
-  "description": "AI-powered job search pipeline built on Claude Code",
+  "name": "occupation-ops",
+  "version": "0.1.0",
+  "description": "AI Career Operating System for profile audits, role-gap analysis, portfolio planning, and weekly execution",
   "scripts": {
-    "doctor": "node doctor.mjs",
+    "doctor": "node scripts/doctor.mjs",
+    "audit:profile": "node scripts/run-profile-audit.mjs",
+    "plan:weekly": "node scripts/generate-weekly-plan.mjs",
     "verify": "node verify-pipeline.mjs",
     "normalize": "node normalize-statuses.mjs",
     "dedup": "node dedup-tracker.mjs",
@@ -19,16 +21,20 @@
   },
   "keywords": [
     "ai",
+    "career",
+    "occupation-readiness",
+    "github-profile",
+    "portfolio",
+    "resume",
     "job-search",
     "claude-code",
-    "career",
     "automation"
   ],
-  "author": "Santiago Fernández de Valderrama <hi@santifer.io> (https://santifer.io)",
-  "homepage": "https://santifer.io",
+  "author": "Ankit Parekh",
+  "homepage": "https://github.com/AnkitParekh007/occupation-ops",
   "repository": {
     "type": "git",
-    "url": "https://github.com/santifer/career-ops"
+    "url": "https://github.com/AnkitParekh007/occupation-ops"
   },
   "license": "MIT",
   "dependencies": {

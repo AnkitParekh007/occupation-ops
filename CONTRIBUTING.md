@@ -1,81 +1,52 @@
-# Contributing to Career-Ops
+# Contributing
 
-Thanks for your interest in contributing! Career-Ops is built with Claude Code, and you can use it for development too.
+Thanks for considering a contribution to Occupation-Ops.
 
-## Before Submitting a PR
+## Good Contribution Areas
 
-**Please open an issue first to discuss the change you'd like to make.** This helps us align on direction before you invest time coding.
+- New occupation tracks
+- Better role gap rubrics
+- Profile audit improvements
+- Portfolio project templates
+- Weekly planning templates
+- Interview preparation prompts
+- CLI script improvements
+- Documentation and examples
 
-PRs without a corresponding issue may be closed if they don't align with the project's architecture or goals.
-
-### What makes a good PR
-- Fixes a bug listed in Issues
-- Addresses a feature request that was discussed and approved
-- Includes a clear description of what changed and why
-- Follows the existing code style and project philosophy (simple, minimal, quality over quantity)
-
-## Quick Start
-
-1. Open an issue to discuss your idea
-2. Fork the repo
-3. Create a branch (`git checkout -b feature/my-feature`)
-4. Make your changes
-5. Test with a fresh clone (see [docs/SETUP.md](docs/SETUP.md))
-6. Commit and push
-7. Open a Pull Request referencing the issue
-
-## What to Contribute
-
-**Good first contributions:**
-- Add companies to `templates/portals.example.yml`
-- Translate modes to other languages
-- Improve documentation
-- Add example CVs for different roles (in `examples/`)
-- Report bugs via [Issues](https://github.com/santifer/career-ops/issues)
-
-**Bigger contributions:**
-- New evaluation dimensions or scoring logic
-- Dashboard TUI features (in `dashboard/`)
-- New skill modes (in `modes/`)
-- Script improvements (`.mjs` utilities)
-
-## Guidelines
-
-- Keep modes language-agnostic when possible (Claude handles both EN and ES)
-- Scripts should handle missing files gracefully (check `existsSync` before `readFileSync`)
-- Dashboard changes require `go build` — test with real data before submitting
-- Don't commit personal data (cv.md, profile.yml, applications.md, reports/)
-
-## What we do NOT accept
-
-- **PRs that scrape platforms prohibiting automated access** (LinkedIn, etc.). We actively reject these to respect third-party ToS.
-- **PRs that enable auto-submitting applications** without human review. career-ops is a decision-support tool, not a spam bot.
-- **PRs that add external API dependencies** without prior discussion in an issue.
-- **PRs containing personal data** (real CVs, emails, phone numbers). Use `examples/` with fictional data instead.
-
-## Development
+## Local Setup
 
 ```bash
-# Scripts
-npm run doctor                # Setup validation
-node verify-pipeline.mjs     # Health check
-node cv-sync-check.mjs        # Config check
-
-# Dashboard
-cd dashboard && go build -o career-dashboard .
-./career-dashboard --path ..
+npm install
+npm run doctor
 ```
 
-## Brand and Trademark
+## Branch Naming
 
-Contributions to the codebase are governed by the MIT [LICENSE](LICENSE).
-The "career-ops" name itself is governed by [TRADEMARK.md](TRADEMARK.md).
-If you fork the project for commercial use, you're welcome to do so
-under MIT — please give it your own product name and follow the
-trademark policy regarding commercial naming and endorsement claims.
+Use clear branch names:
 
-## Need Help?
+- `docs/add-data-analyst-track`
+- `feat/profile-audit-json`
+- `fix/weekly-plan-output`
 
-- [Join the Discord](https://discord.gg/8pRpHETxa4) — fastest way to get answers and connect with other contributors
-- [Open an issue](https://github.com/santifer/career-ops/issues)
-- [Read the architecture docs](docs/ARCHITECTURE.md)
+## Commit Style
+
+Use small, meaningful commits:
+
+- `docs: add qa engineer track`
+- `feat: add weekly plan generator`
+- `fix: handle missing profile file`
+
+## Pull Request Checklist
+
+- [ ] The contribution does not include private data.
+- [ ] The contribution does not make fake career claims.
+- [ ] New docs are clear and role-specific.
+- [ ] Scripts run without paid API keys.
+- [ ] README links still work.
+- [ ] Examples are clearly labeled as examples.
+
+## Content Quality Bar
+
+Occupation-Ops should help users become more hireable through truthful public
+proof. Avoid vague motivation and prefer concrete artifacts, checklists, project
+plans, and interview-safe positioning.

@@ -1,34 +1,30 @@
-# Security Policy
+# Security
 
-## Reporting a Vulnerability
+Occupation-Ops is a local-first career tooling project.
 
-**Do NOT open a public issue for security vulnerabilities.**
+## Sensitive Data
 
-Instead, please email **hi@santifer.io** with:
+Do not commit:
 
-1. Description of the vulnerability
-2. Steps to reproduce
-3. Potential impact
-4. Suggested fix (if any)
+- API keys
+- tokens
+- `.env` files
+- private resumes
+- private employer data
+- private recruiter messages
+- personal phone numbers or addresses
+- unpublished compensation details
 
-You will receive a response within 72 hours. We will work with you to understand and address the issue before any public disclosure.
+Use `.env.example` and `templates/profile.example.yml` for examples.
 
-## Scope
+## Reporting Issues
 
-Security issues in the following are in scope:
+If you find a security issue, open a private advisory or contact the maintainer
+through the GitHub profile. Do not publish secrets or sensitive examples in an
+issue.
 
-- **Scripts** (`*.mjs`) — command injection, path traversal, SSRF
-- **Dashboard** (`dashboard/`) — any Go binary vulnerabilities
-- **Templates** (`templates/`) — XSS in generated HTML/PDF
-- **Configuration** — secrets exposure, unsafe defaults
+## AI Output Safety
 
-## Out of Scope
-
-- Issues in third-party dependencies (report upstream)
-- Issues requiring physical access to the user's machine
-- Social engineering attacks
-- career-ops is a local tool — there is no hosted service to attack
-
-## Disclosure Policy
-
-We follow coordinated disclosure. Once a fix is released, we will credit the reporter (unless they prefer anonymity) in the release notes.
+AI-generated career material must be reviewed by a human before use. The project
+does not guarantee job outcomes and should not be used to misrepresent a user's
+background.

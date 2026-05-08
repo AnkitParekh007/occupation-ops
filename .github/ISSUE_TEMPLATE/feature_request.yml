@@ -1,47 +1,28 @@
-name: Feature Request
-description: Suggest a new feature or improvement
+name: Feature request
+description: Suggest an Occupation-Ops improvement
+title: "[Feature]: "
 labels: ["enhancement"]
 body:
-  - type: checkboxes
-    id: coc
-    attributes:
-      label: Code of Conduct
-      options:
-        - label: I agree to follow the [Code of Conduct](https://github.com/santifer/career-ops/blob/main/CODE_OF_CONDUCT.md)
-          required: true
-  - type: checkboxes
-    id: search
-    attributes:
-      label: Existing issues
-      options:
-        - label: I searched existing issues and this hasn't been requested yet
-          required: true
   - type: textarea
-    id: problem
+    id: use-case
     attributes:
-      label: Problem
-      description: What problem does this solve? Why do you need this?
+      label: Use case
+      description: What career-readiness problem would this solve?
     validations:
       required: true
   - type: textarea
-    id: solution
+    id: proposal
     attributes:
       label: Proposed solution
-      description: How would you like this to work?
+      description: Describe the track, mode, template, script, or docs change.
     validations:
       required: true
-  - type: dropdown
-    id: area
+  - type: checkboxes
+    id: safety
     attributes:
-      label: Area
+      label: Safety checks
       options:
-        - Evaluation / Scoring
-        - PDF Generation
-        - Portal Scanner
-        - Dashboard TUI
-        - Batch Processing
-        - Language / i18n
-        - Documentation
-        - Other
-    validations:
-      required: true
+        - label: This does not require fake claims or fake metrics.
+          required: true
+        - label: This does not automate spam or unreviewed applications.
+          required: true

@@ -1,0 +1,28 @@
+name: Sample AI Frontend Candidate
+target_occupation: AI Frontend Architect
+target_roles:
+  - AI Frontend Engineer
+  - Angular Architect
+  - Copilot UI Engineer
+weekly_hours: 10
+links:
+  github: https://github.com/example
+  portfolio: https://example.com
+  linkedin: https://linkedin.com/in/example
+current_positioning: Angular frontend engineer building AI copilot UI proof projects.
+current_proof:
+  - Angular AI copilot starter
+  - Reusable copilot SDK concept
+  - AI frontend patterns cookbook
+skills:
+  strong:
+    - Angular
+    - TypeScript
+    - enterprise UI architecture
+  developing:
+    - MCP tool execution UX
+    - RAG citation UI
+    - agent observability dashboards
+constraints:
+  - Avoid fake production claims
+  - Use mock services where backend integrations are not ready
