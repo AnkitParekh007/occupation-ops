@@ -1,28 +1,47 @@
-# Angular specific
-/dist/
-/out-tsc/
-/tmp/
-/coverage/
-/e2e/test-output/
-/.angular/
-.angular/
+# Personal data (user fills these)
+cv.md
+data/applications.md
+data/pipeline.md
+data/scan-history.tsv
+reports/*.md
+!reports/.gitkeep
+output/*
+!output/.gitkeep
+batch/logs/*
+!batch/logs/.gitkeep
+batch/batch-state.tsv
+batch/batch-input.tsv
+batch/tracker-additions/**/*.tsv
+!batch/tracker-additions/.gitkeep
+jds/*
+!jds/.gitkeep
 
-# Node modules and dependency files
-/node_modules/
-/package-lock.json
-/yarn.lock
+# Writing samples (user's personal files — never committed)
+writing-samples/*
+!writing-samples/README.md
 
-# Environment files
-/.env
+# User config and customization (never auto-updated)
+config/profile.yml
+portals.yml
+modes/_profile.md
+.update-dismissed
+.update-lock
 
-# Angular CLI and build artefacts
-/.angular-cli.json
-/.ng/
+# Secrets (never commit — use .env.example as template)
+.env
 
-# TypeScript cache
-*.tsbuildinfo
+# Generated
+.resolved-prompt-*
+node_modules/
+bun.lock
 
-# Logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# OS
+.DS_Store
+*.mov
+*.mp4
+
+# Claude Code local
+.claude/settings.local.json
+.claude/memory/
+career-dashboard
+package-lock.json
