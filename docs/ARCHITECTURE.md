@@ -1,35 +1,52 @@
-# Architecture
+# Occupation-Ops Architecture
 
-Occupation-Ops is intentionally file-first.
+Occupation-Ops is intentionally local-first and file-based.
 
-## Core Concepts
+## Core design
 
 ```mermaid
 flowchart TD
-    Profile["profile.yml"] --> Contract["Occupation Contract"]
-    Contract --> Track["Occupation Track"]
-    Track --> Modes["Workflow Modes"]
-    Modes --> Templates["Output Templates"]
-    Templates --> Outputs["Career Artifacts"]
-    Outputs --> Weekly["Weekly Execution"]
+    Profile["profile.yml"] --> Tracks["tracks/"]
+    Profile --> Modes["modes/"]
+    Tracks --> Scripts["scripts/"]
+    Modes --> Scripts
+    Scripts --> Output["output/*.md"]
+    Templates["templates/"] --> Scripts
+    Examples["examples/"] --> Users["users and contributors"]
+    Output --> Users
 ```
 
-## Layers
+## Why this architecture exists
 
-| Layer | Folder | Purpose |
-| --- | --- | --- |
-| Contract | `OCCUPATION_CONTRACT.md` | Defines truthful inputs and outputs. |
-| Tracks | `tracks/` | Role-specific proof expectations. |
-| Modes | `modes/` | Reusable workflows. |
-| Templates | `templates/` | Structured output formats. |
-| Examples | `examples/` | Sample end-to-end outputs. |
-| Scripts | `scripts/` | MVP automation helpers. |
+- keep user data local
+- avoid SaaS assumptions
+- make outputs easy to inspect and edit
+- keep the workflow scriptable and contributor-friendly
+- make proof planning visible as Markdown artifacts
 
-## MVP Script Design
+## Main folders
 
-- `scripts/doctor.mjs` checks expected files and folders.
-- `scripts/run-profile-audit.mjs` reads a profile file and prints an audit.
-- `scripts/generate-weekly-plan.mjs` creates a simple weekly checklist.
+| Folder | Purpose |
+| --- | --- |
+| `tracks/` | role-specific proof expectations |
+| `modes/` | workflow definitions and user-facing operating modes |
+| `templates/` | reusable output and input templates |
+| `examples/` | sample profiles and reports |
+| `scripts/` | local generators and repo utilities |
+| `output/` | generated user artifacts |
 
-Future versions can add JSON output, richer scoring, local dashboards, and
-optional AI-provider integrations.
+## Workflow pattern
+
+1. Start with a truthful `profile.yml`.
+2. Select a track and one or more modes.
+3. Run local scripts that generate Markdown outputs.
+4. Review the outputs manually.
+5. Turn the outputs into real proof projects, README improvements, GitHub growth actions, and interview stories.
+
+## Non-goals
+
+- hosted multi-user platform
+- recruiter scraping
+- mass-application automation
+- fake ATS promises
+- auto-submission to job portals

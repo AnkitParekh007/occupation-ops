@@ -1,35 +1,56 @@
 # Occupation-Ops
 
-## AI Career Operating System for modern knowledge workers
+## Local-first career-tech workflow for truthful proof building
 
-Occupation-Ops helps people become more hireable before they apply.
+Occupation-Ops is an open-source developer tool for improving career proof before applying.
 
-It gives users a local, file-based workflow for profile audits, role-gap
-analysis, GitHub growth, portfolio project planning, interview preparation, and
-weekly execution plans.
+It gives users a local, file-based workflow for:
 
-This repository is an MVP. It is not a finished SaaS, not a job automation
-platform, and not a promise of employment outcomes.
+- profile audits
+- role-gap analysis
+- GitHub growth
+- portfolio proof planning
+- interview preparation
+- weekly execution
+
+It is not a SaaS, not a job automation tool, and not a promise of hiring outcomes.
 
 ```text
-profile audit
+profile
+  -> truthfulness audit
   -> role gaps
   -> proof projects
-  -> positioning
+  -> GitHub growth
   -> interview prep
-  -> weekly execution
+  -> 30-day execution
 ```
 
-## Try It In 60 Seconds
+## Proof before applying
+
+Occupation-Ops is built around one idea: improve what you can prove in public before you apply.
+
+That means:
+
+- stronger GitHub positioning
+- clearer proof projects
+- recruiter-readable README files
+- role-specific portfolio planning
+- interview-safe claims
+- weekly execution tied to visible artifacts
+
+## Try in 60 seconds
+
+Clone, install, initialize your local profile, and run one demo:
 
 ```bash
 git clone https://github.com/AnkitParekh007/occupation-ops.git
 cd occupation-ops
 npm install
 npm run init
+npm run demo:ai-frontend
 ```
 
-Then run any workflow:
+Then try any workflow:
 
 ```bash
 npm run demo:ai-frontend      # full AI Frontend Architect sample report
@@ -45,6 +66,22 @@ npm run doctor                # check repo health and list all commands
 `npm run init` creates `profile.yml` from the example template. Edit it with
 your real name, target role, links, and proof projects before running other
 commands.
+
+## Visual placeholders
+
+Planned visual assets for the README and docs first screen:
+
+- GitHub growth report screenshot placeholder
+- role-gap analysis report screenshot placeholder
+- 30-day execution plan screenshot placeholder
+- 20 to 30 second terminal GIF placeholder showing `doctor` plus demo flow
+
+Recommended future asset names:
+
+- `docs/assets/github-growth-report-placeholder.png`
+- `docs/assets/role-gap-report-placeholder.png`
+- `docs/assets/execution-plan-placeholder.png`
+- `docs/assets/occupation-ops-demo-placeholder.gif`
 
 To copy the template manually on Windows:
 
@@ -109,6 +146,8 @@ Running the commands above produces these files:
 - [output/portfolio-project-plan.md](output/portfolio-project-plan.md)
 - [output/github-growth-plan.md](output/github-growth-plan.md)
 - [output/interview-story-bank.md](output/interview-story-bank.md)
+- [examples/reports/sample-github-growth-report.md](examples/reports/sample-github-growth-report.md)
+- [examples/reports/sample-30-day-execution-plan.md](examples/reports/sample-30-day-execution-plan.md)
 
 All outputs are local Markdown files. Edit them, commit them, or delete them.
 They are regenerated fresh each time you run the command.
@@ -129,6 +168,20 @@ They are regenerated fresh each time you run the command.
 - Not an ATS bypass product.
 - Not a replacement for human review.
 - Not a guarantee of interviews, offers, or hiring outcomes.
+
+Keep this section in mind when contributing. Occupation-Ops should help people become more credible, not more exaggerated.
+
+## What this proves for recruiters
+
+When used well, this repo helps a candidate show:
+
+- role clarity instead of vague job-title drift
+- stronger proof projects instead of generic claim lists
+- better GitHub hygiene, README quality, and repo positioning
+- interview-safe storytelling based on real work
+- consistent weekly execution against visible career artifacts
+
+It does not prove hiring outcomes. It helps improve the public evidence a recruiter or hiring manager can review.
 
 ## Why Star This Repo?
 
@@ -185,6 +238,10 @@ Start here:
 - [Sample profile](examples/ai-frontend-architect/sample-profile.yml)
 - [Sample gap analysis](examples/ai-frontend-architect/sample-gap-analysis.md)
 - [Sample weekly plan](examples/ai-frontend-architect/sample-weekly-plan.md)
+- [Angular Architect example profile](examples/angular-architect/sample-profile.yml)
+- [AI Frontend Engineer example profile](examples/ai-frontend-engineer/sample-profile.yml)
+- [Sample GitHub growth report](examples/reports/sample-github-growth-report.md)
+- [Sample 30-day execution plan](examples/reports/sample-30-day-execution-plan.md)
 
 ## Occupation Tracks
 
@@ -211,14 +268,16 @@ Start here:
 
 ## Good First Issues
 
-- Add a new occupation track.
-- Add a sample profile for a non-frontend role.
-- Improve the weekly plan generator output.
-- Add JSON output to the CLI.
-- Add scoring rubrics for each track.
-- Add screenshots for generated sample reports.
-- Add tests for the Node.js scripts.
-- Improve docs for career coaches and mentors.
+- Add a new role track.
+- Add a new output template.
+- Add a markdown report theme.
+- Add a local web preview.
+- Add a progress dashboard.
+- Add test coverage.
+
+More detail:
+
+- [Good first issues and contribution ideas](docs/good-first-issues.md)
 
 ## Roadmap
 
@@ -256,6 +315,13 @@ screenshots, community links, or outcomes.
 - Do not automate third-party websites against their terms.
 - Always review generated career material before publishing or sending it.
 - Keep private data out of git.
+
+See also:
+
+- [docs/ethics.md](docs/ethics.md)
+- [docs/recruiter-review-guide.md](docs/recruiter-review-guide.md)
+- [docs/career-coach-use-cases.md](docs/career-coach-use-cases.md)
+- [docs/workflow-contract.md](docs/workflow-contract.md)
 
 ## Contributing
 

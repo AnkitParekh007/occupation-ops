@@ -1,0 +1,28 @@
+name: Sample Angular Architect Candidate
+target_occupation: Angular Architect
+target_roles:
+  - Angular Architect
+  - Frontend Architect
+  - Enterprise UI Architect
+weekly_hours: 8
+links:
+  github: https://github.com/example
+  portfolio: https://example.com
+  linkedin: https://linkedin.com/in/example
+current_positioning: Senior Angular engineer improving public proof around architecture, design systems, and AI-enabled enterprise workflows.
+current_proof:
+  - Angular design system project
+  - Enterprise dashboard architecture repo
+  - AI copilot UI prototype
+skills:
+  strong:
+    - Angular
+    - TypeScript
+    - component architecture
+  developing:
+    - agentic UI patterns
+    - RAG citation UX
+    - tool approval workflows
+constraints:
+  - Use truthful claims only
+  - Prefer buildable public proof over presentation-only materials

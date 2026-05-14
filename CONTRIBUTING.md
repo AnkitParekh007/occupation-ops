@@ -12,6 +12,8 @@ Thanks for considering a contribution to Occupation-Ops.
 - Interview preparation prompts.
 - CLI script improvements.
 - Documentation and examples.
+- Markdown report themes.
+- Local dashboard or preview tooling.
 
 ## Local Setup
 
@@ -50,3 +52,13 @@ Use small, meaningful commits:
 Occupation-Ops should help users become more hireable through truthful public
 proof. Avoid vague motivation and prefer concrete artifacts, checklists, project
 plans, and interview-safe positioning.
+
+## First contributions
+
+If you want a small first PR, start with:
+
+- [docs/good-first-issues.md](docs/good-first-issues.md)
+- a new role track
+- a new output template
+- a sample report theme
+- a docs clarification for recruiters or coaches

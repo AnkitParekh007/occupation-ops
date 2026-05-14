@@ -1,0 +1,28 @@
+name: Sample AI Frontend Engineer Candidate
+target_occupation: AI Frontend Engineer
+target_roles:
+  - AI Frontend Engineer
+  - Copilot UI Engineer
+  - AI Product Frontend Engineer
+weekly_hours: 10
+links:
+  github: https://github.com/example
+  portfolio: https://example.com
+  linkedin: https://linkedin.com/in/example
+current_positioning: Frontend engineer building stronger proof around AI product interfaces, streaming UX, and grounded assistant experiences.
+current_proof:
+  - AI chat interface prototype
+  - TypeScript component library
+  - RAG citation UI mock
+skills:
+  strong:
+    - TypeScript
+    - React or Angular
+    - frontend systems
+  developing:
+    - tool execution UX
+    - agent state visibility
+    - evaluation-aware interface design
+constraints:
+  - Do not imply production traffic or enterprise adoption unless true
+  - Label mock services clearly

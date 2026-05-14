@@ -1,0 +1,21 @@
+name: Truthful progress story
+description: Share a truthful improvement, shipped artifact, or lesson learned from using Occupation-Ops
+title: "[Story]: "
+labels: ["story"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Share only truthful, non-sensitive information. Do not imply hiring outcomes, employer endorsement, or private compensation details.
+  - type: textarea
+    id: story
+    attributes:
+      label: What changed?
+      description: What did you improve, ship, document, or learn?
+    validations:
+      required: true
+  - type: textarea
+    id: proof
+    attributes:
+      label: What public proof changed?
+      description: Example: GitHub README, pinned repos, portfolio project, interview story, weekly plan, docs improvement.
