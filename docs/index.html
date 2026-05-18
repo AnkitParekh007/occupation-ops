@@ -188,6 +188,17 @@
       letter-spacing: 0.08em;
     }
 
+    .hero-doc-note {
+      margin-top: 18px;
+      max-width: 58ch;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .hero-doc-note strong {
+      color: var(--ink);
+    }
+
     .hero-notes span::before {
       content: "";
       display: inline-block;
@@ -382,6 +393,9 @@
 
     .problem-grid,
     .feature-grid,
+    .docs-grid,
+    .quickstart-grid,
+    .cli-grid,
     .stats-grid,
     .faq-grid {
       display: grid;
@@ -439,6 +453,177 @@
 
     .feature-grid {
       grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .docs-grid {
+      grid-template-columns: 0.95fr 1.05fr;
+      align-items: start;
+    }
+
+    .docs-column,
+    .quickstart-card,
+    .cli-card {
+      background: rgba(255, 250, 243, 0.78);
+      border: 1px solid rgba(21, 33, 38, 0.08);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .docs-column {
+      padding: 26px;
+    }
+
+    .docs-stack {
+      display: grid;
+      gap: 14px;
+    }
+
+    .doc-link {
+      display: grid;
+      gap: 8px;
+      padding: 18px 18px 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.66);
+      border: 1px solid rgba(21, 33, 38, 0.08);
+      transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease;
+    }
+
+    .doc-link:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-soft);
+      border-color: rgba(15, 118, 110, 0.24);
+    }
+
+    .doc-link .kicker,
+    .cli-kicker,
+    .quickstart-kicker {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--teal);
+    }
+
+    .doc-link h3,
+    .quickstart-card h3,
+    .cli-card h3 {
+      margin: 0;
+      font-size: 22px;
+      letter-spacing: -0.03em;
+    }
+
+    .doc-link p,
+    .quickstart-card p,
+    .cli-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .doc-meta {
+      color: var(--rust);
+      font-family: var(--font-mono);
+      font-size: 12px;
+    }
+
+    .quickstart-grid {
+      grid-template-columns: 1fr 1fr;
+      align-items: start;
+    }
+
+    .quickstart-card,
+    .cli-card {
+      padding: 28px;
+    }
+
+    .quick-steps {
+      margin: 18px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 12px;
+    }
+
+    .quick-steps li {
+      display: grid;
+      grid-template-columns: 32px 1fr;
+      gap: 14px;
+      align-items: start;
+    }
+
+    .step-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: rgba(15, 118, 110, 0.10);
+      color: var(--teal);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      border: 1px solid rgba(15, 118, 110, 0.18);
+    }
+
+    .code-window {
+      margin-top: 18px;
+      padding: 18px 18px 16px;
+      border-radius: var(--radius-lg);
+      background: #182025;
+      color: #f3f1eb;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.75;
+      overflow: auto;
+    }
+
+    .code-window .prompt { color: #86efac; }
+    .code-window .comment { color: #93a4a8; }
+    .code-window .path { color: #fdba74; }
+
+    .quick-note {
+      margin-top: 16px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .cli-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .cli-list {
+      margin: 18px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 12px;
+    }
+
+    .cli-row {
+      display: grid;
+      grid-template-columns: minmax(0, 180px) 1fr;
+      gap: 18px;
+      align-items: start;
+      padding-top: 12px;
+      border-top: 1px solid rgba(21, 33, 38, 0.08);
+    }
+
+    .cli-row:first-child {
+      padding-top: 0;
+      border-top: 0;
+    }
+
+    .cli-row code {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--teal);
+      white-space: nowrap;
+    }
+
+    .cli-row strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 15px;
+      letter-spacing: -0.02em;
     }
 
     .feature-card {
@@ -728,6 +913,8 @@
     @media (max-width: 940px) {
       .hero-grid,
       .section-header,
+      .docs-grid,
+      .quickstart-grid,
       .stats-grid,
       .compare-grid,
       .faq-grid,
@@ -754,8 +941,14 @@
       }
 
       .dossier-grid,
+      .cli-grid,
       .sample-row {
         grid-template-columns: 1fr;
+      }
+
+      .cli-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
       }
 
       .cta-card {
@@ -772,10 +965,10 @@
         <span>Occupation-Ops</span>
       </a>
       <div class="nav">
-        <a href="#system">System</a>
+        <a href="#docs">Docs</a>
+        <a href="#quickstart">Quick Start</a>
+        <a href="#cli">CLI</a>
         <a href="#sample">Sample</a>
-        <a href="#compare">Before / After</a>
-        <a href="#faq">FAQ</a>
         <a class="nav-cta" href="https://github.com/AnkitParekh007/occupation-ops" target="_blank" rel="noopener">View Repo</a>
       </div>
     </div>
@@ -795,6 +988,11 @@
           <div class="hero-actions">
             <a class="button button-primary" href="https://github.com/AnkitParekh007/occupation-ops" target="_blank" rel="noopener">Open The Repo</a>
             <a class="button button-secondary" href="https://github.com/AnkitParekh007/occupation-ops/blob/main/examples/reports/sample-ai-frontend-proof-roadmap.md" target="_blank" rel="noopener">Read Sample Dossier</a>
+          </div>
+          <div class="hero-doc-note">
+            <strong>This website is documentation-first.</strong> Clone the repo,
+            fill in a truthful profile, and generate proof outputs from your
+            terminal. No hosted product. No account required.
           </div>
           <div class="hero-notes">
             <span>Local-first</span>
@@ -943,6 +1141,170 @@
             <li>Truthfulness guardrails</li>
             <li>Visible next proof step</li>
           </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="docs" class="section">
+      <div class="section-header">
+        <h2>Docs for developers, not brochureware.</h2>
+        <p>
+          Occupation-Ops should read like a real tool. The docs surface now
+          points directly at setup, architecture, workflow rules, and sample
+          outputs so engineers can orient quickly and decide whether to fork it.
+        </p>
+      </div>
+
+      <div class="docs-grid">
+        <article class="docs-column">
+          <div class="docs-stack">
+            <a class="doc-link" href="https://github.com/AnkitParekh007/occupation-ops/blob/main/docs/SETUP.md" target="_blank" rel="noopener">
+              <div class="kicker">Setup</div>
+              <h3>Get running locally</h3>
+              <p>Install, initialize <code>profile.yml</code>, and run the flagship workflow in minutes.</p>
+              <div class="doc-meta">docs/SETUP.md</div>
+            </a>
+
+            <a class="doc-link" href="https://github.com/AnkitParekh007/occupation-ops/blob/main/docs/ARCHITECTURE.md" target="_blank" rel="noopener">
+              <div class="kicker">Architecture</div>
+              <h3>Understand the proof engine</h3>
+              <p>See how profile data, rubrics, and renderers become one canonical dossier bundle.</p>
+              <div class="doc-meta">docs/ARCHITECTURE.md</div>
+            </a>
+
+            <a class="doc-link" href="https://github.com/AnkitParekh007/occupation-ops/blob/main/docs/workflow-contract.md" target="_blank" rel="noopener">
+              <div class="kicker">Workflow contract</div>
+              <h3>Keep the outputs truthful</h3>
+              <p>Review the rules that separate credible proof planning from vague or inflated claims.</p>
+              <div class="doc-meta">docs/workflow-contract.md</div>
+            </a>
+          </div>
+        </article>
+
+        <article class="docs-column">
+          <div class="docs-stack">
+            <a class="doc-link" href="https://github.com/AnkitParekh007/occupation-ops/blob/main/examples/reports/sample-ai-frontend-proof-roadmap.md" target="_blank" rel="noopener">
+              <div class="kicker">Sample report</div>
+              <h3>See the flagship output before cloning</h3>
+              <p>Read the AI Frontend Architect dossier exactly as the repo emits it.</p>
+              <div class="doc-meta">examples/reports/sample-ai-frontend-proof-roadmap.md</div>
+            </a>
+
+            <a class="doc-link" href="https://github.com/AnkitParekh007/occupation-ops/blob/main/docs/CLI.md" target="_blank" rel="noopener">
+              <div class="kicker">CLI reference</div>
+              <h3>Scan the command surface</h3>
+              <p>Review every script entrypoint, what it generates, and when to use it.</p>
+              <div class="doc-meta">docs/CLI.md</div>
+            </a>
+
+            <a class="doc-link" href="https://github.com/AnkitParekh007/occupation-ops/blob/main/docs/positioning-vs-job-search-tools.md" target="_blank" rel="noopener">
+              <div class="kicker">Positioning</div>
+              <h3>Understand the product boundary</h3>
+              <p>Occupation-Ops is a proof-before-applying system, not a tracker, scanner, or outreach bot.</p>
+              <div class="doc-meta">docs/positioning-vs-job-search-tools.md</div>
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="quickstart" class="section">
+      <div class="section-header">
+        <h2>Up and running in 60 seconds.</h2>
+        <p>
+          Follow the shortest path from clone to proof dossier. Mock mode is not
+          needed here because the current workflows are local-first by default.
+        </p>
+      </div>
+
+      <div class="quickstart-grid">
+        <article class="quickstart-card">
+          <div class="quickstart-kicker">Quick Start</div>
+          <h3>Four steps to the first proof roadmap</h3>
+          <p>Start with the flagship path, then branch into GitHub rewrites and weekly proof shipping.</p>
+          <ol class="quick-steps">
+            <li><span class="step-num">01</span><div><strong>Clone and install</strong><br>Bring the repo local and install dependencies once.</div></li>
+            <li><span class="step-num">02</span><div><strong>Initialize your profile</strong><br>Create <code>profile.yml</code> from the example template.</div></li>
+            <li><span class="step-num">03</span><div><strong>Run the flagship dossier</strong><br>Generate the role gap bundle in Markdown, JSON, and HTML.</div></li>
+            <li><span class="step-num">04</span><div><strong>Ship one proof improvement</strong><br>Use the backlog and weekly plan to improve a real public surface.</div></li>
+          </ol>
+        </article>
+
+        <article class="quickstart-card">
+          <div class="quickstart-kicker">Terminal flow</div>
+          <h3>What the first run looks like</h3>
+          <p>The repo is intentionally direct: no hosted UI and no account setup before you can inspect the output.</p>
+          <div class="code-window">
+            <div><span class="prompt">$</span> git clone https://github.com/AnkitParekh007/occupation-ops.git</div>
+            <div><span class="prompt">$</span> cd occupation-ops && npm install</div>
+            <div><span class="prompt">$</span> npm run init</div>
+            <div><span class="prompt">$</span> npm run gap:role</div>
+            <div class="comment">generated: <span class="path">output/role-gap-analysis.md</span></div>
+            <div class="comment">generated: <span class="path">output/role-gap-analysis.json</span></div>
+            <div class="comment">generated: <span class="path">output/role-gap-analysis.html</span></div>
+          </div>
+          <div class="quick-note">Next recommended commands: <code>npm run github:growth</code> and <code>npm run plan:weekly</code></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="cli" class="section">
+      <div class="section-header">
+        <h2>The CLI is the product surface.</h2>
+        <p>
+          The command set should be easy to scan like real developer tooling.
+          Each command maps to a clear artifact or review step instead of a vague
+          AI interaction.
+        </p>
+      </div>
+
+      <div class="cli-grid">
+        <article class="cli-card">
+          <div class="cli-kicker">Core commands</div>
+          <h3>Proof planning workflow</h3>
+          <p>Start with profile setup, then move through audit, gap analysis, portfolio, and execution.</p>
+          <div class="cli-list">
+            <div class="cli-row">
+              <code>npm run init</code>
+              <div><strong>Create profile.yml</strong>Copies the example profile so you can start from a truthful baseline.</div>
+            </div>
+            <div class="cli-row">
+              <code>npm run audit:profile</code>
+              <div><strong>Audit current positioning</strong>Generates an initial review of strengths, gaps, and proof metrics.</div>
+            </div>
+            <div class="cli-row">
+              <code>npm run gap:role</code>
+              <div><strong>Generate flagship dossier</strong>Builds the canonical proof roadmap bundle in md, json, and html.</div>
+            </div>
+            <div class="cli-row">
+              <code>npm run portfolio:plan</code>
+              <div><strong>Plan proof projects</strong>Turns the role gaps into scoped project briefs with recruiter takeaways.</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="cli-card">
+          <div class="cli-kicker">Support commands</div>
+          <h3>Positioning and execution tools</h3>
+          <p>Use the supporting commands to tighten outward-facing surfaces and convert strategy into weekly action.</p>
+          <div class="cli-list">
+            <div class="cli-row">
+              <code>npm run github:growth</code>
+              <div><strong>Rewrite GitHub surfaces</strong>Generates headline, README, and topic guidance for recruiter-readability.</div>
+            </div>
+            <div class="cli-row">
+              <code>npm run interview:stories</code>
+              <div><strong>Draft interview prompts</strong>Creates story scaffolds tied back to real proof artifacts and decisions.</div>
+            </div>
+            <div class="cli-row">
+              <code>npm run plan:weekly</code>
+              <div><strong>Ship weekly proof</strong>Converts the backlog into a short execution plan built around visible artifacts.</div>
+            </div>
+            <div class="cli-row">
+              <code>npm run doctor</code>
+              <div><strong>Verify repo health</strong>Checks required files and shows the supported workflow surface.</div>
+            </div>
+          </div>
         </article>
       </div>
     </section>
@@ -1154,6 +1516,8 @@
     <div class="shell footer-inner">
       <div>Occupation-Ops is a local-first proof-before-applying system for AI/frontend pivots.</div>
       <div class="footer-links">
+        <a href="https://github.com/AnkitParekh007/occupation-ops/blob/main/docs/CLI.md" target="_blank" rel="noopener">CLI</a>
+        <a href="https://github.com/AnkitParekh007/occupation-ops/blob/main/docs/SETUP.md" target="_blank" rel="noopener">Quick Start</a>
         <a href="https://github.com/AnkitParekh007/occupation-ops/blob/main/docs/positioning-vs-job-search-tools.md" target="_blank" rel="noopener">Positioning</a>
         <a href="https://github.com/AnkitParekh007/occupation-ops/blob/main/examples/reports/sample-ai-frontend-proof-roadmap.md" target="_blank" rel="noopener">Sample Report</a>
         <a href="https://github.com/AnkitParekh007/occupation-ops/blob/main/docs/ARCHITECTURE.md" target="_blank" rel="noopener">Architecture</a>
