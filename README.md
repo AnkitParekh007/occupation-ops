@@ -172,7 +172,9 @@ See [Ethics](docs/ethics.md) and [Occupation Contract](OCCUPATION_CONTRACT.md).
 ## Docs
 
 - Public product docs: [ankitparekh007.github.io/occupation-ops](https://ankitparekh007.github.io/occupation-ops/)
-- Repo-maintainer docs in this repo:
+
+Repo-maintainer docs in this repo:
+
 - [Docs README](docs/README.md)
 - [Setup](docs/SETUP.md)
 - [Architecture](docs/ARCHITECTURE.md)

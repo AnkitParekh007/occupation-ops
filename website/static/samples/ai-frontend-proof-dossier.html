@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Frontend Architect Proof Roadmap</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f6f1e8;
+      --panel: rgba(255,255,255,0.82);
+      --ink: #172126;
+      --muted: #5f6a70;
+      --line: rgba(23,33,38,0.12);
+      --accent: #0f766e;
+      --accent-soft: rgba(15,118,110,0.12);
+      --warn: #b45309;
+      --fail: #b91c1c;
+      --shadow: 0 24px 60px rgba(23,33,38,0.08);
+      font-family: "Segoe UI", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top left, rgba(15,118,110,0.16), transparent 28%),
+        radial-gradient(circle at top right, rgba(180,83,9,0.14), transparent 30%),
+        var(--bg);
+      color: var(--ink);
+    }
+    main { width: min(1160px, calc(100% - 32px)); margin: 32px auto 56px; }
+    .hero, .panel {
+      background: var(--panel);
+      backdrop-filter: blur(14px);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+    }
+    .hero { padding: 32px; }
+    .eyebrow { text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); font-size: 12px; }
+    h1 { margin: 12px 0 8px; font-size: clamp(2rem, 5vw, 4rem); line-height: 0.95; }
+    .lede { color: var(--muted); max-width: 60ch; font-size: 1.05rem; }
+    .metrics, .grid, .cards { display: grid; gap: 16px; }
+    .metrics { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); margin-top: 24px; }
+    .metric, .card { background: #fff; border-radius: 18px; border: 1px solid var(--line); padding: 18px; }
+    .metric strong { display: block; font-size: 2rem; margin-top: 10px; }
+    .grid { grid-template-columns: 1.1fr 0.9fr; margin-top: 20px; }
+    .panel { padding: 24px; }
+    h2 { margin: 0 0 16px; font-size: 1.2rem; }
+    ul { margin: 0; padding-left: 18px; }
+    li + li { margin-top: 8px; }
+    .cards { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+    .status { display: inline-block; padding: 4px 10px; border-radius: 999px; font-size: 12px; font-weight: 700; }
+    .pass { background: rgba(15,118,110,0.12); color: var(--accent); }
+    .warn { background: rgba(180,83,9,0.12); color: var(--warn); }
+    .fail { background: rgba(185,28,28,0.12); color: var(--fail); }
+    table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+    th, td { text-align: left; padding: 10px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+    .muted { color: var(--muted); }
+    @media (max-width: 820px) { .grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <main id="app"></main>
+  <script type="application/json" id="dossier">{"generatedAt":"\u003cgenerated-at>","source":"examples/ai-frontend-architect/sample-profile.yml","rubricSlug":"ai-frontend-architect","rubricName":"AI Frontend Architect Rubric","profile":{"name":"Sample AI Frontend Candidate","targetOccupation":"AI Frontend Architect","targetRoles":["AI Frontend Engineer","Angular Architect","Copilot UI Engineer"],"weeklyHours":10,"links":{"github":"https://github.com/example","portfolio":"https://example.com","linkedin":"https://linkedin.com/in/example"},"currentPositioning":"Angular frontend engineer building AI copilot UI proof projects.","currentProof":["Angular AI copilot starter","Reusable copilot SDK concept","AI frontend patterns cookbook"],"strongSkills":["Angular","TypeScript","enterprise UI architecture"],"developingSkills":["MCP tool execution UX","RAG citation UI","agent observability dashboards"],"constraints":["Avoid fake production claims","Use mock services where backend integrations are not ready"]},"summary":{"title":"AI Frontend Architect Proof Roadmap","audience":"AI/frontend engineers repositioning into flagship proof-driven roles","positioning":"Angular frontend engineer building AI copilot UI proof projects.","scoreTen":8.5,"scorePercent":85,"strengths":["Enough public proof artifacts exist","GitHub is part of the recruiter path","Portfolio or public case-study surface exists","Proof mentions AI UI patterns recruiters expect","Tool execution and approval flows are visible","Core frontend depth is visible","Interview-ready architecture narrative exists","Truthfulness constraints are explicit"],"missingSignals":["The profile headline does not clearly state the AI frontend target yet."],"headlineRewrite":"AI Frontend Architect building Angular and TypeScript interfaces for AI copilots, RAG citation workflows, tool execution UX, approval-safe agentic systems."},"scorecard":[{"id":"target-positioning","label":"Target role is explicit in public positioning","weight":15,"passed":false,"evidence":[],"score":0,"gap":"The profile headline does not clearly state the AI frontend target yet.","nextAction":"Rewrite the GitHub profile README and summary so AI frontend architecture is visible in the first screen."},{"id":"proof-volume","label":"Enough public proof artifacts exist","weight":12,"passed":true,"evidence":["Lists 3 proof artifacts."],"score":12,"gap":null,"nextAction":null},{"id":"github-surface","label":"GitHub is part of the recruiter path","weight":8,"passed":true,"evidence":["Found github link."],"score":8,"gap":null,"nextAction":null},{"id":"portfolio-surface","label":"Portfolio or public case-study surface exists","weight":8,"passed":true,"evidence":["Found portfolio link."],"score":8,"gap":null,"nextAction":null},{"id":"streaming-rag-proof","label":"Proof mentions AI UI patterns recruiters expect","weight":14,"passed":true,"evidence":["Profile mentions copilot, rag, streaming."],"score":14,"gap":null,"nextAction":null},{"id":"tool-and-approval-proof","label":"Tool execution and approval flows are visible","weight":14,"passed":true,"evidence":["Profile mentions tool, approval, agent."],"score":14,"gap":null,"nextAction":null},{"id":"skill-depth","label":"Core frontend depth is visible","weight":11,"passed":true,"evidence":["Lists 3 strong skills."],"score":11,"gap":null,"nextAction":null},{"id":"interview-readiness","label":"Interview-ready architecture narrative exists","weight":10,"passed":true,"evidence":["Profile mentions architecture, tradeoff, dashboard."],"score":10,"gap":null,"nextAction":null},{"id":"truthful-constraints","label":"Truthfulness constraints are explicit","weight":8,"passed":true,"evidence":["Profile mentions truth, mock, avoid fake."],"score":8,"gap":null,"nextAction":null}],"validators":[{"id":"github-readme-quality","label":"GitHub profile README quality","status":"warn","detail":"GitHub link exists, but the README headline and proof-first framing still need manual review."},{"id":"proof-project-completeness","label":"Proof project completeness","status":"pass","detail":"Profile lists 3 proof artifacts."},{"id":"screenshot-demo-presence","label":"Screenshot/demo presence","status":"warn","detail":"No screenshot or demo asset is named in the current proof list yet."},{"id":"project-description-clarity","label":"Recruiter-readable project descriptions","status":"pass","detail":"Project names should state what they prove, not only a repository title."},{"id":"truthfulness-claim-risk","label":"Truthfulness claim risk","status":"pass","detail":"Current profile language stays within proof-oriented claims."}],"metrics":{"proofDensity":75,"claimSupportRatio":89,"portfolioClarity":100,"recruiterScanReadiness":100},"backlog":[{"priority":1,"title":"Target role is explicit in public positioning","gap":"The profile headline does not clearly state the AI frontend target yet.","nextAction":"Rewrite the GitHub profile README and summary so AI frontend architecture is visible in the first screen."}],"projects":[{"title":"Angular AI Copilot Starter","problem":"Most frontend portfolios do not prove streaming AI UX, cited responses, and safe action flows in one coherent artifact.","solution":"Build a local-first Angular demo with streaming chat, RAG citation cards, tool timeline, and human approval states.","recruiterTakeaway":"This project proves the candidate can design AI product interfaces beyond a basic chatbot shell.","interviewTalkingPoints":["Partial token rendering without layout jank","How citations signal trust and confidence","How to represent tool execution visibly","Why risky actions require approvals"]},{"title":"UI-Aware Agent Demo","problem":"Most AI demos show a chat panel, not an agent participating in the visible workflow.","solution":"Build a demo with context inspector, suggested actions, approval checkpoints, and recovery states.","recruiterTakeaway":"This proves the candidate understands agent-aware product UX and operational legibility.","interviewTalkingPoints":["Difference between chat UI and UI-aware agents","Recovery states after interrupted steps","How visible context changes trust","How approval friction is balanced"]},{"title":"Enterprise Agent Approval Workflow","problem":"Enterprise AI tooling needs governance-grade action review, not only delight-driven UI.","solution":"Build an approval queue, risk tiers, reviewer roles, and an audit log around simulated agent actions.","recruiterTakeaway":"This proves enterprise judgment, not only frontend polish.","interviewTalkingPoints":["What makes approval UX different from a confirm dialog","How to classify action risk tiers","How audit trails affect interface design","How to keep governance flows usable"]}],"githubPlan":{"headlineRewrite":"AI Frontend Architect building Angular and TypeScript interfaces for AI copilots, RAG citation workflows, tool execution UX, approval-safe agentic systems.","repoTopics":["angular","typescript","ai-frontend","copilot-ui","rag","tool-execution","agentic-ui","enterprise-ai"],"readmeChecklist":[{"item":"Lead with what the project proves, not just the stack.","done":false},{"item":"Show one screenshot, GIF, or concrete visual in the first screen.","done":false},{"item":"Add a 'mocked vs real' section that is unambiguous.","done":false},{"item":"Explain architecture decisions in recruiter-readable language.","done":false},{"item":"Add a roadmap that separates built work from planned work.","done":false},{"item":"Make local setup copy-paste simple and verified.","done":false}]},"interviewMap":[{"topic":"Streaming response UX","proofPrompt":"Prepare one real example that proves streaming response ux."},{"topic":"RAG citation trust states","proofPrompt":"Prepare one real example that proves rag citation trust states."},{"topic":"Tool-call timeline design","proofPrompt":"Prepare one real example that proves tool-call timeline design."},{"topic":"Human approval before risky actions","proofPrompt":"Prepare one real example that proves human approval before risky actions."},{"topic":"Enterprise-safe agent interfaces","proofPrompt":"Prepare one real example that proves enterprise-safe agent interfaces."},{"topic":"Moving from mocks to real backends","proofPrompt":"Prepare one real example that proves moving from mocks to real backends."}],"weeklyPlan":{"weeklyTheme":"Convert current frontend experience into visible AI proof.","weeklyHours":10,"outcomes":["Tighten one public profile surface.","Ship one stronger proof artifact.","Write one interview-safe explanation of a real decision."],"dailyPlan":[{"day":"Monday","task":"Rewrite the GitHub profile README and summary so AI frontend architecture is visible in the first screen.","proofArtifact":"Target role is explicit in public positioning"},{"day":"Tuesday","task":"Rewrite one project summary so it states what the project proves.","proofArtifact":"Proof inventory refresh"},{"day":"Wednesday","task":"Capture one screenshot, GIF, or annotated walkthrough for the flagship project.","proofArtifact":"Visual proof"},{"day":"Thursday","task":"Draft one STAR story from a real project decision.","proofArtifact":"Interview narrative"},{"day":"Friday","task":"Add a mocked-vs-real section and recruiter takeaway to the flagship README.","proofArtifact":"README clarity"}]},"truthfulnessGuardrails":["Do not claim production usage unless the public artifact proves it.","Label mock services as mock services in every README and demo.","Separate built evidence from planned roadmap work.","Do not invent metrics, user counts, stars, or contribution outcomes.","Only publish claims you can defend in a recruiter screen or interview."],"comparison":["Use occupation-ops when the main problem is weak public proof before applying.","Use job-search pipeline tools when the main problem is scanning, tracking, or operationalizing active applications.","Occupation-ops is not a tracker, scanner, or mass-apply workflow; it is a proof engine for candidate credibility."]}</script>
+  <script>
+    const dossier = JSON.parse(document.getElementById('dossier').textContent);
+    const app = document.getElementById('app');
+    const metric = (label, value) => `<div class="metric"><div class="muted">${label}</div><strong>${value}</strong></div>`;
+    const statusClass = (value) => value === 'pass' ? 'pass' : value === 'warn' ? 'warn' : 'fail';
+    app.innerHTML = `
+      <section class="hero">
+        <div class="eyebrow">Occupation-Ops flagship proof dossier</div>
+        <h1>${dossier.summary.title}</h1>
+        <p class="lede">${dossier.summary.positioning}</p>
+        <div class="metrics">
+          ${metric('Role proof score', dossier.summary.scoreTen + '/10')}
+          ${metric('Proof density', dossier.metrics.proofDensity + '/100')}
+          ${metric('Claim support ratio', dossier.metrics.claimSupportRatio + '/100')}
+          ${metric('Recruiter scan readiness', dossier.metrics.recruiterScanReadiness + '/100')}
+        </div>
+      </section>
+      <div class="grid">
+        <section class="panel">
+          <h2>Prioritized proof backlog</h2>
+          <ul>${dossier.backlog.map(item => `<li><strong>${item.title}</strong><br><span class="muted">${item.nextAction}</span></li>`).join('')}</ul>
+        </section>
+        <section class="panel">
+          <h2>GitHub headline rewrite</h2>
+          <p>${dossier.githubPlan.headlineRewrite}</p>
+          <h2 style="margin-top:24px;">README checklist</h2>
+          <ul>${dossier.githubPlan.readmeChecklist.map(item => `<li>${item.item}</li>`).join('')}</ul>
+        </section>
+      </div>
+      <section class="panel" style="margin-top:20px;">
+        <h2>Role gap scorecard</h2>
+        <table>
+          <thead><tr><th>Signal</th><th>Status</th><th>Evidence</th><th>Next action</th></tr></thead>
+          <tbody>
+            ${dossier.scorecard.map(item => `<tr><td>${item.label}</td><td><span class="status ${item.passed ? 'pass' : 'warn'}">${item.passed ? 'Supported' : 'Gap'}</span></td><td>${item.evidence[0] || 'No direct evidence found.'}</td><td>${item.nextAction || 'Keep reinforcing this signal.'}</td></tr>`).join('')}
+          </tbody>
+        </table>
+      </section>
+      <section class="panel" style="margin-top:20px;">
+        <h2>Artifact validators</h2>
+        <div class="cards">
+          ${dossier.validators.map(item => `<article class="card"><span class="status ${statusClass(item.status)}">${item.status.toUpperCase()}</span><h3>${item.label}</h3><p class="muted">${item.detail}</p></article>`).join('')}
+        </div>
+      </section>
+      <section class="panel" style="margin-top:20px;">
+        <h2>Weekly shipping plan</h2>
+        <table>
+          <thead><tr><th>Day</th><th>Task</th><th>Proof artifact</th></tr></thead>
+          <tbody>
+            ${dossier.weeklyPlan.dailyPlan.map(item => `<tr><td>${item.day}</td><td>${item.task}</td><td>${item.proofArtifact}</td></tr>`).join('')}
+          </tbody>
+        </table>
+      </section>
+    `;
+  </script>
+</body>
+</html>

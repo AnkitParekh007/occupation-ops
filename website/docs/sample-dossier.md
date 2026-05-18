@@ -10,6 +10,12 @@ This is the public reference surface for the flagship output.
 
 Use it when you want to understand what Occupation-Ops actually produces before cloning the repo.
 
+## Open the real sample
+
+- [Open sample HTML dossier](pathname:///samples/ai-frontend-proof-dossier.html)
+- [Open sample Markdown dossier](pathname:///samples/ai-frontend-proof-dossier.md)
+- [Open sample JSON dossier](pathname:///samples/ai-frontend-proof-dossier.json)
+
 ## What the flagship bundle contains
 
 - proof inventory
@@ -35,6 +41,8 @@ output/role-gap-analysis.md
 output/role-gap-analysis.json
 output/role-gap-analysis.html
 ```
+
+The published sample above is generated from the same flagship dossier flow and is safe to share in launch posts, comments, and direct messages.
 
 ## Related assets
 

@@ -299,6 +299,7 @@ function HowItWorksSection() {
 function SampleSection() {
   const dossierOverviewImage = useBaseUrl('/img/launch/flagship-dossier-overview.png');
   const scorecardImage = useBaseUrl('/img/launch/flagship-scorecard.png');
+  const sampleDossierPath = useBaseUrl('/samples/ai-frontend-proof-dossier.html');
 
   return (
     <section className={styles.sampleSection}>
@@ -334,9 +335,7 @@ function SampleSection() {
         </article>
       </div>
       <div className={styles.heroActions}>
-        <Link to="/docs/sample-dossier" className={styles.ctaPrimary}>
-          Open the sample dossier
-        </Link>
+        <a href={sampleDossierPath} className={styles.ctaPrimary}>Open the sample dossier</a>
         <Link to="/docs/examples-and-assets" className={styles.ctaSecondary}>
           Launch assets and examples
         </Link>
