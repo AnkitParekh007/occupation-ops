@@ -1,0 +1,28 @@
+{
+  "id": "output-bundles",
+  "title": "Output Bundles",
+  "description": "The dossier artifact model used across Occupation-Ops workflows.",
+  "source": "@site/docs/output-bundles.md",
+  "sourceDirName": ".",
+  "slug": "/output-bundles",
+  "permalink": "/occupation-ops/docs/output-bundles",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/AnkitParekh007/occupation-ops/tree/main/website/docs/output-bundles.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "output-bundles",
+    "title": "Output Bundles",
+    "description": "The dossier artifact model used across Occupation-Ops workflows."
+  },
+  "sidebar": "docs",
+  "previous": {
+    "title": "Tracks and Rubrics",
+    "permalink": "/occupation-ops/docs/tracks-and-rubrics"
+  },
+  "next": {
+    "title": "Scoring and Validators",
+    "permalink": "/occupation-ops/docs/scoring-and-validators"
+  }
+}

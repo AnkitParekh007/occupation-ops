@@ -1,0 +1,28 @@
+{
+  "id": "positioning",
+  "title": "Positioning",
+  "description": "How Occupation-Ops is differentiated from broader job-search tooling.",
+  "source": "@site/docs/positioning.md",
+  "sourceDirName": ".",
+  "slug": "/positioning",
+  "permalink": "/occupation-ops/docs/positioning",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/AnkitParekh007/occupation-ops/tree/main/website/docs/positioning.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "positioning",
+    "title": "Positioning",
+    "description": "How Occupation-Ops is differentiated from broader job-search tooling."
+  },
+  "sidebar": "docs",
+  "previous": {
+    "title": "Architecture",
+    "permalink": "/occupation-ops/docs/architecture"
+  },
+  "next": {
+    "title": "Contributing",
+    "permalink": "/occupation-ops/docs/contributing"
+  }
+}

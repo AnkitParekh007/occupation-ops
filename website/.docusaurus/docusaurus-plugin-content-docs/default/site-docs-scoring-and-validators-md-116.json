@@ -1,0 +1,28 @@
+{
+  "id": "scoring-and-validators",
+  "title": "Scoring and Validators",
+  "description": "Proof metrics, scoring direction, and artifact validation goals.",
+  "source": "@site/docs/scoring-and-validators.md",
+  "sourceDirName": ".",
+  "slug": "/scoring-and-validators",
+  "permalink": "/occupation-ops/docs/scoring-and-validators",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/AnkitParekh007/occupation-ops/tree/main/website/docs/scoring-and-validators.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "scoring-and-validators",
+    "title": "Scoring and Validators",
+    "description": "Proof metrics, scoring direction, and artifact validation goals."
+  },
+  "sidebar": "docs",
+  "previous": {
+    "title": "Output Bundles",
+    "permalink": "/occupation-ops/docs/output-bundles"
+  },
+  "next": {
+    "title": "Architecture",
+    "permalink": "/occupation-ops/docs/architecture"
+  }
+}

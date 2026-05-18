@@ -1,0 +1,88 @@
+{
+  "docusaurus-plugin-content-docs": {
+    "default": {
+      "path": "/occupation-ops/docs",
+      "versions": [
+        {
+          "name": "current",
+          "label": "Next",
+          "isLast": true,
+          "path": "/occupation-ops/docs",
+          "mainDocId": "introduction",
+          "docs": [
+            {
+              "id": "architecture",
+              "path": "/occupation-ops/docs/architecture",
+              "sidebar": "docs"
+            },
+            {
+              "id": "cli-commands",
+              "path": "/occupation-ops/docs/cli-commands",
+              "sidebar": "docs"
+            },
+            {
+              "id": "configuration",
+              "path": "/occupation-ops/docs/configuration",
+              "sidebar": "docs"
+            },
+            {
+              "id": "contributing",
+              "path": "/occupation-ops/docs/contributing",
+              "sidebar": "docs"
+            },
+            {
+              "id": "installation",
+              "path": "/occupation-ops/docs/installation",
+              "sidebar": "docs"
+            },
+            {
+              "id": "introduction",
+              "path": "/occupation-ops/docs/introduction",
+              "sidebar": "docs"
+            },
+            {
+              "id": "output-bundles",
+              "path": "/occupation-ops/docs/output-bundles",
+              "sidebar": "docs"
+            },
+            {
+              "id": "positioning",
+              "path": "/occupation-ops/docs/positioning",
+              "sidebar": "docs"
+            },
+            {
+              "id": "quick-start",
+              "path": "/occupation-ops/docs/quick-start",
+              "sidebar": "docs"
+            },
+            {
+              "id": "roadmap",
+              "path": "/occupation-ops/docs/roadmap",
+              "sidebar": "docs"
+            },
+            {
+              "id": "scoring-and-validators",
+              "path": "/occupation-ops/docs/scoring-and-validators",
+              "sidebar": "docs"
+            },
+            {
+              "id": "tracks-and-rubrics",
+              "path": "/occupation-ops/docs/tracks-and-rubrics",
+              "sidebar": "docs"
+            }
+          ],
+          "draftIds": [],
+          "sidebars": {
+            "docs": {
+              "link": {
+                "path": "/occupation-ops/docs/introduction",
+                "label": "introduction"
+              }
+            }
+          }
+        }
+      ],
+      "breadcrumbs": true
+    }
+  }
+}

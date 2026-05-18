@@ -1,0 +1,30 @@
+{
+  "id": "quick-start",
+  "title": "Quick Start",
+  "description": "Fastest path to generate the flagship proof dossier locally.",
+  "source": "@site/docs/quick-start.md",
+  "sourceDirName": ".",
+  "slug": "/quick-start",
+  "permalink": "/occupation-ops/docs/quick-start",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/AnkitParekh007/occupation-ops/tree/main/website/docs/quick-start.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "id": "quick-start",
+    "title": "Quick Start",
+    "sidebar_position": 2,
+    "description": "Fastest path to generate the flagship proof dossier locally."
+  },
+  "sidebar": "docs",
+  "previous": {
+    "title": "Introduction",
+    "permalink": "/occupation-ops/docs/introduction"
+  },
+  "next": {
+    "title": "Installation",
+    "permalink": "/occupation-ops/docs/installation"
+  }
+}

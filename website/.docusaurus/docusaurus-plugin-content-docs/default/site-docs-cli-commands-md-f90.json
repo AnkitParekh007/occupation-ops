@@ -1,0 +1,28 @@
+{
+  "id": "cli-commands",
+  "title": "CLI Commands",
+  "description": "Reference for the Occupation-Ops command surface and its output bundles.",
+  "source": "@site/docs/cli-commands.md",
+  "sourceDirName": ".",
+  "slug": "/cli-commands",
+  "permalink": "/occupation-ops/docs/cli-commands",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/AnkitParekh007/occupation-ops/tree/main/website/docs/cli-commands.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "cli-commands",
+    "title": "CLI Commands",
+    "description": "Reference for the Occupation-Ops command surface and its output bundles."
+  },
+  "sidebar": "docs",
+  "previous": {
+    "title": "Configuration",
+    "permalink": "/occupation-ops/docs/configuration"
+  },
+  "next": {
+    "title": "Tracks and Rubrics",
+    "permalink": "/occupation-ops/docs/tracks-and-rubrics"
+  }
+}

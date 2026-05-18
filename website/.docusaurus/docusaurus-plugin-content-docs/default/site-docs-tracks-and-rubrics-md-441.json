@@ -1,0 +1,28 @@
+{
+  "id": "tracks-and-rubrics",
+  "title": "Tracks and Rubrics",
+  "description": "How the flagship AI/frontend tracks use structured scoring rubrics.",
+  "source": "@site/docs/tracks-and-rubrics.md",
+  "sourceDirName": ".",
+  "slug": "/tracks-and-rubrics",
+  "permalink": "/occupation-ops/docs/tracks-and-rubrics",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/AnkitParekh007/occupation-ops/tree/main/website/docs/tracks-and-rubrics.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "tracks-and-rubrics",
+    "title": "Tracks and Rubrics",
+    "description": "How the flagship AI/frontend tracks use structured scoring rubrics."
+  },
+  "sidebar": "docs",
+  "previous": {
+    "title": "CLI Commands",
+    "permalink": "/occupation-ops/docs/cli-commands"
+  },
+  "next": {
+    "title": "Output Bundles",
+    "permalink": "/occupation-ops/docs/output-bundles"
+  }
+}

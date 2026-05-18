@@ -1,0 +1,30 @@
+{
+  "id": "configuration",
+  "title": "Configuration",
+  "description": "How profile.yml drives the proof workflow.",
+  "source": "@site/docs/configuration.md",
+  "sourceDirName": ".",
+  "slug": "/configuration",
+  "permalink": "/occupation-ops/docs/configuration",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/AnkitParekh007/occupation-ops/tree/main/website/docs/configuration.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 4,
+  "frontMatter": {
+    "id": "configuration",
+    "title": "Configuration",
+    "sidebar_position": 4,
+    "description": "How profile.yml drives the proof workflow."
+  },
+  "sidebar": "docs",
+  "previous": {
+    "title": "Installation",
+    "permalink": "/occupation-ops/docs/installation"
+  },
+  "next": {
+    "title": "CLI Commands",
+    "permalink": "/occupation-ops/docs/cli-commands"
+  }
+}
