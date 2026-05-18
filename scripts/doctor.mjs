@@ -8,7 +8,7 @@ const requiredFiles = [
   'AGENTS.md',
   'OCCUPATION_CONTRACT.md',
   'tracks/ai-frontend-architect.md',
-  'modes/profile-audit.md',
+  'rubrics/ai-frontend-architect.json',
   'templates/profile.example.yml',
   'examples/ai-frontend-architect/sample-profile.yml',
 ];
@@ -24,8 +24,6 @@ const requiredScripts = [
   'scripts/generate-interview-story-bank.mjs',
   'scripts/generate-weekly-plan.mjs',
 ];
-
-const outputDir = join(root, 'output');
 
 let ok = true;
 
@@ -46,24 +44,29 @@ for (const script of requiredScripts) {
 }
 
 console.log('\n--- Output directory ---\n');
-const outputExists = existsSync(outputDir);
+const outputExists = existsSync(join(root, 'output'));
 console.log(`${outputExists ? 'OK  ' : 'MISS'} output/`);
 if (!outputExists) ok = false;
 
 console.log('\n--- System ---\n');
 console.log('API keys required:         no');
 console.log('Automatic applications:    no');
-console.log('Truthfulness guardrails:   enabled by docs');
+console.log('Tracker or scanner:        no');
+console.log('Proof scoring rubrics:     yes');
+console.log('JSON output bundle:        yes');
+console.log('HTML proof viewer:         yes');
+console.log('Truthfulness guardrails:   enabled by rubric and docs');
 
 console.log('\n--- Available commands ---\n');
-console.log('  npm run init               — create profile.yml from template');
-console.log('  npm run audit:profile      — review profile and positioning');
-console.log('  npm run gap:role           — generate role gap analysis');
-console.log('  npm run portfolio:plan     — generate portfolio project plan');
-console.log('  npm run github:growth      — generate GitHub growth plan');
-console.log('  npm run interview:stories  — generate interview story bank');
-console.log('  npm run plan:weekly        — generate weekly execution plan');
-console.log('  npm run demo:ai-frontend   — run the AI Frontend Architect demo');
-console.log('  npm run doctor             — check repo health');
+console.log('  npm run init               - create profile.yml from template');
+console.log('  npm run audit:profile      - generate profile audit md/json/html');
+console.log('  npm run gap:role           - generate flagship proof roadmap dossier');
+console.log('  npm run portfolio:plan     - generate portfolio project briefs');
+console.log('  npm run github:growth      - generate GitHub growth checklist');
+console.log('  npm run interview:stories  - generate interview story prompts');
+console.log('  npm run plan:weekly        - generate weekly shipping plan');
+console.log('  npm run demo:ai-frontend   - generate the sample flagship bundle');
+console.log('  npm run doctor             - check repo health');
+console.log('  npm test                   - run fixture and parity tests');
 
 process.exit(ok ? 0 : 1);

@@ -7,7 +7,6 @@ linkedin.private.md
 # Generated demo output
 output/*
 !output/.gitkeep
-!output/demo-ai-frontend-architect-report.md
 
 # Secrets
 .env

@@ -1,22 +1,38 @@
-const target = process.argv[2] || 'AI Frontend Architect';
+import { buildProofDossier } from './lib/proof-engine.mjs';
+import { writeOutputBundle } from './lib/renderers.mjs';
 
-console.log(`# Weekly Career Plan: ${target}\n`);
-console.log('## Week Theme\n');
-console.log('Convert positioning into public proof.\n');
-console.log('## Outcomes\n');
-console.log('- [ ] One profile surface improved');
-console.log('- [ ] One proof project made clearer');
-console.log('- [ ] One interview story drafted\n');
-console.log('## Daily Plan\n');
-console.log('| Day | Task | Proof artifact |');
-console.log('| --- | --- | --- |');
-console.log('| Monday | Audit profile, pinned repos, and portfolio hero | Audit notes |');
-console.log('| Tuesday | Improve one README first screen | README diff |');
-console.log('| Wednesday | Add screenshot, diagram, or demo plan | Visual proof |');
-console.log('| Thursday | Write mocked-vs-real and interview notes | Interview-safe docs |');
-console.log('| Friday | Publish a short useful update and plan next week | Post draft |');
-console.log('\n## End-Of-Week Review\n');
-console.log('- What became more credible?');
-console.log('- What still lacks proof?');
-console.log('- What should be built next?');
-console.log('\nTruthfulness guardrail: only publish claims you can defend in an interview.');
+const dossier = buildProofDossier(process.argv[2]);
+
+const markdown = [
+  `# Weekly Career Plan: ${dossier.profile.targetOccupation}`,
+  '',
+  `Theme: ${dossier.weeklyPlan.weeklyTheme}`,
+  '',
+  '## Outcomes',
+  '',
+  ...dossier.weeklyPlan.outcomes.map((item) => `- [ ] ${item}`),
+  '',
+  '## Daily Plan',
+  '',
+  '| Day | Task | Proof artifact |',
+  '| --- | --- | --- |',
+  ...dossier.weeklyPlan.dailyPlan.map((item) => `| ${item.day} | ${item.task} | ${item.proofArtifact} |`),
+  '',
+  '## End-Of-Week Review',
+  '',
+  '- What became more credible?',
+  '- Which proof gaps remain unsupported?',
+  '- What should be the next public artifact to ship?',
+  '',
+  '## Truthfulness Guardrail',
+  '',
+  'Only publish claims you can defend in a recruiter screen or technical interview.',
+  '',
+].join('\n');
+
+const paths = writeOutputBundle('weekly-proof-plan', dossier, markdown);
+
+console.log(`Weekly plan generated:
+- ${paths.markdownPath}
+- ${paths.jsonPath}
+- ${paths.htmlPath}`);
