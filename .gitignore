@@ -17,6 +17,8 @@ node_modules/
 bun.lock
 package-lock.json
 !website/package-lock.json
+website/.docusaurus/
+website/build/
 
 # OS
 .DS_Store
