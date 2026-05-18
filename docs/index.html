@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Occupation-Ops is a proof-before-applying engine for AI/frontend pivots. Generate proof scorecards, GitHub rewrites, project briefs, and weekly shipping plans from a local profile.">
+  <meta name="theme-color" content="#f4eee4">
+  <title>Occupation-Ops | Proof Before Applying</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #f4eee4;
+      --paper-strong: #efe5d7;
+      --panel: rgba(255, 250, 243, 0.9);
+      --panel-strong: #fffaf3;
+      --ink: #152126;
+      --muted: #5b6b70;
+      --line: rgba(21, 33, 38, 0.12);
+      --teal: #0f766e;
+      --teal-deep: #0b5d57;
+      --rust: #b45309;
+      --shadow: 0 20px 60px rgba(21, 33, 38, 0.08);
+      --shadow-soft: 0 8px 24px rgba(21, 33, 38, 0.06);
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --max-width: 1200px;
+      --font-display: "Fraunces", Georgia, serif;
+      --font-body: "Manrope", "Segoe UI", sans-serif;
+      --font-mono: "IBM Plex Mono", "SFMono-Regular", monospace;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(15, 118, 110, 0.12), transparent 28%),
+        radial-gradient(circle at top right, rgba(180, 83, 9, 0.10), transparent 24%),
+        linear-gradient(180deg, #f6f0e7 0%, #f4eee4 44%, #f8f4ed 100%);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button, input, textarea, select { font: inherit; }
+
+    .shell {
+      width: min(var(--max-width), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(18px);
+      background: rgba(244, 238, 228, 0.82);
+      border-bottom: 1px solid rgba(21, 33, 38, 0.08);
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      min-height: 72px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .brand-mark {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--teal), var(--rust));
+      box-shadow: 0 0 0 6px rgba(15, 118, 110, 0.08);
+      flex: none;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .nav a:hover { color: var(--ink); }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 42px;
+      padding: 0 18px;
+      border-radius: 999px;
+      background: var(--ink);
+      color: #fff;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .hero {
+      padding: 72px 0 48px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.02fr) minmax(340px, 0.98fr);
+      gap: 34px;
+      align-items: start;
+    }
+
+    .hero-copy h1 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(52px, 7vw, 92px);
+      line-height: 0.96;
+      letter-spacing: -0.05em;
+      max-width: 11ch;
+    }
+
+    .hero-copy p {
+      margin: 24px 0 0;
+      max-width: 58ch;
+      font-size: 18px;
+      color: var(--muted);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 50px;
+      padding: 0 20px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .button-primary {
+      background: var(--teal);
+      color: #fff;
+    }
+
+    .button-primary:hover { background: var(--teal-deep); }
+
+    .button-secondary {
+      background: rgba(255, 255, 255, 0.55);
+      border: 1px solid var(--line);
+      color: var(--ink);
+    }
+
+    .hero-notes {
+      margin-top: 22px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px 20px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .hero-notes span::before {
+      content: "";
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      margin-right: 10px;
+      background: linear-gradient(135deg, var(--teal), var(--rust));
+      vertical-align: middle;
+    }
+
+    .hero-card {
+      padding: 24px;
+      border-radius: var(--radius-xl);
+      background: linear-gradient(180deg, rgba(255, 250, 243, 0.96), rgba(255, 247, 237, 0.90));
+      border: 1px solid rgba(21, 33, 38, 0.08);
+      box-shadow: var(--shadow);
+    }
+
+    .console-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .console-dots {
+      display: flex;
+      gap: 8px;
+    }
+
+    .console-dots span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(21, 33, 38, 0.16);
+    }
+
+    .terminal {
+      padding: 18px;
+      border-radius: var(--radius-lg);
+      background: #182025;
+      color: #f3f1eb;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.75;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+    }
+
+    .terminal .prompt { color: #86efac; }
+    .terminal .muted { color: #9ba9ad; }
+    .terminal .ok { color: #7dd3fc; }
+    .terminal .warn { color: #fdba74; }
+
+    .dossier {
+      margin-top: 16px;
+      padding: 18px;
+      border-radius: var(--radius-lg);
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(21, 33, 38, 0.08);
+    }
+
+    .dossier-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .dossier-title {
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .dossier-score {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .score-ring {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background:
+        conic-gradient(var(--teal) 0deg 277deg, rgba(21, 33, 38, 0.08) 277deg 360deg);
+      position: relative;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .score-ring::before {
+      content: "";
+      position: absolute;
+      inset: 6px;
+      border-radius: 50%;
+      background: #fff8ef;
+    }
+
+    .score-ring span {
+      position: relative;
+      z-index: 1;
+    }
+
+    .dossier-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 14px;
+    }
+
+    .mini-panel {
+      padding: 14px;
+      border-radius: var(--radius-md);
+      background: rgba(255,255,255,0.74);
+      border: 1px solid rgba(21, 33, 38, 0.08);
+    }
+
+    .mini-panel h3 {
+      margin: 0 0 10px;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .mini-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 9px;
+      font-size: 13px;
+    }
+
+    .mini-list li {
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .mini-list strong {
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .signal {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .signal.good { color: var(--teal); }
+    .signal.warn { color: var(--rust); }
+
+    .section {
+      padding: 34px 0 0;
+    }
+
+    .section-header {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(280px, 0.7fr);
+      gap: 24px;
+      align-items: end;
+      margin-bottom: 26px;
+    }
+
+    .section-header h2 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(34px, 4.2vw, 58px);
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+    }
+
+    .section-header p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .problem-grid,
+    .feature-grid,
+    .stats-grid,
+    .faq-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .problem-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .problem-card,
+    .feature-card,
+    .stat-card,
+    .sample-card,
+    .compare-card,
+    .faq-card,
+    .cta-card,
+    .oss-card {
+      background: rgba(255, 250, 243, 0.78);
+      border: 1px solid rgba(21, 33, 38, 0.08);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .problem-card {
+      padding: 24px;
+    }
+
+    .problem-card h3,
+    .feature-card h3,
+    .stat-card h3,
+    .oss-card h3 {
+      margin: 0 0 8px;
+      font-size: 20px;
+      letter-spacing: -0.03em;
+    }
+
+    .problem-card p,
+    .feature-card p,
+    .stat-card p,
+    .oss-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .problem-card em {
+      display: inline-block;
+      margin-top: 14px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-style: normal;
+      color: var(--rust);
+    }
+
+    .feature-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .feature-card {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .feature-command {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--teal);
+    }
+
+    .feature-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .feature-list li::before {
+      content: "→";
+      color: var(--rust);
+      margin-right: 10px;
+    }
+
+    .stats-grid {
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: start;
+    }
+
+    .stat-card {
+      padding: 28px;
+    }
+
+    .stat-stack {
+      display: grid;
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .stat-line {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 78px;
+      gap: 16px;
+      align-items: center;
+      font-size: 14px;
+    }
+
+    .bar {
+      width: 100%;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(21, 33, 38, 0.08);
+      overflow: hidden;
+      margin-top: 8px;
+    }
+
+    .bar > span {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--teal), var(--rust));
+    }
+
+    .sample-card {
+      padding: 28px;
+      overflow: hidden;
+    }
+
+    .sample-shell {
+      border-radius: 18px;
+      border: 1px solid rgba(21, 33, 38, 0.10);
+      background: #fffaf2;
+      overflow: hidden;
+    }
+
+    .sample-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(21, 33, 38, 0.08);
+      background: rgba(255,255,255,0.7);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .sample-content {
+      padding: 20px 18px 22px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .sample-kicker {
+      font-family: var(--font-mono);
+      color: var(--teal);
+      font-size: 12px;
+    }
+
+    .sample-content h3 {
+      margin: 0;
+      font-size: 28px;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+    }
+
+    .sample-meta {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .sample-table {
+      display: grid;
+      gap: 10px;
+    }
+
+    .sample-row {
+      display: grid;
+      grid-template-columns: 1fr 90px 1.2fr;
+      gap: 14px;
+      align-items: start;
+      padding: 12px 0;
+      border-top: 1px solid rgba(21, 33, 38, 0.08);
+      font-size: 14px;
+    }
+
+    .sample-row:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .sample-row strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .sample-row .grade {
+      font-family: var(--font-mono);
+      color: var(--teal);
+      font-weight: 600;
+    }
+
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .compare-card {
+      padding: 24px;
+    }
+
+    .compare-card h3 {
+      margin: 0 0 14px;
+      font-size: 24px;
+      letter-spacing: -0.03em;
+    }
+
+    .compare-card ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .compare-card li::before {
+      content: "—";
+      margin-right: 10px;
+      color: var(--rust);
+    }
+
+    .compare-card.after {
+      background: linear-gradient(180deg, rgba(15, 118, 110, 0.08), rgba(255, 250, 243, 0.86));
+    }
+
+    .oss-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 18px;
+    }
+
+    .oss-card {
+      padding: 24px;
+    }
+
+    .oss-card code {
+      display: block;
+      margin-top: 14px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--teal);
+      white-space: nowrap;
+      overflow: auto;
+    }
+
+    .faq-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .faq-card {
+      padding: 20px 22px;
+    }
+
+    .faq-card h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+      letter-spacing: -0.03em;
+    }
+
+    .faq-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .cta {
+      padding: 46px 0 84px;
+    }
+
+    .cta-card {
+      padding: 38px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 24px;
+      align-items: center;
+      background:
+        radial-gradient(circle at top right, rgba(15, 118, 110, 0.14), transparent 28%),
+        linear-gradient(180deg, rgba(255, 250, 243, 0.98), rgba(247, 240, 231, 0.96));
+    }
+
+    .cta-card h2 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4vw, 54px);
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+    }
+
+    .cta-card p {
+      margin: 12px 0 0;
+      max-width: 44ch;
+      color: var(--muted);
+    }
+
+    footer {
+      border-top: 1px solid rgba(21, 33, 38, 0.08);
+      padding: 24px 0 42px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    @media (max-width: 1100px) {
+      .feature-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .problem-grid,
+      .oss-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 940px) {
+      .hero-grid,
+      .section-header,
+      .stats-grid,
+      .compare-grid,
+      .faq-grid,
+      .cta-card {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 52px;
+      }
+
+      .nav {
+        display: none;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .shell {
+        width: min(var(--max-width), calc(100% - 28px));
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .dossier-grid,
+      .sample-row {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-card {
+        padding: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="topbar">
+    <div class="shell topbar-inner">
+      <a class="brand" href="#top">
+        <span class="brand-mark"></span>
+        <span>Occupation-Ops</span>
+      </a>
+      <div class="nav">
+        <a href="#system">System</a>
+        <a href="#sample">Sample</a>
+        <a href="#compare">Before / After</a>
+        <a href="#faq">FAQ</a>
+        <a class="nav-cta" href="https://github.com/AnkitParekh007/occupation-ops" target="_blank" rel="noopener">View Repo</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="top" class="shell">
+    <section class="hero">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <h1>Turn current work into recruiter-readable proof before you apply.</h1>
+          <p>
+            Occupation-Ops is a local-first proof engine for AI/frontend pivots.
+            Feed it a truthful profile, get a role scorecard, GitHub rewrite,
+            project briefs, interview prompts, and a weekly shipping plan you can
+            actually execute.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="https://github.com/AnkitParekh007/occupation-ops" target="_blank" rel="noopener">Open The Repo</a>
+            <a class="button button-secondary" href="https://github.com/AnkitParekh007/occupation-ops/blob/main/examples/reports/sample-ai-frontend-proof-roadmap.md" target="_blank" rel="noopener">Read Sample Dossier</a>
+          </div>
+          <div class="hero-notes">
+            <span>Local-first</span>
+            <span>No API key required</span>
+            <span>Markdown + JSON + HTML</span>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="console-head">
+            <div class="console-dots"><span></span><span></span><span></span></div>
+            <div>proof dossier demo</div>
+          </div>
+          <div class="terminal">
+            <div><span class="prompt">$</span> npm run gap:role</div>
+            <div class="muted">generated: role-gap-analysis.md</div>
+            <div class="muted">generated: role-gap-analysis.json</div>
+            <div class="muted">generated: role-gap-analysis.html</div>
+            <div class="ok">score: 7.7 / 10</div>
+            <div class="warn">top gaps: positioning, screenshot proof, truthfulness labels</div>
+          </div>
+
+          <div class="dossier">
+            <div class="dossier-top">
+              <div>
+                <div class="dossier-title">AI Frontend Architect Proof Roadmap</div>
+                <div style="color: var(--muted); font-size: 13px; margin-top: 4px;">One coherent output bundle instead of scattered reports.</div>
+              </div>
+              <div class="dossier-score">
+                <div class="score-ring"><span>77%</span></div>
+              </div>
+            </div>
+
+            <div class="dossier-grid">
+              <div class="mini-panel">
+                <h3>Priority backlog</h3>
+                <ul class="mini-list">
+                  <li><strong>Make target role explicit</strong><span class="signal warn">high</span></li>
+                  <li><strong>Add screenshot-ready proof</strong><span class="signal warn">high</span></li>
+                  <li><strong>Clarify mocked vs real</strong><span class="signal good">safe</span></li>
+                </ul>
+              </div>
+
+              <div class="mini-panel">
+                <h3>Validator scan</h3>
+                <ul class="mini-list">
+                  <li><strong>GitHub README quality</strong><span class="signal warn">warn</span></li>
+                  <li><strong>Proof completeness</strong><span class="signal good">pass</span></li>
+                  <li><strong>Claim risk</strong><span class="signal good">pass</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <h2>Applying faster does not fix weak public proof.</h2>
+        <p>
+          Many candidates already know what roles they want. What they lack is
+          a public surface that proves they belong in the conversation. That is
+          the gap Occupation-Ops is built to close.
+        </p>
+      </div>
+
+      <div class="problem-grid">
+        <article class="problem-card">
+          <h3>Generic positioning</h3>
+          <p>
+            Recruiters see “frontend engineer moving into AI” with no clear
+            evidence of why that pivot is credible.
+          </p>
+          <em>Symptom: the profile sounds more ambitious than proven.</em>
+        </article>
+        <article class="problem-card">
+          <h3>Thin proof surfaces</h3>
+          <p>
+            Repos exist, but the first screen does not explain what they prove,
+            which tradeoffs mattered, or what is still mocked.
+          </p>
+          <em>Symptom: strong work reads like generic side projects.</em>
+        </article>
+        <article class="problem-card">
+          <h3>Execution without clarity</h3>
+          <p>
+            The candidate keeps “studying” without a weekly plan tied to visible
+            artifacts that raise recruiter trust.
+          </p>
+          <em>Symptom: activity goes up, credibility does not.</em>
+        </article>
+      </div>
+    </section>
+
+    <section id="system" class="section">
+      <div class="section-header">
+        <h2>A proof system, not another job-search tracker.</h2>
+        <p>
+          Inspired by confident open-source product storytelling, but deliberately
+          narrower: Occupation-Ops wins before outreach starts by sharpening the
+          candidate’s evidence, not by automating applications.
+        </p>
+      </div>
+
+      <div class="feature-grid">
+        <article class="feature-card">
+          <div class="feature-command">npm run gap:role</div>
+          <h3>Role-gap scorecards</h3>
+          <p>Score a profile against role-specific signals instead of vague “fit” language.</p>
+          <ul class="feature-list">
+            <li>Structured rubric inputs</li>
+            <li>Proof metrics and validators</li>
+            <li>Prioritized gap backlog</li>
+          </ul>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-command">npm run github:growth</div>
+          <h3>GitHub rewrite guidance</h3>
+          <p>Turn a generic profile into a recruiter-readable first screen with clear evidence.</p>
+          <ul class="feature-list">
+            <li>Headline rewrite</li>
+            <li>README checklist</li>
+            <li>Topic and proof framing</li>
+          </ul>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-command">npm run portfolio:plan</div>
+          <h3>Proof project briefs</h3>
+          <p>Generate projects that exist to prove role credibility, not just fill a portfolio grid.</p>
+          <ul class="feature-list">
+            <li>Problem and solution framing</li>
+            <li>Recruiter takeaway</li>
+            <li>Interview talking points</li>
+          </ul>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-command">npm run plan:weekly</div>
+          <h3>Weekly shipping plan</h3>
+          <p>Translate strategy into one week of public proof work you can actually finish.</p>
+          <ul class="feature-list">
+            <li>Artifact-driven daily plan</li>
+            <li>Truthfulness guardrails</li>
+            <li>Visible next proof step</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="stats-grid">
+        <article class="stat-card">
+          <div class="section-header" style="grid-template-columns: 1fr; margin-bottom: 12px;">
+            <h2 style="font-size: clamp(32px, 3.5vw, 48px);">What the flagship dossier makes visible</h2>
+            <p>Everything comes from one canonical proof bundle instead of hand-edited scattered notes.</p>
+          </div>
+          <div class="stat-stack">
+            <div class="stat-line">
+              <div>
+                <strong>Proof density</strong>
+                <div class="bar"><span style="width: 75%;"></span></div>
+              </div>
+              <div>75 / 100</div>
+            </div>
+            <div class="stat-line">
+              <div>
+                <strong>Claim support ratio</strong>
+                <div class="bar"><span style="width: 78%;"></span></div>
+              </div>
+              <div>78 / 100</div>
+            </div>
+            <div class="stat-line">
+              <div>
+                <strong>Portfolio clarity</strong>
+                <div class="bar"><span style="width: 100%;"></span></div>
+              </div>
+              <div>100 / 100</div>
+            </div>
+            <div class="stat-line">
+              <div>
+                <strong>Recruiter scan readiness</strong>
+                <div class="bar"><span style="width: 100%;"></span></div>
+              </div>
+              <div>100 / 100</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="sample-card">
+          <div class="sample-shell">
+            <div class="sample-toolbar">
+              <span>sample dossier preview</span>
+              <span>md • json • html</span>
+            </div>
+            <div class="sample-content">
+              <div class="sample-kicker">Occupation-Ops flagship workflow</div>
+              <h3>AI Frontend Architect Proof Roadmap</h3>
+              <div class="sample-meta">
+                <span>source: profile.yml</span>
+                <span>rubric: ai-frontend-architect</span>
+                <span>score: 7.7 / 10</span>
+              </div>
+              <div class="sample-table">
+                <div class="sample-row">
+                  <div>
+                    <strong>Target role is explicit</strong>
+                    Positioning still needs to name the AI/frontend target more clearly.
+                  </div>
+                  <div class="grade">Gap</div>
+                  <div>Rewrite the GitHub profile README and summary so the role is visible in the first screen.</div>
+                </div>
+                <div class="sample-row">
+                  <div>
+                    <strong>Proof artifacts exist</strong>
+                    Three public artifacts already support the pivot.
+                  </div>
+                  <div class="grade">Pass</div>
+                  <div>Keep reinforcing this signal with screenshots and recruiter takeaways.</div>
+                </div>
+                <div class="sample-row">
+                  <div>
+                    <strong>Truthfulness constraints</strong>
+                    Mocked vs real boundaries need to be named more aggressively.
+                  </div>
+                  <div class="grade">Gap</div>
+                  <div>Add explicit constraints so planned work cannot be mistaken for shipped proof.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="sample" class="section">
+      <div class="section-header">
+        <h2>The output is designed to be used, not admired.</h2>
+        <p>
+          The repo emits Markdown for humans, JSON for structured reuse, and HTML
+          for a lightweight local report viewer. That gives the project a real
+          surface without turning it into a hosted product.
+        </p>
+      </div>
+
+      <div class="oss-grid">
+        <article class="oss-card">
+          <h3>Local-first inputs</h3>
+          <p>
+            Start from a truthful <code>profile.yml</code> and keep the system
+            anchored to what already exists in public or can be shipped next.
+          </p>
+          <code>profile.yml + rubric + mode</code>
+        </article>
+        <article class="oss-card">
+          <h3>Canonical dossier model</h3>
+          <p>
+            One proof engine computes scorecards, validators, backlog items,
+            project briefs, and weekly plans so workflows do not drift apart.
+          </p>
+          <code>scripts/lib/proof-engine.mjs</code>
+        </article>
+        <article class="oss-card">
+          <h3>Static outputs for GitHub Pages</h3>
+          <p>
+            The repo site stays static and portable. No backend, no authentication,
+            no deployment complexity beyond the repository itself.
+          </p>
+          <code>docs/index.html</code>
+        </article>
+      </div>
+    </section>
+
+    <section id="compare" class="section">
+      <div class="section-header">
+        <h2>What changes after the proof system runs.</h2>
+        <p>
+          Occupation-Ops is strongest when it transforms vague ambition into
+          visible, defensible public evidence.
+        </p>
+      </div>
+
+      <div class="compare-grid">
+        <article class="compare-card">
+          <h3>Before</h3>
+          <ul>
+            <li>Generic “frontend moving into AI” language</li>
+            <li>Pinned repos without recruiter takeaway</li>
+            <li>No screenshot or demo evidence in the first screen</li>
+            <li>Interview stories disconnected from actual proof</li>
+            <li>Weekly effort focused on learning, not shipping</li>
+          </ul>
+        </article>
+        <article class="compare-card after">
+          <h3>After</h3>
+          <ul>
+            <li>Target role is named and supported by structured signals</li>
+            <li>Each proof artifact explains what it demonstrates</li>
+            <li>README and GitHub surfaces become recruiter-readable</li>
+            <li>Interview prompts map back to real project decisions</li>
+            <li>Weekly work is tied to visible proof artifacts</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="faq" class="section">
+      <div class="section-header">
+        <h2>Questions a skeptical engineer will ask.</h2>
+        <p>
+          The answers matter because this repo should feel more like a credible
+          developer system than a marketing wrapper around vague career advice.
+        </p>
+      </div>
+
+      <div class="faq-grid">
+        <article class="faq-card">
+          <h3>Is this another job tracker?</h3>
+          <p>No. It deliberately focuses on pre-application proof, not application operations.</p>
+        </article>
+        <article class="faq-card">
+          <h3>Does it need an API key?</h3>
+          <p>No. The core workflows are local-first and run from static repo data.</p>
+        </article>
+        <article class="faq-card">
+          <h3>Who is it for first?</h3>
+          <p>AI/frontend pivoters are the flagship audience because that is where the product truth is strongest today.</p>
+        </article>
+        <article class="faq-card">
+          <h3>What makes it different from broader career tools?</h3>
+          <p>It tries to win by sharper credibility outputs, not by feature parity with trackers, scanners, or outreach systems.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="cta-card">
+        <div>
+          <h2>Build better proof before you ask the market to believe the story.</h2>
+          <p>
+            Clone the repo, run the flagship workflow, and use the outputs to
+            tighten the GitHub profile, project surfaces, and weekly execution
+            plan that actually shape recruiter trust.
+          </p>
+        </div>
+        <div class="hero-actions" style="margin-top: 0;">
+          <a class="button button-primary" href="https://github.com/AnkitParekh007/occupation-ops" target="_blank" rel="noopener">Clone From GitHub</a>
+          <a class="button button-secondary" href="https://github.com/AnkitParekh007/occupation-ops/blob/main/docs/SETUP.md" target="_blank" rel="noopener">Read Setup</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell footer-inner">
+      <div>Occupation-Ops is a local-first proof-before-applying system for AI/frontend pivots.</div>
+      <div class="footer-links">
+        <a href="https://github.com/AnkitParekh007/occupation-ops/blob/main/docs/positioning-vs-job-search-tools.md" target="_blank" rel="noopener">Positioning</a>
+        <a href="https://github.com/AnkitParekh007/occupation-ops/blob/main/examples/reports/sample-ai-frontend-proof-roadmap.md" target="_blank" rel="noopener">Sample Report</a>
+        <a href="https://github.com/AnkitParekh007/occupation-ops/blob/main/docs/ARCHITECTURE.md" target="_blank" rel="noopener">Architecture</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

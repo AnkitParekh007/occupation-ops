@@ -1,84 +1,36 @@
-# Occupation-Ops Landing Page
+# Occupation-Ops Site
 
-Static landing page for the Occupation-Ops project.
+The GitHub Pages landing page now lives at:
 
-File: `docs/site/index.html`
+- `docs/index.html`
 
-No build step. No framework. No external paid dependencies.
-Plain HTML, CSS, and a small vanilla JS tab switcher.
-
----
+`docs/site/index.html` remains only as a redirect so older links do not break.
 
 ## Preview locally
 
-Open the file directly in a browser:
-
 ```bash
-# macOS
-open docs/site/index.html
-
-# Linux
-xdg-open docs/site/index.html
+# from the repo root
+python -m http.server 8080 --directory docs
 ```
 
-On Windows, double-click `docs/site/index.html` in Explorer, or right-click
-and choose Open with browser.
+Then open:
 
-Or serve it with any static file server:
-
-```bash
-# Node.js (npx, no install needed)
-npx serve docs/site
-
-# Python 3
-python -m http.server 8080 --directory docs/site
-```
-
-Then open `http://localhost:8080` in a browser.
-
----
+- `http://localhost:8080/`
 
 ## Publish with GitHub Pages
 
-### Option 1: Publish from docs/site
+1. Go to repository **Settings** -> **Pages**.
+2. Under **Source**, select **Deploy from a branch**.
+3. Choose branch `main`.
+4. Choose folder `/docs`.
+5. Save.
 
-1. Go to the repository on GitHub.
-2. Open **Settings** -> **Pages**.
-3. Under **Source**, select **Deploy from a branch**.
-4. Set branch to `main` and folder to `/docs`.
-5. Click **Save**.
+The site will publish from `docs/index.html` directly.
 
-### Option 2: Publish from a `gh-pages` branch
+## Design intent
 
-```bash
-git checkout -b gh-pages
-cp docs/site/index.html index.html
-git add index.html
-git commit -m "chore: add GitHub Pages root"
-git push origin gh-pages
-```
-
----
-
-## Customize before launch
-
-Before making the page public, review and update:
-
-1. **GitHub URL** - search for `AnkitParekh007/occupation-ops` and replace it
-   if the repo URL changes.
-2. **Hero copy** - describe Occupation-Ops as a proof-before-applying engine,
-   not a tracker or scanner.
-3. **Badge text** - keep it aligned with the current product claim: local-first,
-   no API keys required, proof-first.
-4. **Meta description** - match the top-level README positioning.
-5. **Truthfulness check** - do not publish claims the CLI does not actually
-   support.
-
----
-
-## Design notes
-
-- Color scheme uses CSS custom properties with automatic light/dark support.
-- Responsive layout uses CSS grid and flexbox with fluid type.
-- Zero JavaScript frameworks.
-- No tracking scripts, analytics, or third-party embeds.
+- warm editorial visual system
+- proof-first product story
+- strong terminal and dossier preview
+- static HTML/CSS only
+- no build step and no framework dependency
