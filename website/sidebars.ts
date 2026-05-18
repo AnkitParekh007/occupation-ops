@@ -10,9 +10,15 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'Flagship Workflow',
+      label: 'Product',
       collapsed: false,
-      items: ['cli-commands', 'tracks-and-rubrics', 'output-bundles', 'scoring-and-validators'],
+      items: ['cli-commands', 'tracks-and-rubrics', 'output-bundles', 'scoring-and-validators', 'sample-dossier'],
+    },
+    {
+      type: 'category',
+      label: 'Launch',
+      collapsed: false,
+      items: ['examples-and-assets', 'faq', 'troubleshooting', 'launch-checklist'],
     },
     {
       type: 'category',

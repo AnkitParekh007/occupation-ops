@@ -51,6 +51,13 @@ Occupation-Ops focuses on that pre-application problem:
 
 See [When To Use Occupation-Ops Vs Job Search Pipeline Tools](docs/positioning-vs-job-search-tools.md).
 
+Canonical public docs and launch site:
+
+- [Occupation-Ops website](https://ankitparekh007.github.io/occupation-ops/)
+- [Quick Start](https://ankitparekh007.github.io/occupation-ops/docs/quick-start)
+- [CLI Commands](https://ankitparekh007.github.io/occupation-ops/docs/cli-commands)
+- [Sample Dossier](https://ankitparekh007.github.io/occupation-ops/docs/sample-dossier)
+
 ## Quick start
 
 ```bash
@@ -164,6 +171,9 @@ See [Ethics](docs/ethics.md) and [Occupation Contract](OCCUPATION_CONTRACT.md).
 
 ## Docs
 
+- Public product docs: [ankitparekh007.github.io/occupation-ops](https://ankitparekh007.github.io/occupation-ops/)
+- Repo-maintainer docs in this repo:
+- [Docs README](docs/README.md)
 - [Setup](docs/SETUP.md)
 - [Architecture](docs/ARCHITECTURE.md)
 - [Roadmap](docs/ROADMAP.md)

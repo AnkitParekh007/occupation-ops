@@ -43,7 +43,7 @@ const config: Config = {
       disableSwitch: false,
       respectPrefersColorScheme: true,
     },
-    image: 'img/og-card.svg',
+    image: 'img/launch/og-linkedin.png',
     metadata: [
       {
         name: 'keywords',
@@ -77,6 +77,11 @@ const config: Config = {
           position: 'left',
         },
         {
+          to: '/docs/sample-dossier',
+          label: 'Sample',
+          position: 'left',
+        },
+        {
           href: 'https://github.com/AnkitParekh007/occupation-ops',
           label: 'GitHub',
           position: 'right',
@@ -94,16 +99,16 @@ const config: Config = {
             { label: 'Introduction', to: '/docs/introduction' },
             { label: 'Quick Start', to: '/docs/quick-start' },
             { label: 'CLI Commands', to: '/docs/cli-commands' },
-            { label: 'Architecture', to: '/docs/architecture' },
+            { label: 'Sample Dossier', to: '/docs/sample-dossier' },
           ],
         },
         {
-          title: 'Workflow',
+          title: 'Launch',
           items: [
-            { label: 'Tracks and Rubrics', to: '/docs/tracks-and-rubrics' },
-            { label: 'Output Bundles', to: '/docs/output-bundles' },
-            { label: 'Scoring and Validators', to: '/docs/scoring-and-validators' },
-            { label: 'Positioning', to: '/docs/positioning' },
+            { label: 'Examples and Assets', to: '/docs/examples-and-assets' },
+            { label: 'FAQ', to: '/docs/faq' },
+            { label: 'Troubleshooting', to: '/docs/troubleshooting' },
+            { label: 'Launch Checklist', to: '/docs/launch-checklist' },
           ],
         },
         {
@@ -122,13 +127,13 @@ const config: Config = {
               href: 'https://github.com/AnkitParekh007/occupation-ops/blob/main/LICENSE',
             },
             {
-              label: 'Roadmap',
-              to: '/docs/roadmap',
+              label: 'Architecture',
+              to: '/docs/architecture',
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Occupation-Ops Contributors. MIT License.`,
+      copyright: `Copyright (c) ${new Date().getFullYear()} Occupation-Ops Contributors. MIT License.`,
     },
     prism: {
       theme: prismThemes.oneDark,
