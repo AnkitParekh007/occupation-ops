@@ -3,7 +3,7 @@
 ## Suggested Description
 
 ```text
-AI Career Operating System for profile audits, role-gap analysis, GitHub growth, portfolio planning, interview prep, and weekly execution.
+Proof-before-applying engine for AI/frontend pivots. Local-first role scorecards, GitHub rewrites, portfolio briefs, and weekly proof plans.
 ```
 
 ## Suggested Website Field
@@ -20,7 +20,6 @@ https://github.com/AnkitParekh007/occupation-ops
 ai
 career
 career-tech
-job-search
 github-profile
 portfolio
 resume
@@ -36,17 +35,18 @@ occupation-readiness
 
 ## Suggested Pinned Repo Description
 
-Occupation-Ops helps knowledge workers become more hireable before applying by
-auditing profiles, finding role gaps, planning proof projects, and generating
-weekly execution plans.
+Occupation-Ops helps AI/frontend candidates become more credible before
+applying by auditing proof, finding role gaps, planning proof projects, and
+generating weekly shipping plans.
 
 ## Suggested Social Post Copy
 
-I am building Occupation-Ops, an open-source AI Career Operating System for
-modern knowledge workers.
+I am building Occupation-Ops, an open-source proof-before-applying engine for
+AI/frontend candidates.
 
-It helps users become more hireable before applying by auditing their current
-profile, finding role gaps, planning proof projects, improving GitHub/LinkedIn
-positioning, preparing interviews, and generating weekly execution plans.
+It helps users tighten public proof before applying by auditing their current
+profile, finding role gaps, planning proof projects, improving GitHub
+positioning, preparing interview-safe stories, and generating weekly proof
+plans.
 
 MVP is local-first and file-based. Feedback welcome.
