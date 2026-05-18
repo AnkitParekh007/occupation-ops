@@ -1,6 +1,6 @@
 {
   "generatedAt": "<generated-at>",
-  "source": "<source>",
+  "source": "examples/ai-frontend-architect/sample-profile.yml",
   "rubricSlug": "ai-frontend-architect",
   "rubricName": "AI Frontend Architect Rubric",
   "profile": {

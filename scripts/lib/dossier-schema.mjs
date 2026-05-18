@@ -27,7 +27,7 @@ export function normalizeDossierForSnapshot(dossier) {
   return {
     ...dossier,
     generatedAt: '<generated-at>',
-    source: '<source>',
+    source: String(dossier.source).replaceAll('\\', '/'),
   };
 }
 

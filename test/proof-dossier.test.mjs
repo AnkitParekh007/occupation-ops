@@ -61,7 +61,7 @@ test('golden snapshots stay stable for flagship dossier outputs', () => {
   const expectedHtml = readFileSync(join(repoRoot, 'test', 'golden', 'flagship-dossier.sample.html'), 'utf8');
 
   assert.equal(`${JSON.stringify(normalized, null, 2)}\n`, expectedJson);
-  assert.equal(`${renderFlagshipMarkdown(dossier)}\n`, expectedMarkdown);
+  assert.equal(`${renderFlagshipMarkdown(normalized)}\n`, expectedMarkdown);
   assert.equal(renderHtmlViewer(normalized), expectedHtml);
 });
 
