@@ -1,0 +1,116 @@
+{
+  "name": "Full-Stack AI Engineer Rubric",
+  "dossierTitle": "Full-Stack AI Engineer Proof Roadmap",
+  "audience": "engineers bridging product UI and agent/backend workflows",
+  "minimumProofArtifacts": 3,
+  "weeklyTheme": "Make end-to-end AI product proof concrete and recruiter-readable.",
+  "headlinePrefix": "Full-Stack AI Engineer",
+  "headlineFocus": [
+    "agent-backed product interfaces",
+    "retrieval and tool workflows",
+    "observable full-stack AI systems"
+  ],
+  "signals": [
+    {
+      "id": "target-positioning",
+      "label": "Target role is explicit",
+      "weight": 15,
+      "requiresTargetKeyword": "AI",
+      "gap": "The current positioning does not make the AI/full-stack target obvious.",
+      "nextAction": "Rewrite the positioning line around the full-stack AI role you want."
+    },
+    {
+      "id": "proof-volume",
+      "label": "Enough public proof exists",
+      "weight": 12,
+      "minProofCount": 3,
+      "gap": "There are not yet enough proof artifacts to support the role shift.",
+      "nextAction": "List at least three proof artifacts that span UI, backend, or agent workflows."
+    },
+    {
+      "id": "public-surfaces",
+      "label": "Public proof surfaces are linked",
+      "weight": 10,
+      "requiresLink": "github",
+      "gap": "GitHub is not yet linked as a proof surface.",
+      "nextAction": "Link GitHub and connect it to a portfolio or case-study surface."
+    },
+    {
+      "id": "retrieval-tooling",
+      "label": "Retrieval or tool workflows are visible",
+      "weight": 15,
+      "keywords": ["rag", "retrieval", "tool", "workflow", "agent"],
+      "gap": "The proof list does not yet show retrieval or tool-backed product workflows clearly.",
+      "nextAction": "Publish or rename proof artifacts so retrieval and tool flows are visible."
+    },
+    {
+      "id": "fullstack-depth",
+      "label": "Both frontend and backend depth are visible",
+      "weight": 14,
+      "minStrongSkills": 3,
+      "gap": "The skill mix does not yet show enough end-to-end engineering depth.",
+      "nextAction": "List the strongest skills across UI, APIs, architecture, and system design."
+    },
+    {
+      "id": "interview-readiness",
+      "label": "System-design narrative exists",
+      "weight": 14,
+      "keywords": ["architecture", "observability", "integration", "latency"],
+      "gap": "There is not yet enough visible system-design narrative for interview rounds.",
+      "nextAction": "Write one architecture note and one STAR story about end-to-end tradeoffs."
+    },
+    {
+      "id": "truthful-constraints",
+      "label": "Claims and limitations are explicit",
+      "weight": 10,
+      "keywords": ["mock", "truth", "label", "avoid fake"],
+      "gap": "Claims and mock boundaries are not yet explicit enough.",
+      "nextAction": "Add constraints that define what is real, mocked, or planned."
+    },
+    {
+      "id": "portfolio-surface",
+      "label": "Case-study surface exists",
+      "weight": 10,
+      "requiresLink": "portfolio",
+      "gap": "No portfolio or case-study surface is linked yet.",
+      "nextAction": "Add a portfolio or long-form project page for the flagship proof artifact."
+    }
+  ],
+  "projectBlueprints": [
+    {
+      "title": "Agent Workflow Console",
+      "problem": "Most portfolios show either backend pipelines or frontend polish, not the operator-facing AI workflow between them.",
+      "solution": "Build a console that shows user prompt, retrieval, tool execution, approval, and output states end to end.",
+      "recruiterTakeaway": "Shows the candidate can reason across product, backend, and observable AI workflows.",
+      "interviewTalkingPoints": [
+        "Observability of agent steps",
+        "Latency and reliability tradeoffs",
+        "Approval boundaries",
+        "How UI and backend contracts were shaped"
+      ]
+    }
+  ],
+  "readmeChecklist": [
+    "Explain the system from user input to final output.",
+    "Make mocked and real integrations explicit.",
+    "Show one architecture diagram or visual.",
+    "Add setup instructions that work locally."
+  ],
+  "interviewTopics": [
+    "Agent orchestration",
+    "Retrieval pipelines",
+    "Tool execution contracts",
+    "Observability and guardrails",
+    "Frontend/backend tradeoffs"
+  ],
+  "githubTopics": ["full-stack-ai", "agents", "rag", "tooling", "observability"],
+  "truthfulnessGuardrails": [
+    "Do not imply production scale unless proven.",
+    "Label mock integrations clearly.",
+    "Separate shipping evidence from roadmap ideas."
+  ],
+  "positioningComparison": [
+    "Use occupation-ops to build end-to-end AI proof before outreach or applications.",
+    "Use job-search ops tools when the application workflow itself becomes the bottleneck."
+  ]
+}

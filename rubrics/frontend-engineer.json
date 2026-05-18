@@ -1,0 +1,116 @@
+{
+  "name": "Frontend Engineer Rubric",
+  "dossierTitle": "Frontend Engineer Proof Roadmap",
+  "audience": "frontend engineers who need stronger recruiter-readable proof",
+  "minimumProofArtifacts": 3,
+  "weeklyTheme": "Tighten usable public proof for core frontend roles.",
+  "headlinePrefix": "Frontend Engineer",
+  "headlineFocus": [
+    "accessible product interfaces",
+    "maintainable component systems",
+    "performance-aware frontend architecture"
+  ],
+  "signals": [
+    {
+      "id": "target-positioning",
+      "label": "Target frontend role is explicit",
+      "weight": 15,
+      "requiresTargetKeyword": "Frontend",
+      "gap": "The profile summary does not state the frontend target clearly enough.",
+      "nextAction": "Rewrite the summary so the intended frontend role is visible immediately."
+    },
+    {
+      "id": "proof-volume",
+      "label": "Enough public projects exist",
+      "weight": 12,
+      "minProofCount": 3,
+      "gap": "The portfolio is still too light for strong recruiter confidence.",
+      "nextAction": "List at least three public proofs with clear project names and outcomes."
+    },
+    {
+      "id": "github-surface",
+      "label": "GitHub is linked and usable as proof",
+      "weight": 8,
+      "requiresLink": "github",
+      "gap": "No GitHub link exists for recruiter review.",
+      "nextAction": "Add a public GitHub link and make the pinned repos easy to scan."
+    },
+    {
+      "id": "portfolio-surface",
+      "label": "Portfolio surface exists",
+      "weight": 8,
+      "requiresLink": "portfolio",
+      "gap": "A portfolio or case-study surface is missing.",
+      "nextAction": "Link a portfolio and explain what each project proves."
+    },
+    {
+      "id": "frontend-patterns",
+      "label": "Frontend patterns are visible in proof",
+      "weight": 14,
+      "keywords": ["dashboard", "design system", "accessibility", "form", "responsive"],
+      "gap": "The proof list does not yet show the patterns most frontend roles screen for.",
+      "nextAction": "Add or rename proof artifacts to show dashboards, design systems, forms, accessibility, or performance work."
+    },
+    {
+      "id": "skill-depth",
+      "label": "Core frontend depth is visible",
+      "weight": 12,
+      "minStrongSkills": 3,
+      "gap": "The skill section is not yet strong enough to support the role story.",
+      "nextAction": "List the strongest frontend skills already proven by real work."
+    },
+    {
+      "id": "interview-readiness",
+      "label": "Interview narratives exist",
+      "weight": 11,
+      "keywords": ["architecture", "state", "testing", "performance"],
+      "gap": "There is not yet enough visible narrative to support interview explanations.",
+      "nextAction": "Draft stories around state management, testing, or performance tradeoffs."
+    },
+    {
+      "id": "truthful-constraints",
+      "label": "Truthfulness and scope boundaries are explicit",
+      "weight": 10,
+      "keywords": ["truth", "mock", "avoid fake", "label"],
+      "gap": "The profile does not make its truthfulness and project-scope boundaries explicit.",
+      "nextAction": "Add one or two constraints that prevent overclaiming or vague project descriptions."
+    }
+  ],
+  "projectBlueprints": [
+    {
+      "title": "Product Dashboard Case Study",
+      "problem": "Many frontend repos show code but not the product problem or usability tradeoffs.",
+      "solution": "Turn an existing dashboard project into a documented case study with screenshots, decisions, and accessibility notes.",
+      "recruiterTakeaway": "Shows product thinking and maintainable frontend execution.",
+      "interviewTalkingPoints": [
+        "Component boundaries",
+        "State management tradeoffs",
+        "Accessibility choices",
+        "Performance bottlenecks"
+      ]
+    }
+  ],
+  "readmeChecklist": [
+    "State the user problem and what the project proves.",
+    "Show screenshots in the first screen.",
+    "Explain accessibility and performance considerations.",
+    "Keep setup simple and tested."
+  ],
+  "interviewTopics": [
+    "Component boundaries",
+    "State management",
+    "Accessibility",
+    "Performance",
+    "API integration"
+  ],
+  "githubTopics": ["frontend", "typescript", "design-system", "dashboard", "accessibility"],
+  "truthfulnessGuardrails": [
+    "Do not claim scale or adoption without evidence.",
+    "Keep mock implementations labeled clearly.",
+    "Only state decisions you actually made."
+  ],
+  "positioningComparison": [
+    "Use occupation-ops to tighten public proof before sending more applications.",
+    "Use job-search operations tools after the proof surfaces are ready to share."
+  ]
+}
