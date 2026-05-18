@@ -1,0 +1,31 @@
+name: Strong Proof Candidate
+target_occupation: AI Frontend Architect
+target_roles:
+  - AI Frontend Engineer
+  - Angular Architect
+location: Remote
+weekly_hours: 10
+links:
+  github: https://github.com/strong-proof
+  portfolio: https://strong-proof.dev
+  linkedin: https://linkedin.com/in/strong-proof
+current_positioning: AI Frontend Architect building Angular and TypeScript interfaces for copilots, streaming workflows, tool execution, and approval-safe agent systems.
+current_proof:
+  - Angular copilot dashboard with streaming chat, screenshot walkthrough, and RAG citation cards
+  - Enterprise approval workflow demo with tool execution timeline and audit-ready reviewer states
+  - UI-aware agent prototype video demo showing approval checkpoints and recovery states
+  - GitHub profile README rewrite proving recruiter-readable AI frontend positioning
+skills:
+  strong:
+    - Angular
+    - TypeScript
+    - RxJS
+    - Architecture
+  developing:
+    - RAG UX
+    - Tool execution UX
+    - Agent dashboards
+constraints:
+  - Use truthful claims only
+  - Label every mock integration clearly
+  - Avoid fake production metrics

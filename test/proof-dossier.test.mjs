@@ -6,6 +6,7 @@ import { join } from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { buildProofDossier } from '../scripts/lib/proof-engine.mjs';
 import { renderFlagshipMarkdown, renderHtmlViewer } from '../scripts/lib/renderers.mjs';
+import { normalizeDossierForSnapshot, validateDossierSchema } from '../scripts/lib/dossier-schema.mjs';
 
 const repoRoot = process.cwd();
 
@@ -34,6 +35,7 @@ function createTempWorkspace() {
 test('flagship dossier returns proof metrics and backlog', () => {
   const dossier = buildProofDossier(join('examples', 'ai-frontend-architect', 'sample-profile.yml'));
 
+  validateDossierSchema(dossier);
   assert.equal(dossier.summary.title, 'AI Frontend Architect Proof Roadmap');
   assert.ok(dossier.metrics.proofDensity >= 50);
   assert.ok(dossier.backlog.length >= 1);
@@ -49,6 +51,18 @@ test('markdown and html renderers expose the same flagship title', () => {
   assert.match(markdown, /Current score:/);
   assert.match(html, /Occupation-Ops flagship proof dossier/);
   assert.match(html, /AI Frontend Architect Proof Roadmap/);
+});
+
+test('golden snapshots stay stable for flagship dossier outputs', () => {
+  const dossier = buildProofDossier(join('examples', 'ai-frontend-architect', 'sample-profile.yml'));
+  const normalized = normalizeDossierForSnapshot(dossier);
+  const expectedJson = readFileSync(join(repoRoot, 'test', 'golden', 'flagship-dossier.sample.json'), 'utf8');
+  const expectedMarkdown = readFileSync(join(repoRoot, 'test', 'golden', 'flagship-dossier.sample.md'), 'utf8');
+  const expectedHtml = readFileSync(join(repoRoot, 'test', 'golden', 'flagship-dossier.sample.html'), 'utf8');
+
+  assert.equal(`${JSON.stringify(normalized, null, 2)}\n`, expectedJson);
+  assert.equal(`${renderFlagshipMarkdown(dossier)}\n`, expectedMarkdown);
+  assert.equal(renderHtmlViewer(normalized), expectedHtml);
 });
 
 test('CLI entrypoints generate the expected output bundle', () => {
@@ -95,4 +109,23 @@ test('CLI entrypoints generate the expected output bundle', () => {
   assert.equal(json.summary.title, 'AI Frontend Architect Proof Roadmap');
   assert.match(markdown, new RegExp(json.summary.title));
   assert.match(markdown, /README Improvement Checklist/);
+});
+
+test('weak-proof fixture is flagged instead of inflated', () => {
+  const dossier = buildProofDossier(join('test', 'fixtures', 'weak-profile.yml'));
+
+  validateDossierSchema(dossier);
+  assert.ok(dossier.summary.scorePercent < 60);
+  assert.ok(dossier.backlog.length >= 3);
+  assert.ok(dossier.validators.some((item) => item.status === 'fail' || item.status === 'warn'));
+  assert.ok(dossier.summary.missingSignals.length >= 3);
+});
+
+test('strong-proof fixture clears major flagship expectations', () => {
+  const dossier = buildProofDossier(join('test', 'fixtures', 'strong-profile.yml'));
+
+  validateDossierSchema(dossier);
+  assert.ok(dossier.summary.scorePercent >= 80);
+  assert.ok(dossier.metrics.recruiterScanReadiness >= 80);
+  assert.ok(dossier.validators.filter((item) => item.status === 'pass').length >= 3);
 });
