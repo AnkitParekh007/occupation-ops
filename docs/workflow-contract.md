@@ -1,6 +1,7 @@
 # Workflow Contract
 
-Occupation-Ops only works well when the inputs and outputs remain truthful, local, and reviewable.
+Occupation-Ops only works well when the inputs and outputs remain truthful,
+local, and reviewable.
 
 ## Required input contract
 
@@ -13,6 +14,7 @@ Users should provide:
 - skills already demonstrated
 - skills still missing
 - weekly time constraints
+- constraints that separate real work from mock or planned work
 
 ## Output contract
 
@@ -23,6 +25,7 @@ Outputs should help the user create:
 - stronger project planning
 - better interview stories
 - more consistent weekly execution
+- structured dossiers that can be rendered as Markdown, JSON, or HTML
 
 Outputs must not:
 
@@ -49,3 +52,4 @@ Contributors should preserve:
 - ethical career positioning
 - visible truthfulness guardrails
 - practical, developer-oriented outputs
+- shared dossier generation instead of divergent one-off script logic

@@ -11,6 +11,9 @@ Create a new file in `tracks/` for a role such as:
 - Full-Stack AI Engineer
 - Technical Writer for AI tooling
 
+Pair it with a structured rubric in `rubrics/` so the role gets scoring,
+validators, and HTML output automatically.
+
 ## 2. Add a new output template
 
 Extend `templates/` with a new report format such as:
@@ -44,3 +47,11 @@ Create a local progress dashboard that summarizes:
 ## 6. Add test coverage
 
 Add basic test coverage around the scripts in `scripts/` so contributors can refactor with more confidence.
+
+## 7. Add a new renderer
+
+Reuse the shared dossier data model to add another output surface such as:
+
+- compact recruiter summary
+- printable one-page proof scorecard
+- multi-report local index page

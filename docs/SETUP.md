@@ -4,9 +4,9 @@
 
 - Node.js 20 or newer
 - npm
-- A local profile file based on `templates/profile.example.yml`
+- a truthful `profile.yml`
 
-No API keys are required for the MVP scripts.
+No API keys are required.
 
 ## Install
 
@@ -15,27 +15,51 @@ npm install
 npm run doctor
 ```
 
-## Create Your Profile
+## Create your profile
 
 ```bash
-copy templates\profile.example.yml profile.yml
+npm run init
 ```
 
-Edit `profile.yml` with your own target role, current links, proof projects,
-skills, constraints, and weekly availability.
+That creates `profile.yml` from `templates/profile.example.yml`.
 
-## Run The MVP Workflows
+Fill in:
+
+- target occupation
+- target roles
+- public links
+- current proof artifacts
+- strongest skills
+- developing skills
+- truthfulness constraints
+
+## Run the flagship workflow
 
 ```bash
-npm run audit:profile
-npm run plan:weekly
+npm run gap:role
 ```
 
-## Recommended First Workflow
+Open:
 
-1. Pick a target track from `tracks/`.
-2. Fill `profile.yml`.
-3. Run the profile audit.
-4. Read the gap analysis prompts.
-5. Create a weekly plan.
-6. Build or improve one proof asset.
+- `output/role-gap-analysis.md`
+- `output/role-gap-analysis.json`
+- `output/role-gap-analysis.html`
+
+## Recommended sequence
+
+1. Fill `profile.yml`.
+2. Run `npm run audit:profile`.
+3. Run `npm run gap:role`.
+4. Review the backlog and validators.
+5. Run `npm run github:growth` and `npm run plan:weekly`.
+6. Ship one stronger public proof artifact.
+
+## Demo workflow
+
+```bash
+npm run demo:ai-frontend
+```
+
+This generates the sample AI Frontend Architect dossier bundle from the example
+profile so contributors can inspect the full product path without editing local
+data first.
